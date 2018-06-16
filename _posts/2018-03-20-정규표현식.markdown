@@ -6,6 +6,7 @@
     tags: [ 정규표현식, Regular-Expressions ]
 ---
 
+{% raw %}
 ### [Source: zvon.org/comp/r/tut-Regexp.html](http://zvon.org/comp/r/tut-Regexp.html#Pages~Contents)
 
 다방면에서 두루두루 사용되는 정규표현식을 간략하게 정리해 보면,
@@ -59,4 +60,5 @@
 보면 `(?<=\$)[0-9.]+`라는 표현은 `$`문자 패턴의 뒤를 보면서, 해당 패턴을 소비하진 않고, 숫자와 `.`을 포함한 문자가 하나 이상 반복되는 문자를 표현하고 있다.
 
 > 27. `(?<!<pattern>)`은 26과는 반대로, 특정 패턴의 뒤를 보되 찾은 문자열을 표현에서 제외시킨다는 의미이다.
+{% endraw %}
     

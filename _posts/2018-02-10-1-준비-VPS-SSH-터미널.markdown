@@ -6,6 +6,7 @@
     tags: [ VPS, Linode, Alibabacloud, 린노드, 알리바바클라우드, 개인서버, 클라우드서버, SSH, 터미널 ]
 ---
 
+{% raw %}
 이 글에서는 Alibabacloud에서 가상 개인 서버(VPS)를 구매하고 터미널로 접속하는 과정을 다룬다.
  <!-- more -->
 --------------------------------
@@ -115,4 +116,5 @@ key passphrase 란이 비워져 있다면 다른 창이 하나 뜰 텐데, 만�
 접속이 잘 되면 실행 중인 터미널 창의 왼쪽 상단 putty 아이콘을 눌러 Change Settings...를 누른 후 Saved Sessions에 저장할 이름을 적고 Save를 누르면 같은 설정으로 이후에 다시 접속할 수 있다.
 
 만약 Alibabacloud가 아닌 다른 업체를 이용하더라도 전반적인 과정은 위와 비슷하다. [Google Cloud Platform](https://cloud.google.com/?hl=ko)같은 경우는 현재 신규 가입시에 365일동안 무료로 이용 가능한 것으로 보인다. 참고하면 될 듯 하다.
+{% endraw %}
     

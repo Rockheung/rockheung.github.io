@@ -6,6 +6,7 @@
     tags: [ Python, virtualenv, virtualenvwrapper, 파이썬, 장고, Django ]
 ---
 
+{% raw %}
 ### 이 글에서는 Django를 사용할 가상환경을 만들고 프로젝트 및 앱 생성까지 진행한다. 
 
 -----------------
@@ -95,4 +96,5 @@ bash에서 $와 #의 차이는 루트 권한이냐 아니냐의 차이다. 궁�
     ├── models.py
     ├── tests.py
     └── views.py
+{% endraw %}
     

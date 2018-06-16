@@ -6,6 +6,7 @@
     tags: [ 파이썬, Python, virtualenv, virtualenvwrapper, pip, pip2, pip3 ]
 ---
 
+{% raw %}
 ### 이 글에서는 VPS에서 파이썬 가상환경을 만드는 `virtualenvwrapper` 를 설치하여 Django를 실행시킬 가상환경을 구성하기 위한 준비를 한다. `virtualenv`를 사용할 때와는 다르게 `virtualenvwrapper`는 현재의 path에 상관없이 `workon $(가상환경 이름)`으로 해당 가상환경을 활성화할 수 있다. 마치 폴더를 만드는 것 처럼 쉽게 가상환경을 만들고, 지울 수 있다.
 
 <!--more-->
@@ -138,4 +139,5 @@ Root 권한으로 다음을 실행시키면 최신 버전의 pip을 설치할 �
     $ mkvirtualenv myenv3 -p python3
 
 해당 가상환경이 활성화된 상태에서는 python3 버전이 기본 python이 된다.
+{% endraw %}
     
