@@ -6,7 +6,6 @@
     tags: [ git, basic ]
 ---
 
-{% raw %}
 Git이 유용한 툴이라고 많이들 이야기한다. 그런데 막상 처음 접해보면, 일단 단순하게 다음과 같은 몇 가지 명령어만을 주로 쓰게 된다.
 
 <!--more-->
@@ -43,5 +42,3 @@ git add | v2 | v2 | v1
 git commit | v2 | v2 | v2
 
 이후 `git push`를 하면 비로소 github.com의 해당 branch에 변경 내용이 기록된다.
-{% endraw %}
-    

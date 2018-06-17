@@ -6,7 +6,6 @@
     tags: [ elm, 엘름, 오류, EACCES, error ]
 ---
 
-{% raw %}
 [Elm 공식 사이트](http://elm-lang.org/)
 
 Elm 가이드 - [영문](https://guide.elm-lang.org/), [한글](https://www.elm-tutorial.org/ko/)
@@ -41,5 +40,3 @@ Elm 가이드에서 제시하는 npm을 이용한 설치 방식은 기본 환경
     $ echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.profile
     $ source ~/.profile
     $ npm install -g elm
-{% endraw %}
-    

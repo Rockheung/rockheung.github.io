@@ -6,7 +6,6 @@
     tags: [  ]
 ---
 
-{% raw %}
 사용된 칩들의 제원은 대략 다음과 같은 걸로 확인되었다.
 
 CPU: hi3520d - [Datasheet for V300](http://highsi.net/UploadFiles/Files/2017/9/20170910101014242.pdf)
@@ -30,5 +29,3 @@ MUX: Toshiba [Datasheet](https://toshiba.semicon-storage.com/info/docget.jsp?did
 ### `/tmp/run`
 
 hi3520D 칩에 대한 본격적인 세팅에 들어간다. 다양한 GPIO에 1 또는 0을 할당한다. 참고할 만한 문서를 아직 못 찾았다.
-{% endraw %}
-    

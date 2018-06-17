@@ -13,16 +13,14 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Your awesome title
-email: your-email@example.com
+title: SUNDRYCODES
+email: rockheung@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  짤막한, 아니면 기억하고 싶은 잡스런 코드나 약간의 주절거림이 있는 개인 블로그입니다. 장고 기반의 블로그에서 옮겨왔어요. 저는 이런 백엔드 없는 정적 사이트에 완전히 만족해요. 심지어 더 빠르군요! This github page is Rockheung's studying and playing blog moved from django-zinnia based blog. I'm fully satisfied these 'No-Backend-Static-Web-Site' things. Even faster!
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
+# twitter_username: jekyllrb
+github_username:  rockheung
 
 # Build settings
 markdown: kramdown

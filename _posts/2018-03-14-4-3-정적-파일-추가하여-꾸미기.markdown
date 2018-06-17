@@ -6,10 +6,11 @@
     tags: [ Django, 정적파일, 관리자페이지, 앱-재정의 ]
 ---
 
-{% raw %}
 ### 이제 뭐가 남았을까?
 
+{% raw %}
 분명히 뭔가 남았다. 우리가 인터넷에서 보는 사이트는 이렇게 단조로운 흑백의 모노톤이 아니었다. 장고에서 사용하는 uwsgi 서버가 작성해주는 html파일 이외에도 blog앱은 갖가지 태그의 서식을 정의하고, 글자의 크기와 줄넘김 등 수많은 속성을 부여할 css 파일이 필요하다. 사진과 필요하면 폰트 파일도 여기에 포함될 것이다. 이들을 장고에서는 정적 파일이라 부르는데, 일반적으로 `blog/static/blog`의 폴더에 집어넣는다. 이들 파일은 템플릿 폴더의 index.html 파일 등에서 맨 위에 `{% load static %}`를 적어주면 로드된다. 해보자.
+{% endraw %}
 
 다음의 아주 간단한, `li` 태그 하위의 `a`태그에 녹색을 지정해 주는 `style.css`를 작성해 `blog/static/blog`에 추가하자.
 
@@ -19,11 +20,15 @@
 
 그리고 앞서 말한 대로 index.html 파일을 다음과 같이 수정한다.
 
+{% raw %}
     {% load static %}
 
     <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}" />
+{% endraw %}
 
+{% raw %}
 `link`태그의 {% static %} 는 정적 파일의 절대 경로를 생성해 준다.
+{% endraw %}
 
 사진을 추가하고 싶은가? 간단하다. 이미지 파일을 `blog/static/blog/images`에 추가한 후 앞서 작성했던 `style.css`에 `body`태그의 배경을 정의하는 내용을 작성하자.
 
@@ -156,38 +161,40 @@ Question을 관리하는 페이지는 이제 괜찮아 보인다. 그렇다면 �
 
 물론, 가상환경을 사용하고 있다면 `workon`으로 먼저 파이썬 가상환경을 활성화시키자. 다음과 같은 형태면 잘 된 것이다.
 
-    (django-blog) rockheung@ubuntu:~/git/django-blog/_base/templates/admin$ ls -alhF
-    total 116K
-    drwxrwxr-x 6 rockheung rockheung 4.0K Mar 14 22:13 ./
-    drwxrwxr-x 3 rockheung rockheung 4.0K Mar 14 22:13 ../
-    -rw-rw-r-- 1 rockheung rockheung  268 Mar  2 17:53 404.html
-    -rw-rw-r-- 1 rockheung rockheung  527 Mar  2 17:53 500.html
-    -rw-rw-r-- 1 rockheung rockheung 1012 Mar  2 17:53 actions.html
-    -rw-rw-r-- 1 rockheung rockheung  385 Mar  2 17:53 app_index.html
-    drwxrwxr-x 3 rockheung rockheung 4.0K Mar  2 17:53 auth/
-    -rw-rw-r-- 1 rockheung rockheung 3.6K Mar  2 17:53 base.html
-    -rw-rw-r-- 1 rockheung rockheung  316 Mar  2 17:53 base_site.html
-    -rw-rw-r-- 1 rockheung rockheung 3.3K Mar  2 17:53 change_form.html
-    -rw-rw-r-- 1 rockheung rockheung 3.2K Mar  2 17:53 change_list.html
-    -rw-rw-r-- 1 rockheung rockheung 1.6K Mar  2 17:53 change_list_results.html
-    -rw-rw-r-- 1 rockheung rockheung  372 Mar  2 17:53 date_hierarchy.html
-    -rw-rw-r-- 1 rockheung rockheung 2.4K Mar  2 17:53 delete_confirmation.html
-    -rw-rw-r-- 1 rockheung rockheung 2.3K Mar  2 17:53 delete_selected_confirmation.html
-    drwxrwxr-x 2 rockheung rockheung 4.0K Mar  2 17:53 edit_inline/
-    -rw-rw-r-- 1 rockheung rockheung  330 Mar  2 17:53 filter.html
-    drwxrwxr-x 2 rockheung rockheung 4.0K Mar  2 17:53 includes/
-    -rw-rw-r-- 1 rockheung rockheung 3.0K Mar  2 17:53 index.html
-    -rw-rw-r-- 1 rockheung rockheung  437 Mar  2 17:53 invalid_setup.html
-    -rw-rw-r-- 1 rockheung rockheung 1.9K Mar  2 17:53 login.html
-    -rw-rw-r-- 1 rockheung rockheung 1.5K Mar  2 17:53 object_history.html
-    -rw-rw-r-- 1 rockheung rockheung  554 Mar  2 17:53 pagination.html
-    -rw-rw-r-- 1 rockheung rockheung  358 Mar  2 17:53 popup_response.html
-    -rw-rw-r-- 1 rockheung rockheung  245 Mar  2 17:53 prepopulated_fields_js.html
-    -rw-rw-r-- 1 rockheung rockheung 1.4K Mar  2 17:53 related_widget_wrapper.html
-    -rw-rw-r-- 1 rockheung rockheung 1.1K Mar  2 17:53 search_form.html
-    -rw-rw-r-- 1 rockheung rockheung  790 Mar  2 17:53 submit_line.html
-    drwxrwxr-x 2 rockheung rockheung 4.0K Mar  2 17:53 widgets/
+{% highlight console %}
+(django-blog) rockheung@ubuntu:~/git/django-blog/_base/templates/admin$ ls -alhF
+total 116K
+drwxrwxr-x 6 rockheung rockheung 4.0K Mar 14 22:13 ./
+drwxrwxr-x 3 rockheung rockheung 4.0K Mar 14 22:13 ../
+-rw-rw-r-- 1 rockheung rockheung  268 Mar  2 17:53 404.html
+-rw-rw-r-- 1 rockheung rockheung  527 Mar  2 17:53 500.html
+-rw-rw-r-- 1 rockheung rockheung 1012 Mar  2 17:53 actions.html
+-rw-rw-r-- 1 rockheung rockheung  385 Mar  2 17:53 app_index.html
+drwxrwxr-x 3 rockheung rockheung 4.0K Mar  2 17:53 auth/
+-rw-rw-r-- 1 rockheung rockheung 3.6K Mar  2 17:53 base.html
+-rw-rw-r-- 1 rockheung rockheung  316 Mar  2 17:53 base_site.html
+-rw-rw-r-- 1 rockheung rockheung 3.3K Mar  2 17:53 change_form.html
+-rw-rw-r-- 1 rockheung rockheung 3.2K Mar  2 17:53 change_list.html
+-rw-rw-r-- 1 rockheung rockheung 1.6K Mar  2 17:53 change_list_results.html
+-rw-rw-r-- 1 rockheung rockheung  372 Mar  2 17:53 date_hierarchy.html
+-rw-rw-r-- 1 rockheung rockheung 2.4K Mar  2 17:53 delete_confirmation.html
+-rw-rw-r-- 1 rockheung rockheung 2.3K Mar  2 17:53 delete_selected_confirmation.html
+drwxrwxr-x 2 rockheung rockheung 4.0K Mar  2 17:53 edit_inline/
+-rw-rw-r-- 1 rockheung rockheung  330 Mar  2 17:53 filter.html
+drwxrwxr-x 2 rockheung rockheung 4.0K Mar  2 17:53 includes/
+-rw-rw-r-- 1 rockheung rockheung 3.0K Mar  2 17:53 index.html
+-rw-rw-r-- 1 rockheung rockheung  437 Mar  2 17:53 invalid_setup.html
+-rw-rw-r-- 1 rockheung rockheung 1.9K Mar  2 17:53 login.html
+-rw-rw-r-- 1 rockheung rockheung 1.5K Mar  2 17:53 object_history.html
+-rw-rw-r-- 1 rockheung rockheung  554 Mar  2 17:53 pagination.html
+-rw-rw-r-- 1 rockheung rockheung  358 Mar  2 17:53 popup_response.html
+-rw-rw-r-- 1 rockheung rockheung  245 Mar  2 17:53 prepopulated_fields_js.html
+-rw-rw-r-- 1 rockheung rockheung 1.4K Mar  2 17:53 related_widget_wrapper.html
+-rw-rw-r-- 1 rockheung rockheung 1.1K Mar  2 17:53 search_form.html
+-rw-rw-r-- 1 rockheung rockheung  790 Mar  2 17:53 submit_line.html
+drwxrwxr-x 2 rockheung rockheung 4.0K Mar  2 17:53 widgets/
+{% endhighlight %}
 
+{% raw %}
 이제 `base_site.html`파일을 수정하여 관리자 페이지 제목을 수정해 보자. `{{site_header|default:_ ('Django administration' }}`를 제목으로 사용하고 싶은 문자열로 수정한다. 깔끔하게 관리자 페이지의 제목이 바뀜을 확인할 수 있다. 이런 식으로 관리자 페이지의 어떤 부분이든 다시 정의할 수 있다. 장고는 `INSTALLED_APPS`의 앱을 정의된 순서대로 보여준다. 원한다면, admin앱의 첫 화면인 `index.html`을 수정해볼 수도 있을 것이다.
 {% endraw %}
-    

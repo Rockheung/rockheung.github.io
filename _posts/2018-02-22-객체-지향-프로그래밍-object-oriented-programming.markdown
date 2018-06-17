@@ -6,7 +6,6 @@
     tags: [ Python, 파이썬 ]
 ---
 
-{% raw %}
 Source: [생활코딩: 객체지향프로그래밍](https://opentutorials.org/course/1750/9624)
 
 동영상을 보면서 정리해 봤다.<!--more-->
@@ -90,5 +89,3 @@ str_ln 생성자가 인스턴스 변수(var_str)을 입력받을 때 개행문�
 위 클래스에서 cls.var는 해당 클래스의 변수 var를 가리키고, self.var는 해당 클래스의 인스턴스 변수 var를 가리킨다. 그리고 정적 메서드인 st_mtd는 cls나 self를 사용할 수 없다.
 
 self, cls는 예약어가 아니다. 메서드의 종류를 명시하면 해당 메서드의 맨 첫 인수가 자동으로 인스턴스 혹은 클래스를 지칭하게 된다. `def __init__(whateverUwant):` 같이 적어줘도 된다는 뜻이다. 물론 이건 너무 길다.
-{% endraw %}
-    

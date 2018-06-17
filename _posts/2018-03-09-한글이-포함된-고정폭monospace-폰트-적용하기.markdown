@@ -6,7 +6,6 @@
     tags: [ D2-coding, webfont, 웹폰트, 고정폭, monospace ]
 ---
 
-{% raw %}
 기존에 `code` 태그에서 사용하던 폰트는 네이버의 나눔고딕코딩 폰트였다. 그러나 본인의 어떤 실수 때문인지는 몰라도 코드의 indentation이 정확하지 않았다. css를 [구글 폰트 사이트](https://fonts.google.com/)에서 권장하는대로 다음과 같이 사용하고 있었다.
 
     pre code {
@@ -23,8 +22,8 @@ D2-coding 폰트가 유력한 대안이었으나 이는 구글 폰트 사이트�
 
 다행히 깃허브에서 방법을 찾았다. [Joungkyun: D2 coding](https://github.com/Joungkyun/font-d2coding)를 블로그 서버에 받아 서버 `static/font` 폴더로 심볼릭 링크를 만들었다.  그리고 다음과 같은 코드를 템플릿에 추가했다.
 
+{% raw %}
     <link rel="stylesheet" href="{% static "font/d2coding.css" %}" type="text/css">
+{% endraw %}
 
 아주 잘 작동한다.
-{% endraw %}
-    

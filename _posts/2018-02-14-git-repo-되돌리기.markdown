@@ -6,7 +6,6 @@
     tags: [ git, rollback, reset ]
 ---
 
-{% raw %}
 Source: [7.7 Git 도구 - Reset 명확히 알고 가기](https://git-scm.com/book/ko/v2/Git-%EB%8F%84%EA%B5%AC-Reset-%EB%AA%85%ED%99%95%ED%9E%88-%EC%95%8C%EA%B3%A0-%EA%B0%80%EA%B8%B0)
 원 글의 제목은 *명확히 알고 가기* 이나 내용이 너무 중구난방으로 널뛰어서 가볍게 정리해봤다. 
 
@@ -39,5 +38,3 @@ github.com의 커밋 히스토리도 해당 특정 커밋이 가장 최신인 �
 으로 그 커밋일 때의 상태로 되돌린다. `git push $(remote) $(bransh)`를 날려준다. 그 이전에 `git add .` 등을 할 필요는 없는데, `git status`를 날려 보면 알겠지만 이미 이전의 상태로 staging임을 확인할 수 있을 것이다.
 
 `git commit -m '$(whatever U want to say)'` 이후 push 전에 다음 커밋과 합치고 싶으면, `git commit --amend -m '$(want to override message)'`를 한다. 커밋 메세지가 오버라이딩 된다. 이후 push하면 그 동안의 커밋이 합쳐진다.
-{% endraw %}
-    

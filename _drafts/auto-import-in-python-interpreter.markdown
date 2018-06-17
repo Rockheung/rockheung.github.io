@@ -6,7 +6,6 @@
     tags: [ python, 파이썬, auto-import, PYTHONSTARTUP ]
 ---
 
-{% raw %}
 `dir()`는 파이썬을 쓰다가 현재 어떤 모듈이 임포트되어 있는지 궁금할 때 자주 사용하는 함수이다. 
 
     >>> import os
@@ -99,5 +98,3 @@ __main__모듈은 처음에 임포트되지 않았지만 `import __main__`이후
       __spec__   None
 
 이제 어떤 클래스의 namespace가 궁금하다면 `ll(str.__dict__)`와 같이 날리면 각 객체의 종류도 같이 알 수 있다.
-{% endraw %}
-    
