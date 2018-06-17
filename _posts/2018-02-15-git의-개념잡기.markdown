@@ -1,9 +1,9 @@
 ---
-    layout: post
-    title:  "Git의 개념잡기"
-    date:   2018-02-15 05:28:09.440 -0600
-    categories: [ study ]
-    tags: [ git, basic ]
+layout: post
+title:  "Git의 개념잡기"
+date:   2018-02-15 05:28:09.440 +0900
+categories: [ study ]
+tags: [ git, basic ]
 ---
 
 Git이 유용한 툴이라고 많이들 이야기한다. 그런데 막상 처음 접해보면, 일단 단순하게 다음과 같은 몇 가지 명령어만을 주로 쓰게 된다.

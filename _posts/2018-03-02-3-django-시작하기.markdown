@@ -1,9 +1,9 @@
 ---
-    layout: post
-    title:  "3. Django 시작하기"
-    date:   2018-03-02 11:08:44.792 -0600
-    categories: [ django ]
-    tags: [ Python, virtualenv, virtualenvwrapper, 파이썬, 장고, Django ]
+layout: post
+title:  "3. Django 시작하기"
+date:   2018-03-02 11:08:44.792 +0900
+categories: [ django ]
+tags: [ Python, virtualenv, virtualenvwrapper, 파이썬, 장고, Django ]
 ---
 
 ### 이 글에서는 Django를 사용할 가상환경을 만들고 프로젝트 및 앱 생성까지 진행한다. 

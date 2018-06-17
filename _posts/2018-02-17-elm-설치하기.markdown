@@ -1,9 +1,9 @@
 ---
-    layout: post
-    title:  "Elm 설치하기 | Elm Install"
-    date:   2018-02-17 07:25:54.536 -0600
-    categories: [ study ]
-    tags: [ elm, 엘름, 오류, EACCES, error ]
+layout: post
+title:  "Elm 설치하기 | Elm Install"
+date:   2018-02-17 07:25:54.536 +0900
+categories: [ study ]
+tags: [ elm, 엘름, 오류, EACCES, error ]
 ---
 
 [Elm 공식 사이트](http://elm-lang.org/)

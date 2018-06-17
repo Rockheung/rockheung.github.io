@@ -1,9 +1,9 @@
 ---
-    layout: post
-    title:  "개발자가 되어 보자."
-    date:   2018-04-19 09:11:57.192 -0600
-    categories: [ 일상 ]
-    tags: [  ]
+layout: post
+title:  "개발자가 되어 보자."
+date:   2018-04-19 09:11:57.192 +0900
+categories: [ 일상 ]
+tags: [  ]
 ---
 
 [자바개발자 신입 나이의 마지노선은..](http://www.okjsp.pe.kr:8080/article/418715?note=1311269) - 29살 html, css, jquery 다룰줄 아는 9개월차 여성분 - Java 개발자로 진로변경 질문: 신입 잘 안뽑는다, 나이로 경력 뻔튀기하는 펴견형 SI, 6개월간 JAVA, JSP 열심히 하면 신입 취업 문제없다.

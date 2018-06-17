@@ -1,9 +1,9 @@
 ---
-    layout: post
-    title:  "한글이 포함된 고정폭monospace 폰트 적용하기."
-    date:   2018-03-09 09:19:42.888 -0600
-    categories: [ study ]
-    tags: [ D2-coding, webfont, 웹폰트, 고정폭, monospace ]
+layout: post
+title:  "한글이 포함된 고정폭monospace 폰트 적용하기."
+date:   2018-03-09 09:19:42.888 +0900
+categories: [ study ]
+tags: [ D2-coding, webfont, 웹폰트, 고정폭, monospace ]
 ---
 
 기존에 `code` 태그에서 사용하던 폰트는 네이버의 나눔고딕코딩 폰트였다. 그러나 본인의 어떤 실수 때문인지는 몰라도 코드의 indentation이 정확하지 않았다. css를 [구글 폰트 사이트](https://fonts.google.com/)에서 권장하는대로 다음과 같이 사용하고 있었다.

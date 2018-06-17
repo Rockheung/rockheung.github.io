@@ -1,9 +1,9 @@
 ---
-    layout: post
-    title:  "정규표현식"
-    date:   2018-03-20 12:49:49.119 -0600
-    categories: [ study ]
-    tags: [ 정규표현식, Regular-Expressions ]
+layout: post
+title:  "정규표현식"
+date:   2018-03-20 12:49:49.119 +0900
+categories: [ study ]
+tags: [ 정규표현식, Regular-Expressions ]
 ---
 
 ### [Source: zvon.org/comp/r/tut-Regexp.html](http://zvon.org/comp/r/tut-Regexp.html#Pages~Contents)

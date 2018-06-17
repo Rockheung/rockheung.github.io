@@ -1,9 +1,9 @@
 ---
-    layout: post
-    title:  "4-3. 정적 파일 핸들링 & 관리자 페이지 수정"
-    date:   2018-03-14 10:46:11.897 -0600
-    categories: [ django ]
-    tags: [ Django, 정적파일, 관리자페이지, 앱-재정의 ]
+layout: post
+title:  "4-3. 정적 파일 핸들링 & 관리자 페이지 수정"
+date:   2018-03-14 10:46:11.897 +0900
+categories: [ django ]
+tags: [ Django, 정적파일, 관리자페이지, 앱-재정의 ]
 ---
 
 ### 이제 뭐가 남았을까?

@@ -1,9 +1,9 @@
 ---
-    layout: post
-    title:  "객체 지향 프로그래밍 | Object Oriented Programming"
-    date:   2018-02-22 08:03:26.553 -0600
-    categories: [ study ]
-    tags: [ Python, 파이썬 ]
+layout: post
+title:  "객체 지향 프로그래밍 | Object Oriented Programming"
+date:   2018-02-22 08:03:26.553 +0900
+categories: [ study ]
+tags: [ Python, 파이썬 ]
 ---
 
 Source: [생활코딩: 객체지향프로그래밍](https://opentutorials.org/course/1750/9624)

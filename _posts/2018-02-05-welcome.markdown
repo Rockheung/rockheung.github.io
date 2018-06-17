@@ -1,9 +1,9 @@
 ---
-    layout: post
-    title:  "WELCOME!"
-    date:   2018-02-05 15:38:29.798 -0600
-    categories: [ ]
-    tags: [  ]
+layout: post
+title:  "WELCOME!"
+date:   2018-02-05 15:38:29.798 +0900
+categories: [ ]
+tags: [  ]
 ---
 
 들어가던 사이트가 아니라 놀라셨나요? 이런, 도메인을 바꿨습니다. 이제 이 주소는 글을 올리는 블로그로 쓸 예정입니다. 이전 동영상 서버는 

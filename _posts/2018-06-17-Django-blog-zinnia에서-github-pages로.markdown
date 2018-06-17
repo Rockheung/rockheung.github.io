@@ -110,11 +110,11 @@ for item in blog_json:
 
         # create the file for the post and save it to either _posts or _drafts
         header = '''---
-    layout: post
-    title:  "%s"
-    date:   %s %s +0900
-    categories: %s
-    tags: %s
+layout: post
+title:  "%s"
+date:   %s %s +0900
+categories: %s
+tags: %s
 ---
 
 %s

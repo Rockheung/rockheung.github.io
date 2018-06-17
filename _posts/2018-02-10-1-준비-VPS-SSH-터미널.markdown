@@ -1,9 +1,9 @@
 ---
-    layout: post
-    title:  "1. 준비 - VPS, SSH 터미널"
-    date:   2018-02-10 10:45:22.146 -0600
-    categories: [ django ]
-    tags: [ VPS, Linode, Alibabacloud, 린노드, 알리바바클라우드, 개인서버, 클라우드서버, SSH, 터미널 ]
+layout: post
+title:  "1. 준비 - VPS, SSH 터미널"
+date:   2018-02-10 10:45:22.146 +0900
+categories: [ django ]
+tags: [ VPS, Linode, Alibabacloud, 린노드, 알리바바클라우드, 개인서버, 클라우드서버, SSH, 터미널 ]
 ---
 
 이 글에서는 Alibabacloud에서 가상 개인 서버(VPS)를 구매하고 터미널로 접속하는 과정을 다룬다.

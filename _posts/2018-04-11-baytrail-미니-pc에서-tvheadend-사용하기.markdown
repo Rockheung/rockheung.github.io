@@ -1,9 +1,9 @@
 ---
-    layout: post
-    title:  "Atom baytrail 미니 PC에서 tvheadend 사용하기 - 1"
-    date:   2018-04-11 09:01:07.025 -0600
-    categories: [ 서버, 일상 ]
-    tags: [ atom, baytrail, ubuntu, server, 저전력서버 ]
+layout: post
+title:  "Atom baytrail 미니 PC에서 tvheadend 사용하기 - 1"
+date:   2018-04-11 09:01:07.025 +0900
+categories: [ 서버, 일상 ]
+tags: [ atom, baytrail, ubuntu, server, 저전력서버 ]
 ---
 
 ### 한동안 뜸했다. 이번에 사용해보는 미니 PC는 

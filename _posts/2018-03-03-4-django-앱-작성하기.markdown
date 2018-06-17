@@ -1,9 +1,9 @@
 ---
-    layout: post
-    title:  "4. Django 앱 작성하기"
-    date:   2018-03-03 09:39:17.252 -0600
-    categories: [ django ]
-    tags: [ 파이썬, 장고, Django, Sqlite ]
+layout: post
+title:  "4. Django 앱 작성하기"
+date:   2018-03-03 09:39:17.252 +0900
+categories: [ django ]
+tags: [ 파이썬, 장고, Django, Sqlite ]
 ---
 
 ### 이 글에서는 장고 공식 사이트의 [첫 번째 장고 앱 작성하기](https://docs.djangoproject.com/ko/2.0/intro/tutorial01/)를 참고하여 설문조사 앱을 작성할 것이다. 장고 앱의 코드를 거의 건드리지 않고도 `django-blog-zinnia` 파이썬 패키지를 이용하면 큰 어려움 없이 본인과 같은 블로그를 쉽게 만들 수 있다. 그런 독자들은 이 글을 건너 뛰고 바로 [5. Django 패키지 이용하기:draft](https://rockheung.xyz/E/)로 넘어가도 큰 문제는 없을 것이다.

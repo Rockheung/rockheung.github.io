@@ -1,9 +1,9 @@
 ---
-    layout: post
-    title:  "비글본 블랙 BeagleBone Black 에서 KT IPTV를?"
-    date:   2018-03-27 14:44:38.727 -0600
-    categories: [ 일상 ]
-    tags: [ IPTV, tvheadend, BeagleBone-Black, ARM-server ]
+layout: post
+title:  "비글본 블랙 BeagleBone Black 에서 KT IPTV를?"
+date:   2018-03-27 14:44:38.727 +0900
+categories: [ 일상 ]
+tags: [ IPTV, tvheadend, BeagleBone-Black, ARM-server ]
 ---
 
 ### 본인의 집에서는 현재 KT IPTV를 신청해서 보고 있다. 이전 글에서 얘기했었지만, tvheadend를 이용해서 IPTV를 컴퓨터로 시청하고자 한다.

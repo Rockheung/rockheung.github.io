@@ -1,9 +1,9 @@
 ---
-    layout: post
-    title:  "IPTV를 방에서도 보고싶다면."
-    date:   2018-03-21 10:24:34.369 -0600
-    categories: [ 일상 ]
-    tags: [ tvheadend, IPTV ]
+layout: post
+title:  "IPTV를 방에서도 보고싶다면."
+date:   2018-03-21 10:24:34.369 +0900
+categories: [ 일상 ]
+tags: [ tvheadend, IPTV ]
 ---
 
 집에서 현재 KT IPTV를 시청하고 있다. 셋탑박스는 거실에 있고, 마침 셋탑박스에 HDMI 하나와 컴포넌트 한 셋 출력을 지원해서 컴포넌트는 거실의 TV에, HDMI는 10M 짜리 케이블로 아버지 방의 모니터에 연결해서 시청하고 있었다. 그런데 최근에 작은 문제가 생겼다.
