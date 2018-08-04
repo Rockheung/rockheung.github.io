@@ -12,7 +12,7 @@
       <form action="{% url 'zinnia:entry_search' %}" class="search-form">
         <div class="form-group has-feedback">
           <label for="search" class="sr-only">Search</label>
-          <input type="text" class="search-query form-control" placeholder="{% trans 'Search' %}" name="pattern" value="{{ pattern }}" />
+          <input type="text" class="search-query form-control" placeholder="{% trans 'Search' %}" name="pattern" value="{{ pattern }}" >
           <span class="glyphicon glyphicon-search form-control-feedback"></span>
         </div>
       </form>
@@ -23,68 +23,73 @@
   <div class="container">
 
     <ul class="list-unstyled components">
-{% if user.is_authenticated %}
-  <li class="">
-    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
-      {% trans "Tools" %}
-    </a>
-    <ul class="collapse list-unstyled" id="homeSubmenu">
-      {% if perms.zinnia %}
-      <li class="">
-        <a href="{% url 'admin:app_list' 'zinnia' %}" title="{% trans "Dashboard" %}">
-          <span class="glyphicon glyphicon-book"></span>
-          {% trans "Dashboard" %}
+      <! -- Here would be better off instorucing my Info. -->
+
+      <li class="active">
+        <a href="#categorySubmenu" data-toggle="collapse" aria-expanded="true">
+          {% trans "Categories" %}
         </a>
+        <ul class="collapse in list-unstyled" id="categorySubmenu">
+          {% for category in categories %}
+            <li class="{% if category.slug == context_category.slug %} current{% endif %}">
+              <a href="{{ category.get_absolute_url }}"
+                 title="{% blocktrans %}show all entries in {{ category }}{% endblocktrans %}">{{ category }}
+                 <span class="label pull-right">
+                   {% blocktrans count entry_count=category.count_entries_published %}{{ entry_count }} entry{% plural %}{{ entry_count }} entries{% endblocktrans %}
+                 </span>
+              </a>
+            </li>
+          {% empty %}
+            <li class="">
+              <a href="#">{% trans "no categories yet." %}</a>
+            </li>
+          {% endfor %}
+        </ul>
       </li>
-      {% endif %}
-      {% if perms.zinnia.add_entry %}
-      <li class="">
-        <a href="{% url 'admin:zinnia_entry_add' %}" title="{% trans "Post an entry" %}">
-          <span class="glyphicon glyphicon-pencil"></span>
-          {% trans "Post an entry" %}
+
+      <li class="active">
+        <a href="#recententriesSubmenu" data-toggle="collapse" aria-expanded="true">
+          {% trans "Recent entries" %}
         </a>
+        <ul class="collapse in list-unstyled" id="recententriesSubmenu">
+          {% for entry in entries %}
+            <li class="">
+              <a href="{{ entry.get_absolute_url }}" title="{{ entry.title }}" rel="bookmark">{{ entry.title }}</a>
+            </li>
+          {% empty %}
+            <li class="">
+              <a href="#">{% trans "No entries yet." %}</a>
+            </li>
+          {% endfor %}
+        </ul>
       </li>
-      {% endif %}
-      {% block admin-tools %}
-      {% endblock admin-tools %}
-      <li class="">
-        <a href="{% url 'admin:logout' %}" title="{% trans "Log out" %}">
-          <span class="glyphicon glyphicon-off"></span>
-          {% trans "Log out" %}
+
+      <li class="active">
+        <a href="#tagcloudSubmenu" data-toggle="collapse" aria-expanded="true">
+          {% trans "Tags" %}
         </a>
+        <ul id="tagcloudSubmenu" class="callapse in list-unstyled {% if not tags %}no-{% endif %}tag-cloud">
+          {% for tag in tags %}
+            <li>
+              <a href="{% url 'zinnia:tag_detail' tag.name %}"
+                 title="{% blocktrans count entry_count=tag.count %}{{ entry_count }} entry tagged by {{ tag }}{% plural %}{{ entry_count }} entries tagged by {{ tag }}{% endblocktrans %}"
+                 class="tag-{{ tag.font_size }}{% if tag.name == context_tag.name %} current{% endif %}">{{ tag }}</a>
+            </li>
+          {% empty %}
+            <li>
+              {% trans "No tags yet." %}
+            </li>
+          {% endfor %}
+        </ul>
       </li>
-    </ul>
-  </li>
-{% endif %}
-
-  <li class="active">
-    <a href="#categorySubmenu" data-toggle="collapse" aria-expanded="true">
-      {% trans "Categories" %}
-    </a>
-    {% get_categories %}
-  </li>
-
-  <li class="active">
-    <a href="#recententriesSubmenu" data-toggle="collapse" aria-expanded="true">
-      {% trans "Recent entries" %}
-    </a>
-    {% get_recent_entries %}
-  </li>
-
-  <li class="active">
-    <a href="#tagcloudSubmenu" data-toggle="collapse" aria-expanded="true">
-      {% trans "Tags" %}
-    </a>
-    {% get_tag_cloud 6 1 %}
-  </li>
 
 
-  <li class="active">
-    <a href="#recentcomments" data-toggle="collapse" aria-expanded="true">
-      {% trans "Recent comments" %}
-    </a>
-    <div id="recentcomments" class="dsq-widget collapse in"><script type="text/javascript" src="https://sundry-rockheung.disqus.com/recent_comments_widget.js?num_items=5&hide_avatars=1&avatar_size=32&excerpt_length=200"></script></div>
-  </li>
+      <li class="active">
+        <a href="#recentcomments" data-toggle="collapse" aria-expanded="true">
+          {% trans "Recent comments" %}
+        </a>
+        <div id="recentcomments" class="dsq-widget collapse in"><script type="text/javascript" src="https://sundry-rockheung.disqus.com/recent_comments_widget.js?num_items=5&hide_avatars=1&avatar_size=32&excerpt_length=200"></script></div>
+      </li>
 
     </ul>
   </div>
