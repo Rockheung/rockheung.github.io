@@ -16,7 +16,7 @@
 title: SUNDRYCODES
 email: rockheung@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  짤막한, 아니면 기억하고 싶은 잡스런 코드나 약간의 주절거림이 있는 개인 블로그입니다. 장고 기반의 블로그에서 옮겨왔어요. 저는 이런 백엔드 없는 정적 사이트에 완전히 만족해요. 심지어 더 빠르군요! This github page is Rockheung's studying and playing blog moved from django-zinnia based blog. I'm fully satisfied these 'No-Backend-Static-Web-Site' things. Even faster!
+  짤막한, 아니면 기억하고 싶은 잡스런 코드나 약간의 주절거림이 있는 개인 블로그입니다.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 # twitter_username: jekyllrb
