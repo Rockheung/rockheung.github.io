@@ -1,0 +1,399 @@
+<style type="text/css">
+body {
+}
+body > nav img {
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+p.entry-discussions {
+    margin-bottom: 0px;
+}
+
+a.aps-pos {
+    position: absolute;
+}
+nav.navbar {
+    height: 34px;
+    min-height: 34px;
+    margin-bottom: 15px;
+    border: 0px;
+}
+a.navbar-brand {
+    margin: 0px;
+    text-align: center;
+    padding: 0px;
+    height: 0px;
+}
+img.home-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+}
+ul.breadcrumb {
+    height: 32px;
+    background-color: transparent;
+}
+
+.navbar-btn {
+    color: #2D2C4D;
+    background-color: transparent;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    padding: 0px;
+    z-index: 500;
+    position: fixed;
+    margin: 0px;
+}
+.wrapper {
+    display: flex;
+    align-items: stretch;
+}
+.breadcrumbs {
+    position: -webkit-sticky;
+    position: sticky;
+    margin: -15px;
+    top: 0px;
+    padding: 15px;
+    background: linear-gradient( to bottom, rgba(255,255,255,1), rgba(255,255,255,1), rgba(255,255,255,0)  );
+}
+.breadcrumbs ul{
+    padding: 4px 10px;
+}
+.page-header {
+    padding-bottom: 50px;
+    margin-top: 15px;
+}
+.page-header h2.entry-title {
+    margin-top: 15px;
+}
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+}
+
+#sidebar span.label {
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+#sidebar footer.container {
+    position: absolute;
+    max-height: 15px;
+    top: calc(100vh - 30px);
+    bottom: 0;
+    left: 0;
+    z-index: 500;
+    color: #FFFFFF;
+}
+
+#sidebar .container {
+    height: calc(100vh - 62px);
+    width: 250px;
+    padding: 0;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#content {
+    width: calc(100% - 250px);
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 15px;
+    background: #FFFFFF;
+}
+#content.active {
+    width: 100%;
+}
+#content article.hentry {
+    margin-bottom: 50px;
+}
+#content div.entry-body {
+    text-indent: -15px;
+    text-align: justify;
+}
+#content small.entry-info {
+    font-size: 45%;
+}
+#content div.search form.form-search {
+    background-color: transparent;
+    border: 0px;
+}
+#content div.entry-body a:hover {
+    color: #5F4B8B;
+    transition: unset;
+}
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
+    content: '\e259';
+    display: block;
+    position: absolute;
+    right: 20px;
+    font-family: 'Glyphicons Halflings';
+    font-size: 0.6em;
+}
+
+a[aria-expanded="true"]::before {
+    content: '\e260';
+}
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar .container {
+        height: calc(100vh - 112px);
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #content {
+        width: 100%;
+    }
+    #content.active {
+        width: calc(100% - 250px);
+    }
+    #content.active .container-fluid {
+        min-width: 320px;
+    }
+}
+
+/*
+@media (max-width: 320px) {
+#sidebar {
+margin-left: -250px;
+}
+#sidebar.active {
+margin-left: 0;
+}
+#content {
+width: 100%;
+}
+#content.active {
+width: calc(100% - 250px);
+}
+}
+ */
+
+/*
+ADDITIONAL DEMO STYLE, NOT IMPORTANT TO MAKE THINGS WORK BUT TO MAKE IT A BIT NICER :)
+ */
+
+
+body {
+    font-family: 'Nanum Gothic', sans-serif;
+    background: #FFFFFF;
+    color: #2D2C4D;
+}
+
+p {
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #2D2C4D;
+}
+
+a, a:hover, a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+    line-height: 1.7em;
+}
+
+#sidebar {
+    /* don't forget to add all the previously mentioned styles here too */
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 10;
+    background: #4087A6;
+    color: #FFFFFF;
+    transition: all 0.3s;
+}
+
+#sidebar .sidebar-search {
+    min-height: 50px;
+    background: #3686A0;
+}
+
+#sidebar .sidebar-header a {
+    display: block;
+    height: 62px;
+    padding:  15px;
+    background: #3686A0;
+    font-size: 1.5em;
+    font-weight: 500;
+    line-height: 32px;
+}
+
+#sidebar ul.components {
+    padding: 15px 0;
+}
+
+#sidebar ul p {
+    color: #FFFFFF;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+#sidebar ul li a:hover {
+    color: #4087A6;
+    background: #BFC8E0;
+}
+
+#sidebar ul li.active > a, a[aria-expanded="true"] {
+    color: #FFFFFF;
+    background: #3686A0;
+}
+ul ul a {
+    padding-left: 30px !important;
+}
+
+/*
+.container {
+width: 100%;
+}
+ */
+
+.container-fluid {
+    padding:0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#sidebar .search-form .form-group {
+    width: 220px;
+    border-radius: 8px 25px 25px 8px;
+}
+.search-form .form-group {
+    float: right !important;
+    transition: all 0.35s;
+    width: 32px;
+    height: 32px;
+    background-color: #FFFFFF;
+    border-left: 1px solid #2D2C4D;
+}
+.search-form .form-group input.form-control {
+    padding-right: 20px;
+    border: 0 none;
+    background: transparent;
+    box-shadow: none;
+    display:block;
+    height: 30px;
+}
+.search-form .form-group input.form-control::-webkit-input-placeholder {
+    display: none;
+}
+.search-form .form-group input.form-control:-moz-placeholder {
+    /* Firefox 18- */
+    display: none;
+}
+.search-form .form-group input.form-control::-moz-placeholder {
+    /* Firefox 19+ */
+    display: none;
+}
+.search-form .form-group input.form-control:-ms-input-placeholder {
+    display: none;
+}
+.search-form .form-group:hover,
+.search-form .form-group.hover {
+    width: 220px;
+    border-radius: 8px 25px 25px 8px;
+}
+.search-form .form-group span.form-control-feedback {
+    float: right !important;
+    position: relative;
+    top: -32px;
+    right: -2px;
+    z-index: 2;
+    display: block;
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    color: #2D2C4D;
+}
+
+#recentcomments li.dsq-widget-item {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 0px;
+    margin: 0px;
+    float: left;
+}
+#recentcomments li.dsq-widget-item a {
+    display: none;
+}
+/*
+#recentcomments li.dsq-widget-item img {
+display: none;
+}
+ */
+#recentcomments li.dsq-widget-item p {
+    text-indent: 0px;
+}
+#recentcomments li.dsq-widget-item p.dsq-widget-meta {
+    font-size: 0em;
+    width: 250px;
+    height: 46px;
+    padding: 0px;
+}
+#recentcomments li.dsq-widget-item p.dsq-widget-meta a {
+    width: 250px;
+    height: 46px;
+    display: flex;
+    flex-direction: row-reverse;
+    position: fixed;
+    font-size: 1.1rem;
+    padding: 10px 10px 10px 30px;
+    color: rgba(255,255,255,0);
+    overflow: hidden;
+}
+#recentcomments li.dsq-widget-item p.dsq-widget-meta a:hover {
+    color: #4087A6;
+    background: #BFC8E0;
+}
+/*
+#recentcomments li.dsq-widget-item a.dsq-widget-user{
+display: none;
+}
+ */
+#recentcomments li.dsq-widget-item span.dsq-widget-comment {
+    display: inherit;
+    margin: 0px;
+    position: absolute;
+    left: 0px;
+}
+#recentcomments li.dsq-widget-item span.dsq-widget-comment p {
+    color: #FFFFFF;
+    width: 250px;
+    padding: 10px 10px 10px 30px;
+    margin: 0px;
+    font-size: 1.1em;
+}
+/*
+#recentcomments li.dsq-widget-item span.dsq-widget-comment p:hover {
+color: #4087A6;
+background: #FFFFFF;
+transition: all 0.3s;
+}
+ */
+</style>
+

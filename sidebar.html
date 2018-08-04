@@ -1,0 +1,33 @@
+<nav id="sidebar">
+  {% raw %}
+  <!-- Sidebar Header -->
+  <div class="sidebar-header text-center">
+    <a href="/">
+      Rockheung's Sundry
+    </a>
+  </div>
+
+  <div class="sidebar-search visible-xs">
+    <div class="col-xs-12">
+      <form action="{% url 'zinnia:entry_search' %}" class="search-form">
+        <div class="form-group has-feedback">
+          <label for="search" class="sr-only">Search</label>
+          <input type="text" class="search-query form-control" placeholder="{% trans 'Search' %}" name="pattern" value="{{ pattern }}" />
+          <span class="glyphicon glyphicon-search form-control-feedback"></span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Sidebar Links -->
+  <div class="container">
+
+    <ul class="list-unstyled components">
+      {% block sidebar %}
+      {% endblock sidebar %}
+    </ul>
+  </div>
+
+  {% endraw %}
+</nav>
+
