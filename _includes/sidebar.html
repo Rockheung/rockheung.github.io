@@ -3,7 +3,7 @@
   <!-- Sidebar Header -->
   <div class="sidebar-header text-center">
     <a href="/">
-      Rockheung's Sundry
+      Sundry Codes
     </a>
   </div>
 
@@ -23,8 +23,69 @@
   <div class="container">
 
     <ul class="list-unstyled components">
-      {% block sidebar %}
-      {% endblock sidebar %}
+{% if user.is_authenticated %}
+  <li class="">
+    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
+      {% trans "Tools" %}
+    </a>
+    <ul class="collapse list-unstyled" id="homeSubmenu">
+      {% if perms.zinnia %}
+      <li class="">
+        <a href="{% url 'admin:app_list' 'zinnia' %}" title="{% trans "Dashboard" %}">
+          <span class="glyphicon glyphicon-book"></span>
+          {% trans "Dashboard" %}
+        </a>
+      </li>
+      {% endif %}
+      {% if perms.zinnia.add_entry %}
+      <li class="">
+        <a href="{% url 'admin:zinnia_entry_add' %}" title="{% trans "Post an entry" %}">
+          <span class="glyphicon glyphicon-pencil"></span>
+          {% trans "Post an entry" %}
+        </a>
+      </li>
+      {% endif %}
+      {% block admin-tools %}
+      {% endblock admin-tools %}
+      <li class="">
+        <a href="{% url 'admin:logout' %}" title="{% trans "Log out" %}">
+          <span class="glyphicon glyphicon-off"></span>
+          {% trans "Log out" %}
+        </a>
+      </li>
+    </ul>
+  </li>
+{% endif %}
+
+  <li class="active">
+    <a href="#categorySubmenu" data-toggle="collapse" aria-expanded="true">
+      {% trans "Categories" %}
+    </a>
+    {% get_categories %}
+  </li>
+
+  <li class="active">
+    <a href="#recententriesSubmenu" data-toggle="collapse" aria-expanded="true">
+      {% trans "Recent entries" %}
+    </a>
+    {% get_recent_entries %}
+  </li>
+
+  <li class="active">
+    <a href="#tagcloudSubmenu" data-toggle="collapse" aria-expanded="true">
+      {% trans "Tags" %}
+    </a>
+    {% get_tag_cloud 6 1 %}
+  </li>
+
+
+  <li class="active">
+    <a href="#recentcomments" data-toggle="collapse" aria-expanded="true">
+      {% trans "Recent comments" %}
+    </a>
+    <div id="recentcomments" class="dsq-widget collapse in"><script type="text/javascript" src="https://sundry-rockheung.disqus.com/recent_comments_widget.js?num_items=5&hide_avatars=1&avatar_size=32&excerpt_length=200"></script></div>
+  </li>
+
     </ul>
   </div>
   {% endraw %}

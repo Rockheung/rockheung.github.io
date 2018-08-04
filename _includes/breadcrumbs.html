@@ -1,4 +1,5 @@
 <div class="breadcrumbs">
+  {% raw %}
   <ul class="breadcrumb">
     {% for crumb in breadcrumbs %}
       <li {% if forloop.last %}class="active"{% endif%}>
@@ -10,5 +11,6 @@
       </li>
     {% endfor %}
   </ul>
+  {% endraw %}
 </div>
 
