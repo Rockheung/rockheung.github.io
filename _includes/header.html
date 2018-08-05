@@ -1,5 +1,5 @@
+{% assign home_img = site.static_files | where: "is", true %}
 <nav class="navbar" role="navigation">
-	{% raw %}
 	<div class="container-fluid">
 		<div class="navbar-header">
 		</div>
@@ -10,23 +10,23 @@
 				<!-- toggle button -->
 				<div class="col-xs-2 col-sm-3">
 					<button type="button" id="sidebarCollapse" class="btn navbar-btn">
-						<span class="sr-only">{% trans "Toggle navigation" %}</span>
+						<span class="sr-only">Toggle navigation</span>
 						<i class="glyphicon glyphicon-align-left"></i>
 					</button>
 				</div>
 
 				<div class="visible-xs col-xs-2 col-xs-push-8">
 					<div class="pull-right">
-						<a href="{% url 'zinnia:entry_archive_index' %}" title="Rockheung's Sundry" class="navbar-brand" rel="home">
-							<img src="{% static "zinnia_bootstrap/img/home.png" %}" class="img-rounded home-img" alt="Rockheung's Sundry" />
+						<a href="/" title="Rockheung's Sundry" class="navbar-brand" rel="home">
+              <img src="https://res.cloudinary.com/rockheung/image/upload/v1533451305/github.io/img/home.png" class="img-rounded home-img" alt="Rockheung's Sundry" >
 						</a>
 					</div>
 				</div>
 
 				<div class="hidden-xs col-sm-6">
 					<div class="col-sm-12 text-center">
-						<a href="{% url 'zinnia:entry_archive_index' %}" title="Rockheung's Sundry" class="navbar-brand aps-pos" rel="home">
-							<img src="{% static "zinnia_bootstrap/img/home.png" %}" class="img-rounded home-img" alt="Rockheung's Sundry" />
+						<a href="/" title="Rockheung's Sundry" class="navbar-brand aps-pos" rel="home">
+              <img src="https://res.cloudinary.com/rockheung/image/upload/v1533451305/github.io/img/home.png" class="img-rounded home-img" alt="Rockheung's Sundry" >
 						</a>
 					</div>
 				</div>
@@ -34,10 +34,10 @@
 				<div class="clearfix visible-xs"></div>
 
 				<div class="col-xs-12 col-sm-3 hidden-xs">
-					<form action="{% url 'zinnia:entry_search' %}" class="search-form">
+					<form action="" class="search-form">
 						<div class="form-group has-feedback">
 							<label for="search" class="sr-only">Search</label>
-							<input type="text" class="search-query form-control" placeholder="{% trans 'Search' %}" name="pattern" value="{{ pattern }}" />
+							<input type="text" class="search-query form-control" placeholder="Search" name="pattern" value="" >
 							<span class="glyphicon glyphicon-search form-control-feedback"></span>
 						</div>
 					</form>
@@ -46,6 +46,5 @@
 
 		</div>
 	</div>
-	{% endraw %}
 </nav>
 
