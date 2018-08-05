@@ -4,7 +4,7 @@
   <meta name="robots" content="follow, all" >
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0" >
   <meta name="description" content="{{ site.description }}">
-  <meta name="keywords" content="{{ site.tags.TAG }}" >
+  <meta name="keywords" content="{{ site.posts | map: "tags" | uniq | sort | join: ", "}}" >
   <meta name="author" content="Rockheung" >
   <link rel="pingback" href="/xmlrpc/" >
   <link rel="home" href="/" >
