@@ -12,6 +12,8 @@ Elm 가이드 - [영문](https://guide.elm-lang.org/), [한글](https://www.elm-
 
 Elm 가이드에서 제시하는 npm을 이용한 설치 방식은 기본 환경에서는 현재 (적어도 내가 사용하는 리눅스 - 우분투 16.04.03 에서는) 권한 문제로 인해 설치가 되지 않는다.
 
+<!--more-->
+
 > ### Guided Install process - Not working
 >     $ sudo apt-get install -y build-essential
 >     $ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -

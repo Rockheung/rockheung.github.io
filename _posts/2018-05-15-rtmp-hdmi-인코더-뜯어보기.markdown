@@ -18,6 +18,8 @@ ROM: MXIC MX25L25635F - [Datasheet](http://www.macronix.com/Lists/Datasheet/Atta
 
 MUX: Toshiba [Datasheet](https://toshiba.semicon-storage.com/info/docget.jsp?did=37240&prodName=74HC157D)
 
+<!--more-->
+
 ### `/etc/init.d/rcS`
 
 부팅을 시작하면 `/etc/init.d/rcS`에서 `/etc/init.d/S$$*` 파일들이 실행된다. 이후 `/box/load` 스크립트가 실행된다. 
