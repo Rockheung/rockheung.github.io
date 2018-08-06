@@ -1,16 +1,12 @@
 <div class="breadcrumbs">
-  {% raw %}
   <ul class="breadcrumb">
+    {% assign date_array = page.date | date: "^%Y^%b^%-d^" %}
+    {% assign breadcrumbs = "Blog" | append: date_array | append: page.title | split: '^' %}
     {% for crumb in breadcrumbs %}
-      <li {% if forloop.last %}class="active"{% endif%}>
-        {% if crumb.url %}
-          <a href="{{ crumb.url }}" title="{{ crumb.name }}">{{ crumb.name }}</a>
-        {% else %}
-          {{ crumb.name }}
-        {% endif %}
+      <li {% if forloop.last %}class="active"{% endif %}>
+          {{ crumb }}
       </li>
     {% endfor %}
   </ul>
-  {% endraw %}
 </div>
 
