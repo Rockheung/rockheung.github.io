@@ -3,7 +3,7 @@
     {% assign date_array = page.date | date: "^%Y^%b^%-d^" %}
     {% assign breadcrumbs = "Blog" | append: date_array | append: page.title | split: '^' %}
     {% for crumb in breadcrumbs %}
-      <li {% if forloop.last %}class="active"{% endif %}>
+    <li {% if forloop.last %}{% else %}class="deactive"{% endif %}>
           {{ crumb }}
       </li>
     {% endfor %}
