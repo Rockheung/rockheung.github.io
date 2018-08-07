@@ -87,7 +87,6 @@
         {% assign lists_tags = site.posts | map: "tags" %}
         {% assign tags = lists_tags | uniq | sort %}
         {% assign avg = tags.size | times: 1.0 | divided_by: lists_tags.size %}
-        {{ avg }}, {{ lists_tags.size }}, {{ tags.size }}
         <ul id="tagcloudSubmenu" class="callapse in list-unstyled {% if tags == empty %}no-{% endif %}tag-cloud">
           {% if tags != empty %}
             {% for tag in tags %}
