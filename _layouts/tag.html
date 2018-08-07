@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<div class="category">
+<div class="tag">
   {% if page.title %}
     <h1 class="page-heading">{{ page.title }}</h1>
   {% endif %}
@@ -11,13 +11,13 @@ layout: default
 
   {% if site.posts != empty %}
     <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
-    {% assign lists_categories = site.posts | map: "categories" %}
-    {% assign categories = lists_categories | uniq | sort %}
-    {% for category in categories %}
+    {% assign lists_tags = site.posts | map: "tags" %}
+    {% assign tags = lists_tags | uniq | sort %}
+    {% for tag in tags %}
       <div class="post-list">
-				<h5 id="{{ category }}" title="{{ category }}"><strong>> </strong>{{ category }}</h5>
+        <h5 id="{{ tag }}" title="{{ tag }}"><strong># </strong>{{ tag }}</h5>
         {% for post in site.posts %}
-          {% if post.categories contains category %}
+          {% if post.tags contains tag %}
 
           {% include previewed_post.html post = post %}
 
