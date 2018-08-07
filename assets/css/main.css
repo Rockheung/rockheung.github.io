@@ -407,15 +407,15 @@ ul.breadcrumb {
 }
 
 #content div.entry-body code {
-    font-family: 'D2 coding', 'Anonymous Pro', monospace;
+    font-family: D2Coding, 'D2 coding', 'Anonymous Pro', monospace;
 }
 
 #content div.entry-body p code {
-    font-family: 'D2 coding', 'Anonymous Pro', monospace;
+    font-family: D2Coding, 'D2 coding', 'Anonymous Pro', monospace;
 }
 
 #content div.entry-body pre code {
-    font-family: 'D2 coding', 'Anonymous Pro', monospace;
+    font-family: D2Coding, 'D2 coding', 'Anonymous Pro', monospace;
     font-size: 1.5em;
 }
 #content div.entry-body p.continue-reading {
