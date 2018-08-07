@@ -34,7 +34,7 @@
           {% if categories != empty %}
             {% for category in categories %}
               <li class="{% if page.categories contains category %}current{% endif %}">
-                <a href="{{ base_url }}category/#{{ category }}"
+                <a href="/category/#{{ category }}"
                    title="Show all entries in {{ category }}">{{ category }}
                    <span class="label pull-right">
                      {% assign post_count = 0 %}
@@ -68,6 +68,9 @@
         <ul class="collapse in list-unstyled" id="recententriesSubmenu">
           {% if site.posts != empty %}
             {% for post in site.posts %}
+              {% if forloop.index > 10 %}
+                {% break %}
+              {% endif %}
               <li class="">
                 <a href="{{ post.url | absolute_url }}" title="{{ post.title }}" rel="bookmark">{{ post.title }}</a>
               </li>
@@ -98,7 +101,7 @@
               {% endfor %}
 
               <li>
-                <a href="{{ base_url }}tag/#{{ tag }}"
+                <a href="/tag/#{{ tag }}"
                    title="{% case post_count %}
                             {% when 0 %}No post
                             {% when 1 %}{{ post_count }} post tagged by {{ tag }}
