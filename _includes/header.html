@@ -33,10 +33,11 @@
 				<div class="clearfix visible-xs"></div>
 
 				<div class="col-xs-12 col-sm-3 hidden-xs">
-					<form action="" class="search-form">
+					<form class="search-form" method="get" action="http://www.google.com/search" target="_blank" >
 						<div class="form-group has-feedback">
 							<label for="search" class="sr-only">Search</label>
-							<input type="text" class="search-query form-control" placeholder="Search" name="pattern" value="" >
+              <input type="hidden" name="sitesearch" value="{{ site.url }}">
+							<input class="search-query form-control" type="text" name="q" maxlength="255" placeholder="Search" value="">
 							<span class="glyphicon glyphicon-search form-control-feedback"></span>
 						</div>
 					</form>
