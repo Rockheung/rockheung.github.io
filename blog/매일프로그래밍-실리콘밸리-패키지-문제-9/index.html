@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>매일프로그래밍 실리콘밸리 패키지 문제 9 — blog</title>
+    <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
+    <link rel="dns-prefetch" href="//cdn.mathjax.org">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all">
+    <meta name="keywords" >
+    <link rel="canonical" >
+    <!-- Custom CSS -->
+
+    <link rel="stylesheet" href="../../static/gen/styles.css?h=30966fac">
+    <!--
+      <link rel="stylesheet" href="../../static/pixyll.css" type="text/css">
+    -->
+    <script type=text/javascript src="../../static/gen/app.js?h=56f85b4f" charset="utf-8"></script>
+    <link rel="stylesheet" href="../../static/pygments.css">
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- MathJax -->
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  </head>
+
+  <body class="site">
+    <div class="site-wrap">
+      <header class="site-header px2 px-responsive">
+        <div class="mt2 wrap">
+          <div class="measure">
+            <a href="" class="site-title"></a>
+            <nav class="site-nav">
+              <a href="../../">Home</a>
+              
+               <a href="../../blog/">Blog</a>
+              
+              <a href="../../projects/">Projects</a>
+              
+              <a href="../../about/">About</a>
+              
+            </nav>
+            <div class="clearfix"></div>
+            
+          </div>
+        </div>
+      </header>
+      <div class="post p2 p-responsive wrap" role="main">
+        <div class="measure">
+          <div class="page">
+            
+  
+  <div class="post-header mb2">
+  
+    <h1>매일프로그래밍 실리콘밸리 패키지 문제 9</h1>
+  
+  <p class="post-meta">
+    <!--
+    written by
+    
+      rockheung
+    
+    -->
+    
+    <time class="dt-published" datetime="2018-08-20 01:52:30+09:00">Aug 20, 2018, 1:52:30 AM</time>
+    
+  </p>
+  </div>
+  <article class="post-content">
+    
+      <p><em>안녕하세요, 매일프로그래밍 이번주 문제입니다.</em></p>
+<p><em>정수 배열(int array)이 주어지면 0이 아닌 정수 순서를 유지하며 모든 0을 배열 오른쪽 끝으로 옮기시오. 단, 시간복잡도는 O(n), 공간복잡도는 O(1)여야 합니다.</em></p>
+<p><em>Given an integer array, move all the 0s to the right of the array without changing the order of non-zero elements.</em></p>
+<!--more-->
+
+<p><em>예제)</em></p>
+<p><em>Input: [0, 5, 0, 3, -1]</em></p>
+<p><em>Output: [5, 3, -1, 0, 0]</em></p>
+<p><em>Input: [3, 0, 3]</em></p>
+<p>﻿<em>Output: [3, 3, 0]</em></p>
+<p><em>풀이를 보고 싶으시다면 <a href="http://url6080.mailprogramming.com/wf/click?upn=5YNwhcR4-2FFhQA54IFFE-2FIijGnZEwyyYieIxIap6l3O8TZMVFc6s-2B8FK0wYQmKQSf5VgwzgsPa40Hzn1zHKmMxVF1nHi6YkD4kcT9L0M4H4na6HIJqwHfS-2BEg9hrSxbcH-2BZfJE6Z-2FhjsaLO6L5dgTs-2BiFbIiiq4NiZwIqIYqHbJpMyM-2BkKIWBEADBeFTqTuUq_Zgoc2ijnN3jtNTS7ITLZKrJdLqoKRo6qqLK1adFq7tfLS63zSOMEFzba0-2Bj5X3eeTHHuA3cQtIz2KQdM3yF-2F-2F17dnFNqB6BnoIzGhgvCXGJYV3kyX7G1CyiQbEOlcblQs8fJux8ClBY42PXE5SAHU8gSQ2Tx2nSuI0FA5anGIcYl2pu6WPIYxWv1J1h9dp7jw7jU3xHAAx0qzUYs-2Fq4k5Lz7yNnSRG3i4zNoYVnQ7KFWKylHJ-2BxV60GJ0St2grp7">풀이보기</a>를 눌러주세요.</em></p>
+<p>0이 아닌 정수의 리스트에 정수가 아닌 원소를 하나씩 담고 원소가 0일 때마다 그 갯수를 세어 마지막에 채우는 알고리즘을 작성해 봤다. 여기서 공간복잡도의 조건은 충족시키지 못했다. 기존 배열을 직접 수정하여야 충족 가능한 듯 싶다.</p>
+<p>{% highlight python %}
+def ans(arr):
+    i = 0
+    non_zero_arr = []
+    for n in arr:
+        if n != 0:
+            non_zero_arr += [n]
+        i += 1</p>
+<pre><code>for i in range(len(arr) - len(non_zero_arr)):
+    non_zero_arr += [0]
+
+return non_zero_arr
+</code></pre>
+<p>{% endhighlight %}</p>
+<p>풀이는 역시 기대를 저버리지 않는다. <em>0을 오른쪽으로 옮기는 것 보다 0이 아닌 정수를 왼쪽으로 옮긴다고 생각하면 쉽게 풀 수 있다</em> 고 한다...</p>
+<p>{% highlight python %}
+def sol(arr):</p>
+<pre><code># 0이 아닌 정수의 위치를 표현하는 j
+j = 0
+for i in range(len(arr)):
+    if arr[i] != 0:
+        if i != j:
+            arr[i], arr[j] = arr[j], arr[i]
+        j += 1
+return arr
+</code></pre>
+<p>{% endhighlight %}</p>
+<p>풀이에서 사용하는 언어는 자바여서 <code>a, b = b, a</code>와 같은 구문이 불가능하다. 때문에 swap() 함수를 따로 정의하여 사용했는데, 파이썬에서는 그럴 필요가 없어 그대로 사용했다.</p>
+
+    
+  </article>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="center">
+      <div class="measure">
+        <small>
+          &copy; Copyright 2016 by Eswar Malla.
+          Theme <a href="https://github.com/eswarm/piktor">Piktor</a> by <a href="http://eswarm.in">Eswar Malla</a>, fork of <a href="https://github.com/johnotander/pixyll">Pixyll</a>
+        </small>
+      </div>
+    </footer>
+    
+    <div class="ga-script">
+<div id="ga-script"></div>
+<script type="text/javascript">
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-XXXXXXXX-Y', 'auto');
+        ga('send', 'pageview');
+</script>
+</div>
+  </body>
+</html>
+
