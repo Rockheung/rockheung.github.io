@@ -1,0 +1,44 @@
+---
+layout: post
+title:  "Elm 설치하기 | Elm Install"
+date:   2018-02-17 07:25:54.536 +0900
+categories: [ study ]
+tags: [ elm, 엘름, 오류, EACCES, error ]
+---
+
+[Elm 공식 사이트](http://elm-lang.org/)
+
+Elm 가이드 - [영문](https://guide.elm-lang.org/), [한글](https://www.elm-tutorial.org/ko/)
+
+Elm 가이드에서 제시하는 npm을 이용한 설치 방식은 기본 환경에서는 현재 (적어도 내가 사용하는 리눅스 - 우분투 16.04.03 에서는) 권한 문제로 인해 설치가 되지 않는다.
+
+<!--more-->
+
+> ### Guided Install process - Not working
+>     $ sudo apt-get install -y build-essential
+>     $ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+>     $ sudo apt-get install -y nodejs
+>     $ npm install npm@latest -g
+>     $ sudo npm install -g elm
+>     (...)
+>     Error extracting linux-x64.tar.gz - Error: EACCES: permission denied, mkdir '/usr/lib/node_modules/elm/Elm-Platform'
+>     (...)
+>     npm ERR! Failed at the elm@0.18.0 install script.
+>     npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+치명적이게도 폴더 생성에 권한 문제가 있다. sudo로 설치하는데도 그렇다. 해당 이슈에 대한 [링크](https://github.com/elm-lang/elm-platform/issues/215)
+
+이 경우 몇 가지 다른 방법이 있다.
+
+### 1. Using yarn
+
+    $ sudo npm install -g yarn
+    $ sudo yarn global add elm
+
+### 2. npm의 설치 폴더를 바꾼다 | Change npm-global install folder [docs.npmjs](https://docs.npmjs.com/getting-started/fixing-npm-permissions)
+
+    $ mkdir ~/.npm-global
+    $ npm config set prefix '~/.npm-global'
+    $ echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.profile
+    $ source ~/.profile
+    $ npm install -g elm
