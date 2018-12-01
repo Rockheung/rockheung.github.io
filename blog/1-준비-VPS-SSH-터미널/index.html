@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>1. 준비 - VPS, SSH 터미널 — blog</title>
+    <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
+    <link rel="dns-prefetch" href="//cdn.mathjax.org">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all">
+    <meta name="keywords" >
+    <link rel="canonical" >
+    <!-- Custom CSS -->
+
+    <link rel="stylesheet" href="../../static/gen/styles.css?h=30966fac">
+    <!--
+      <link rel="stylesheet" href="../../static/pixyll.css" type="text/css">
+    -->
+    <script type=text/javascript src="../../static/gen/app.js?h=56f85b4f" charset="utf-8"></script>
+    <link rel="stylesheet" href="../../static/pygments.css">
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- MathJax -->
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  </head>
+
+  <body class="site">
+    <div class="site-wrap">
+      <header class="site-header px2 px-responsive">
+        <div class="mt2 wrap">
+          <div class="measure">
+            <a href="" class="site-title"></a>
+            <nav class="site-nav">
+              <a href="../../">Home</a>
+              
+               <a href="../../blog/">Blog</a>
+              
+              <a href="../../projects/">Projects</a>
+              
+              <a href="../../about/">About</a>
+              
+            </nav>
+            <div class="clearfix"></div>
+            
+          </div>
+        </div>
+      </header>
+      <div class="post p2 p-responsive wrap" role="main">
+        <div class="measure">
+          <div class="page">
+            
+  
+  <div class="post-header mb2">
+  
+    <h1>1. 준비 - VPS, SSH 터미널</h1>
+  
+  <p class="post-meta">
+    <!--
+    written by
+    
+      rockheung
+    
+    -->
+    
+    <time class="dt-published" datetime="2018-02-10 10:45:22+09:00">Feb 10, 2018, 10:45:22 AM</time>
+    
+  </p>
+  </div>
+  <article class="post-content">
+    
+      <p>이 글에서는 Alibabacloud에서 가상 개인 서버(VPS)를 구매하고 터미널로 접속하는 과정을 다룬다.</p>
+<h2> <!-- more --></h2>
+<p>본인은 다음과 같은 환경에서 진행했다.</p>
+<blockquote><ol>
+<li>리눅스 서버(Ubuntu 16.04.3 LTS (Xenial Xerus)) - Alibaba Cloud - $4.95/mo</li>
+<li>(더 뭐가 필요한지 생각이 나지 않는다) ...생각났다. 1번의 서버에 터미널로 접속해야 한다. </li>
+</ol>
+</blockquote>
+<p><img src="https://res.cloudinary.com/rockheung/image/upload/v1518259458/Screenshot_from_2018-02-10_19-42-37_y8cver.png" alt=""></p>
+<p>만약 독자가 터미널 환경(bash, cmd 등등등)에 익숙하지 않다면, 그럴 가능성은 배제하도록 한다. 농담이다, 그래도 이런 재밌는 취미를 좀 더 즐기고 싶다면 한번 익숙해져 보는 것도 괜찮다. 그리고 본인은 윈도우 서버에 익숙하지 않아서 말이다. 그리고 사실 위와 같은 저렴한 값에 윈도우 서버를 대여 가능한지 잘 모르겠다.
+이 글을 쓰는 시점에 들어가보니 윈도우 서버가 싱가포르 지역 기준으로 월 9달러로 이용 가능했다.</p>
+<p>인터넷 서핑 중에 배너 광고에서 가입하면 $300 가량의 크레딧을 준다는 말에 혹해 <a href="https://www.alibabacloud.com/ko">Alibabacloud</a>에 들어가봤다. 여전히 같은 멘트로 신규 가입자를 모으고 있다. 처음 들어갔을 때는 한글은 지원하지 않았는데 지금 들어가니 한국인 고객층이 좀 늘었는지 메뉴가 부분적으로 한글화되었다. 그 아래 조금 작은 글로 SSD 클라우드 서버 월 $4.5 라고 있다. 사실 부가세는 별도니 실제 지출 금액은 $4.95다. 스펙은 1core, 1GB 램, 40GB Ultra Cloud Disk(?)라고 한다. 기존에 쓰던 <a href="https://www.linode.com/">Linode</a>는 월 $5 에 SSD가 20GB 였다. 가장 저렴한 서버 기준으로 비교하면 다음과 같다.</p>
+<table>
+<thead><tr>
+<th>*</th>
+<th>Alibabacloud</th>
+<th>Linode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Type</td>
+<td>Generation III Compact Type xn4</td>
+<td>Linode 1GB</td>
+</tr>
+<tr>
+<td>Core</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Ram</td>
+<td>1GB</td>
+<td>1GB</td>
+</tr>
+<tr>
+<td>Disk</td>
+<td>(Ultra Cloud Disk) 40GB</td>
+<td>(SSD) 20GB</td>
+</tr>
+<tr>
+<td>속도 제한</td>
+<td>0.5Gbps(In) 30Mbps(out)</td>
+<td>40Gbps(In) 1Gbps(out)</td>
+</tr>
+<tr>
+<td>매월 전송량</td>
+<td>1TB</td>
+<td>1TB</td>
+</tr>
+<tr>
+<td>가격</td>
+<td>$4.95</td>
+<td>$5.0</td>
+</tr>
+<tr>
+<td>지역</td>
+<td>싱가포르</td>
+<td>도쿄</td>
+</tr>
+<tr>
+<td>지연시간</td>
+<td>80ms</td>
+<td>50ms</td>
+</tr>
+</tbody>
+</table>
+<p>눈여겨 볼 만한 차이라면 디스크의 용량과, 각 서버가 위치한 지역에 따른 핑:지연시간 정도다. 아쉽게도 Alibabacloud에서 제공하는 도쿄를 포함한 일본 지역은 해당 가격의 VPS는 제공하지 않고 있었다.</p>
+<p>Linode는 본인이 처음으로 월 $5 에 혹해 이용하기 시작했는데, 해외 서버지만 가까운 도쿄에 있었고 성능과 인터넷 속도도 막 가지고 놀기 좋았다. 그걸로 무엇을 할 수 있는지 조금 의아할 수도 있지만, 일단 본인는 윈도우 환경에서 급하게 리눅스 환경이 필요할때 <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">Putty</a> 를 이용해서 코드를 테스트 한다던가, SSH 터널링을 통해 서버간 포트를 포워딩 한다던가, <a href="https://github.com/hwdsl2/setup-ipsec-vpn">VPN</a>이나 <a href="http://blog.1day1.org/588">프록시 서버</a>를 설치하여 접근할 수 없는 사이트에 들어간다던가(...WARNING 이라던가...) 하는 용도로 사용했다. 무료 VPN이나 프록시 서버 서비스를 예전에 몇 번 써봤는데, 여느 공짜 서비스가 그렇듯 어떤 식으로든 추가 과금을 유도하기 마련이다. 그게 어느 순간 귀찮아졌다. 기회가 되면 위와 같은 '개인서버 가지고 놀기' 같은 포스트도 적어볼 생각이다.</p>
+<p>Linode의 특징이라면 직관적인 메뉴, 타협 없는 가격 정책,  정도라 할 수 있겠다. 무슨 말이냐면, 기본적으로 선택할 수 있는 옵션이 다양하지 않다. 가장 싼 $5 플랜을 이용하면서 스토리지만 늘리거나 할 수 없다는 말이다. 만약 100GB 정도가 필요하다면, 4코어에 8GB 메모리가 달린 더 비싼 플랜을 구독해야 한다. 월 $40 정도 한다. 램 용량만 큰 플랜은 운영하고 있다. 자세한 플랜이 궁금하다면 <a href="https://www.linode.com/pricing#all">여기</a>에서 확인할 수 있다.</p>
+<p>Alibabacloud의 특징이라면 다양한 가격 정책과 서비스 정도라고 말할 수 있겠다. 사실 다른 서비스는 잘 써보지 않아서 모르겠다. 알리바바 그룹이 아마존의 AWS를 겨냥하고 만든 것 같다는 느낌을 많이 받았다. Linode를 사용하던 입장에서 사이트가 조금 산만하고 직관적이지 않다는 생각이 든다. 필요한 메뉴를 찾는데 유심히 둘러봐야 한다.</p>
+<p>이 두 곳 말고도 아주 유명한 <a href="https://aws.amazon.com">AWS:아마존 웹 서비스 클라우드</a> 등등이 있으니 개인의 기호에 따라 선택하면 좋을 것 같다. 개인적으로는 Linode가 깔끔하고 직관적이며 가격도 저렴한 편이라 추천하고 싶다.</p>
+<p>Alibabacloud를 선택한다면 다음 과정으로 헤메지 않고 저렴한 VPS를 구독할 수 있다. 만약 직접 Generation III Compact Type xn4 플랜을 찾아 들어간다면 이유는 알 수 없지만 월 $10.65에 부가세 별도라는 금액과 맞닥뜨리게 될 것이다.</p>
+<p><a href="https://www.alibabacloud.com/">Alibabacloud</a>으로 들어가면 다음과 같은 화면이 보인다. 'SSD Cloud Server $4.50/Month' 링크는 반년 전에도 New 태그가 붙어 있었다. 사진에서는 보이지 않는데 마우스를 가져다 대면 저렇게 바뀌어 보인다.</p>
+<p><a href="https://res.cloudinary.com/rockheung/image/upload/v1518270375/Screenshot_from_2018-02-10_22-45-17_r1cxsp.png"><img src="https://res.cloudinary.com/rockheung/image/upload/c_scale,w_1000/v1518270375/Screenshot_from_2018-02-10_22-45-17_r1cxsp.png" alt=""></a></p>
+<p>Region: Worldwide / Operating System: Linux 가 기본으로 선택되어 있는데, 커다랗게 $4.5라고 적혀 있지만 부가세 별도라는 점을 참고하기 바란다. 자신있게 Get Started를 누르자.</p>
+<p><a href="https://res.cloudinary.com/rockheung/image/upload/v1518270375/Screenshot_from_2018-02-10_22-45-27_nu15vg.png"><img src="https://res.cloudinary.com/rockheung/image/upload/c_scale,w_1000/v1518270375/Screenshot_from_2018-02-10_22-45-27_nu15vg.png" alt=""></a></p>
+<p>계정 로그인이 안 되어 있다면 로그인 화면이 보일 것이다. Join Free 또는 Sign Up을 누르면 계정을 만들 수 있다. 만들자.
+로그인 상태라면 다음 화면이 보인다. 이미 $4.5 달러라는 가격에 맞게 선택되어 있다. 원한다면, 몇 가지 옵션을 바꿔보자.</p>
+<p><a href="https://res.cloudinary.com/rockheung/image/upload/v1518270374/Screenshot_from_2018-02-10_22-45-55_rasmvv.png"><img src="https://res.cloudinary.com/rockheung/image/upload/c_scale,w_1000/v1518270374/Screenshot_from_2018-02-10_22-45-55_rasmvv.png" alt=""></a></p>
+<p>구독이 무사히 끝났다면, 이제 서버를 켜서 접속해 보자. 방금 Base services 의 Elastic Compute Service ECS 를 구독한 것이다. 화면에서 왼쪽의 메뉴를 눌러보면 아래 화면을 찾을 수 있다. 싱가포르 지역의 Instances를 누르자.</p>
+<p><a href="https://res.cloudinary.com/rockheung/image/upload/c_scale,w_1920/v1518276980/201802110035_bkjdzs.png"><img src="https://res.cloudinary.com/rockheung/image/upload/c_scale,w_1000/v1518276980/201802110035_bkjdzs.png" alt=""></a></p>
+<p>아래 화면을 접하게 될 텐데, 해당 Instance의 Internet IP 주소가 보일 것이다. 이 주소로 ssh 접속을 하면 된다. 아래 사진에는 가려 놓았다.</p>
+<p><a href="https://res.cloudinary.com/rockheung/image/upload/c_scale,w_1920/b_rgb:ffffff,c_fill,e_blur:623,g_center,h_80,l_201802110035_bkjdzs,o_100,w_200,x_-70,y_-40/v1518274762/201802102358_mafxyn.png"><img src="https://res.cloudinary.com/rockheung/image/upload/c_scale,w_1000/b_rgb:ffffff,c_fill,e_blur:623,g_center,h_40,l_201802110035_bkjdzs,o_100,w_100,x_-35,y_-20/v1518274762/201802102358_mafxyn.png" alt=""></a></p>
+<p>접속하기 전에 반드시 정해야 할 부분이 있는데, SSH 인증 방법을 패스워드로 할 것인가, 키파일을 이용할 것인가이다.
+패스워드를 이용하면, 어디서든 패스워드만 알고 있으면 접속할 수 있다. 키파일을 이용하면, 접속할 때 반드시 해당 키 파일이 있어야 접속할 수 있다. 위 화면에서 More 를 눌러 root 패스워드 리셋과 VNC 패스워드를 리셋하면 Connect를 눌러 웹브라우저에서도 직접 모니터로 접속하는 것 처럼 이용할 수 있다. 편할 대로 이용하되, 본인이 이용해보니 웹브라우저를 통한 터미널 접속은 키보드 입력 시에 체감할 정도로 딜레이가 있었다.</p>
+<p>키 파일은 위 콘솔에서 Key Pairs 항목을 찾으면 되는데, 새로 만들수도 있고 가지고 있는 파일을 등록할 수도 있다. 본인은 직접 등록해서 사용하는데, 없다면 우측 상단의 Create Key Piar 를 눌러 새로 만들면 된다. 이름은 적당히 정하고 진행하면 새로 만들었을 경우 확장자가 pem인 파일을 다운로드 받을 수 있다. 만약 실수로 다운받지 못했다면 지우고 새로 진행하면 된다. 직접 등록하는 경우 해당 항목을 선택하면 키를 입력할 수 있는 부분이 나오는데, 여기에 공용 키를 붙여넣으면 된다. 예시도 볼 수 있으니 참고하면 되겠다.</p>
+<p><a href="https://res.cloudinary.com/rockheung/image/upload/c_scale,w_1920/v1518281692/201802110154_dxdq6m.png"><img src="https://res.cloudinary.com/rockheung/image/upload/c_scale,w_1000/v1518281692/201802110154_dxdq6m.png" alt=""></a></p>
+<p>접속할 컴퓨터의 OS가 우분투라면, 간단하게 터미널에서 다음과 같이 입력하면 된다. $IP는 위에서 봐둔 인터넷 아이피 주소다.
+맥을 비롯한 유닉스 계열(리눅스 포함)은 대부분 비슷할 것이다.</p>
+<pre><code>$ ssh root@$IP
+</code></pre>
+<p>만약 키를 이용한다면 -i 를 붙여 키파일을 지정해 주면 된다. $KEYPATH는 키 파일이 위치한 주소다.</p>
+<pre><code>$ ssh -i $KEYPATH root@$IP
+</code></pre>
+<p>윈도우에서 접속하려 한다면, 다양한 방법이 있지만 간단하고 공짜인 Putty를 이용하자. <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">사이트</a>의 <a href="https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.70-installer.msi">다운로드 링크</a>를 눌러 바로 다운받을 수 있다. 바로 실행되는 바이너리 파일도 따로 다운받을 수 있으니 편한 대로 하면 되겠다.</p>
+<p><a href="https://res.cloudinary.com/rockheung/image/upload/v1518282903/201802110214_oxt08n.png"><img src="https://res.cloudinary.com/rockheung/image/upload/c_scale,w_1000/v1518282903/201802110214_oxt08n.png" alt=""></a></p>
+<p>Host Name에 IP를 적고 Open을 누르면 첫 접속일 경우 PuTTy Security Alert 창이 뜨면서 접속하는 서버가 맞냐고 물어본다. (궁금하면 자세히 읽어보기 바란다. 정확히는 다른 내용이다.) Yes를 누르면 다음 접속할 때에는 뜨지 않는다. 터미널에 다음과 같이 입력하면 되는데, password를 입력 시에 키를 눌러도 아무것도 표시되지 않는 것이 정상이다. 입력이 안 된줄 알고 여러번 눌렀다면, 백스페이스를 충분히 누르고 다시 입력하거나, 다시 접속하기 바란다.</p>
+<pre><code>login as: root
+root@$IP's password: $YOURROOTPASSWORD
+</code></pre>
+<p>만약 앞에서 키 파일을 만들어서 pem 키파일로 접속하고 싶다면, puttygen을 실행시켜 해당 파일을 Load하면 된다. 파일을 찾을때 기본 확장자가 ppk인데, 이를 모든 파일(All Files <em>.</em>)로 바꾸면 pem파일이 보인다. 이후 Save public key를 눌러 ppk파일로 저장하면 된다.
+key passphrase 란이 비워져 있다면 다른 창이 하나 뜰 텐데, 만약 이를 설정하면 이후 접속 시에 같은 key passphrass를 입력해 줘야 한다. 편의성 목적이라면 비워놓고 진행하자.</p>
+<p>이후 Putty에서 접속 시에 서버의 IP를 입력하고 Data에서 Auto-login username에 root를, SSH&gt;Auth에서 개인 키 파일을 지정하면 된다. Open을 누르자.</p>
+<p>다음과 같은 화면이 출력되면 성공이다.</p>
+<pre><code>Using username "root".
+Authenticating with public key "imported-openssh-key"
+Welcome to Ubuntu 16.04.3 LTS (GNU/Linux 4.4.0-62-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+Welcome to Alibaba Cloud Elastic Compute Service !
+
+Last login: Sat Feb 10 23:00:30 2018 from $YOURIP
+root@localhost:~$
+</code></pre>
+<p>접속이 잘 되면 실행 중인 터미널 창의 왼쪽 상단 putty 아이콘을 눌러 Change Settings...를 누른 후 Saved Sessions에 저장할 이름을 적고 Save를 누르면 같은 설정으로 이후에 다시 접속할 수 있다.</p>
+<p>만약 Alibabacloud가 아닌 다른 업체를 이용하더라도 전반적인 과정은 위와 비슷하다. <a href="https://cloud.google.com/?hl=ko">Google Cloud Platform</a>같은 경우는 현재 신규 가입시에 365일동안 무료로 이용 가능한 것으로 보인다. 참고하면 될 듯 하다.</p>
+
+    
+  </article>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="center">
+      <div class="measure">
+        <small>
+          &copy; Copyright 2016 by Eswar Malla.
+          Theme <a href="https://github.com/eswarm/piktor">Piktor</a> by <a href="http://eswarm.in">Eswar Malla</a>, fork of <a href="https://github.com/johnotander/pixyll">Pixyll</a>
+        </small>
+      </div>
+    </footer>
+    
+    <div class="ga-script">
+<div id="ga-script"></div>
+<script type="text/javascript">
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-XXXXXXXX-Y', 'auto');
+        ga('send', 'pageview');
+</script>
+</div>
+  </body>
+</html>
+

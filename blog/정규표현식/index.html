@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>정규표현식 — blog</title>
+    <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
+    <link rel="dns-prefetch" href="//cdn.mathjax.org">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all">
+    <meta name="keywords" >
+    <link rel="canonical" >
+    <!-- Custom CSS -->
+
+    <link rel="stylesheet" href="../../static/gen/styles.css?h=30966fac">
+    <!--
+      <link rel="stylesheet" href="../../static/pixyll.css" type="text/css">
+    -->
+    <script type=text/javascript src="../../static/gen/app.js?h=56f85b4f" charset="utf-8"></script>
+    <link rel="stylesheet" href="../../static/pygments.css">
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- MathJax -->
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  </head>
+
+  <body class="site">
+    <div class="site-wrap">
+      <header class="site-header px2 px-responsive">
+        <div class="mt2 wrap">
+          <div class="measure">
+            <a href="" class="site-title"></a>
+            <nav class="site-nav">
+              <a href="../../">Home</a>
+              
+               <a href="../../blog/">Blog</a>
+              
+              <a href="../../projects/">Projects</a>
+              
+              <a href="../../about/">About</a>
+              
+            </nav>
+            <div class="clearfix"></div>
+            
+          </div>
+        </div>
+      </header>
+      <div class="post p2 p-responsive wrap" role="main">
+        <div class="measure">
+          <div class="page">
+            
+  
+  <div class="post-header mb2">
+  
+    <h1>정규표현식</h1>
+  
+  <p class="post-meta">
+    <!--
+    written by
+    
+      rockheung
+    
+    -->
+    
+    <time class="dt-published" datetime="2018-03-20 12:49:49+09:00">Mar 20, 2018, 12:49:49 PM</time>
+    
+  </p>
+  </div>
+  <article class="post-content">
+    
+      <h3><a href="http://zvon.org/comp/r/tut-Regexp.html#Pages~Contents">Source: zvon.org/comp/r/tut-Regexp.html</a></h3>
+<p>다방면에서 두루두루 사용되는 정규표현식을 간략하게 정리해 보면,</p>
+<blockquote><ol>
+<li>대소문자 구분한다.</li>
+<li>white space 문자를 포함한다 - 스페이스, 탭, 엔터</li>
+<li><code>^</code> - 맨앞, <code>$</code>- 맨끝. 그러니까 <code>^$</code>는 처음부터 끝까지. 전부.</li>
+<li>만약 <code>^</code>, <code>$</code>와 같은 특별한 문자를 그대로 표현하고 싶으면, <code>\</code>를 앞에 붙이자. <code>\</code>를 표현하고 싶다면? 두 개 쓰면 된다. <code>\\</code></li>
+<li><code>.</code>, 그러니까 점은, 어느 문자에나 매칭된다. 점이 여러 개 있다면, </li>
+<li><code>[]</code>는 이 안의 문자와 같은 문자를 지칭한다. 그러니까 <code>[sdf]</code>면, <code>s</code> | <code>d</code> | <code>f</code> 인 한 글자를 의미한다. </li>
+<li><code>[ - ]</code>는 문자의 범위를 나타낸다. 여러 개의 범위는 <code>[C-Ka-d2-6]</code>와 같이 표현한다. 이 식은 세 가지의 범위를 표현한다.</li>
+<li><code>[]</code>안에서 <code>^</code>는 not의 의미다. <code>[^sgS]</code>는 그러니까 <code>s</code> | <code>g</code> | <code>S</code>가 제외된 모든 문자란 표현이다.</li>
+<li><code>(|)</code>는 문자열 덩어리를 표현한다. <code>(snd|s12)</code>는 <code>snd</code> | <code>s12</code> 가 덩어리로 포함된 표현이다.</li>
+<li><code>*</code>는 없거나 연속, <code>+</code>는 하나 이상 연속, <code>?</code>는 없거나 하나만.</li>
+<li>10번에 대한 <code>?</code>의 예시 - <code>[^@]@?@</code>: <code>@</code>가 아닌 문자 하나와, <code>@</code>인 문자 사이에, <code>@</code>가 없거나 하나 있는 표현이다.</li>
+<li><code>{n}</code>는 바로 앞의 문자 한 글자가 정확히 n번 반복인 경우를 표현한다. </li>
+<li><code>{m,n}</code>는 m번 이상, n번 이하의 반복이다.</li>
+<li>같은 의미를 가지는 표현들: <code>*</code> ~ <code>{0,}</code>, <code>+</code> ~ <code>{1,}</code>, <code>?</code> ~ <code>{0,1}</code></li>
+<li>기본적으로, 표현들은 가능한 가장 많은 매칭을 한다. 하지만 <code>?</code>가 붙으면, 가장 최소한의 매칭만 찾도록 바뀐다. <code>r.*?</code>는 그러니까, <code>r</code> 한 글자와만 매칭된다.</li>
+<li><code>\w</code>는 알파벳 대소문자, 숫자, 그리고 언더바 <code>_</code>를 표현한다. 몇몇 언어에서는 문자 약어들은 인식되지 않는다. 그런 경우 그냥 <code>[A-z0-9_]</code>를 사용한다.</li>
+<li><code>\W</code>는 알파벳 대소문자, 숫자, 그리고 언더바만 빼고 모두 포현한다. 그러니까 <code>[^A-z0-9_]</code>이다.</li>
+<li><code>\s</code>는 white space 문자들을 표현한다 - 스페이스, 엔터, 탭. 반대로 <code>\S</code>는  그 밖의 모든 문자를 표현한다.</li>
+<li><code>\d</code>는 모든 숫자를 표현하고, <code>\D</code>는 그 반대이다. 숫자가 아닌 모든 문자를 표현한다. 시스템에서 지원 안하면, <code>[0-9]</code>쓰면 된다.</li>
+<li><code>\b</code>는, 한 문자가 아니라, <code>\w</code>와 <code>\W</code> 사이를 표현한다.</li>
+<li><code>\B</code>는, 그렇다면 당연하게도, <code>\b</code>가 아닌 간격이다.</li>
+<li><code>\A</code>와 <code>\Z</code>는 각각 문자열의 처음과 마지막을 가리킨다. 이는 <code>^</code>, <code>$</code>와 비슷하나, 이와는 다르게 매 새로운 라인마다 적용되지 않는다. 그냥 문자열의 생 처음 혹은 생 마지막만 가리킨다.</li>
+<li><code>(?=&lt;pattern&gt;)</code>는 해당 패턴이 있으면 그 앞을 가리키지만, 해당 패턴 자체를 표현하지는 않는다. 소비되지 않는다.</li>
+<li><code>(?!&lt;pattern&gt;)</code>는 해당 패턴이 있으면 그 앞을 가리키고, 그리고 그 앞을 표현에서 제외시킨다. 역시 소비되지 않는다.</li>
+</ol>
+</blockquote>
+<p>여기서부터는 앞의 정규표현 튜토리얼에 없다.</p>
+<blockquote><ol>
+<li>24번은 전방 탐색으로 불린다.</li>
+<li><code>(?&lt;=&lt;pattern&gt;)</code>는 위와는 방향이 반대라고 이해하면 된다. 해당 패턴이 있으면 그 뒤를 가리키고, 자체는 소비하지 않는다. 예시는 다음과 같다</li>
+</ol>
+<blockquote><blockquote><p>import re</p>
+<p>txt = 'ABC01: $23.45\n\
+        HGG42: $5.31\n\
+        CFMX1: $899.00\n\
+        XTC99: $69.96'</p>
+<p>print(txt)
+    ABC01: $23.45
+    HGG42: $5.31
+    CFMX1: $899.00
+    XTC99: $69.96</p>
+<p>re.findall('(?&lt;=\$)[0-9.]+', txt)
+    ['23.45', '5.31', '899.00', '69.96']</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>보면 <code>(?&lt;=\$)[0-9.]+</code>라는 표현은 <code>$</code>문자 패턴의 뒤를 보면서, 해당 패턴을 소비하진 않고, 숫자와 <code>.</code>을 포함한 문자가 하나 이상 반복되는 문자를 표현하고 있다.</p>
+<blockquote><ol>
+<li><code>(?&lt;!&lt;pattern&gt;)</code>은 26과는 반대로, 특정 패턴의 뒤를 보되 찾은 문자열을 표현에서 제외시킨다는 의미이다.</li>
+</ol>
+</blockquote>
+
+    
+  </article>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="center">
+      <div class="measure">
+        <small>
+          &copy; Copyright 2016 by Eswar Malla.
+          Theme <a href="https://github.com/eswarm/piktor">Piktor</a> by <a href="http://eswarm.in">Eswar Malla</a>, fork of <a href="https://github.com/johnotander/pixyll">Pixyll</a>
+        </small>
+      </div>
+    </footer>
+    
+    <div class="ga-script">
+<div id="ga-script"></div>
+<script type="text/javascript">
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-XXXXXXXX-Y', 'auto');
+        ga('send', 'pageview');
+</script>
+</div>
+  </body>
+</html>
+

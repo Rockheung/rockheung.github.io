@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Projects — blog</title>
+    <title>한글이 포함된 고정폭monospace 폰트 적용하기. — blog</title>
     <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
     <link rel="dns-prefetch" href="//cdn.mathjax.org">
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
@@ -13,12 +13,12 @@
     <link rel="canonical" >
     <!-- Custom CSS -->
 
-    <link rel="stylesheet" href="../static/gen/styles.css?h=30966fac">
+    <link rel="stylesheet" href="../../static/gen/styles.css?h=30966fac">
     <!--
-      <link rel="stylesheet" href="../static/pixyll.css" type="text/css">
+      <link rel="stylesheet" href="../../static/pixyll.css" type="text/css">
     -->
-    <script type=text/javascript src="../static/gen/app.js?h=56f85b4f" charset="utf-8"></script>
-    <link rel="stylesheet" href="../static/pygments.css">
+    <script type=text/javascript src="../../static/gen/app.js?h=56f85b4f" charset="utf-8"></script>
+    <link rel="stylesheet" href="../../static/pygments.css">
     <!-- Fonts -->
     <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Lato:900,300&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
@@ -56,13 +56,13 @@
           <div class="measure">
             <a href="" class="site-title"></a>
             <nav class="site-nav">
-              <a href="../">Home</a>
+              <a href="../../">Home</a>
               
-              <a href="../blog/">Blog</a>
+               <a href="../../blog/">Blog</a>
               
-               <a href="../projects/">Projects</a>
+              <a href="../../projects/">Projects</a>
               
-              <a href="../about/">About</a>
+              <a href="../../about/">About</a>
               
             </nav>
             <div class="clearfix"></div>
@@ -74,13 +74,42 @@
         <div class="measure">
           <div class="page">
             
-  <h1>Projects</h1>
-  <p>This is a list of the projects:</p>
-<ul>
-<li>Project 1</li>
-<li>Project 2</li>
-<li>Project 3</li>
-</ul>
+  
+  <div class="post-header mb2">
+  
+    <h1>한글이 포함된 고정폭monospace 폰트 적용하기.</h1>
+  
+  <p class="post-meta">
+    <!--
+    written by
+    
+      rockheung
+    
+    -->
+    
+    <time class="dt-published" datetime="2018-03-09 09:19:42+09:00">Mar 9, 2018, 9:19:42 AM</time>
+    
+  </p>
+  </div>
+  <article class="post-content">
+    
+      <p>기존에 <code>code</code> 태그에서 사용하던 폰트는 네이버의 나눔고딕코딩 폰트였다. 그러나 본인의 어떤 실수 때문인지는 몰라도 코드의 indentation이 정확하지 않았다. css를 <a href="https://fonts.google.com/">구글 폰트 사이트</a>에서 권장하는대로 다음과 같이 사용하고 있었다.</p>
+<pre><code>pre code {
+font-family: 'Nanum Gothic Coding', monospace;
+}
+</code></pre>
+<p>전혀 이상할 것이 없다. 표현하려는 글자가 나눔고딕코딩에 포함되어 있다면 그대로 표현될 것이고, 만약 없는 글자라면 monospace 폰트로 표현될 것이며, 그마저도 없다면 브라우저 기본 폰트로 보일 것이다.</p>
+<p>문제는 indentation에 필수적인 빈칸이 나눔고딕코딩 폰트에 없는지 monospace로 표현되면서 분명 네칸이 들여써질 부분에 네칸 이상의 간격으로 표시된다는 점이었다. 무척 거슬리는 부분이 아닐 수 없었다.</p>
+<p>선택지는 분명했다. 아얘 코드에 한글을 사용하지 말던가, 아니면 올바르게 표현되는 한글 포함 고정폭 폰트를 찾던가.</p>
+<p>D2-coding 폰트가 유력한 대안이었으나 이는 구글 폰트 사이트에서 제공하지 않았다. ttf파일을 바로 서버에 올려 사용하자니(HTML5 부터 <code>@font-face</code>를 통해 이를 지원한다) 폰트 파일의 용량이 무척 컸다. 사이트의 로딩 속도가 느려질 것이 분명했다.</p>
+<p>다행히 깃허브에서 방법을 찾았다. <a href="https://github.com/Joungkyun/font-d2coding">Joungkyun: D2 coding</a>를 블로그 서버에 받아 서버 <code>static/font</code> 폴더로 심볼릭 링크를 만들었다.  그리고 다음과 같은 코드를 템플릿에 추가했다.</p>
+<p>{% raw %}
+    &lt;link rel="stylesheet" href="{% static "font/d2coding.css" %}" type="text/css"&gt;
+{% endraw %}</p>
+<p>아주 잘 작동한다.</p>
+
+    
+  </article>
 
 
           </div>
