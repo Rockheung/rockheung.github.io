@@ -1,0 +1,44 @@
+---
+layout: post
+title:  "Git의 개념잡기"
+date:   2018-02-15 05:28:09.440 +0900
+categories: [ study ]
+tags: [ git, basic ]
+---
+
+Git이 유용한 툴이라고 많이들 이야기한다. 그런데 막상 처음 접해보면, 일단 단순하게 다음과 같은 몇 가지 명령어만을 주로 쓰게 된다.
+
+<!--more-->
+
+일단 github.com에 있는 repo를 그냥 그대로 쓰기 시작하다가,
+
+    $ git clone https://github.com/Rockheung/rockheung.github.io.git
+
+자기 repo에 Fork해서 이것저것 추가해보기 시작한다.
+
+    $ git add .
+    $ git commit -m 'add dot'
+    $ git push $(remote) $(branch)
+
+그리고 다른 사람과 하는 공동 작업이 git의 묘미라는 말에 pull도 쓰다 보면
+
+    $ git pull
+
+종종 같은 파일 수정 후에 conflict가 나기도 한다. 그러면 이제 생각하게 된다. git이 대체 뭐하는 녀석이길래 이렇게 까다로운 걸까. 알아서 해주면 안되나. 
+
+사실 본인도 최근까지 딱 여기까지였다. 본인도 처음에 git을 사용하기 시작했을 때 파일 versioning이 된다길래 막연히 드롭박스 같은걸 생각했다. 어쩌다 잘못 올린 파일은 이전 버전 중에 맞는거 골라서 복구하는 그런. 사실, git을 조금 다룰 줄 알게 되면, 그런 게 가능하다. 다만 거기까지 가는 길이 드롭박스보다는 조금 장벽이 있을 뿐이다.
+
+git에서 파일 versioning이 어떻게 동작하는지를 고민해보자. 
+
+일단 `git clone`을 하면, 해당 repo의 가장 최근 커밋에 해당하는 파일들의 사본을 로컬에 다운받게 된다. HEAD는 바로 현재의 이 커밋을 가리키는 포인터이다. 이때 git은 만약 이 폴더(working directory 라고 하자)의 내용이 조금이라도 바뀌면, 그걸 감지하고 `git add`하기 전까지 변경된 해당 파일을 unstaging 으로 표시한다. 작업 중에 `git status`를 날려 보면 그런 파일들이 보일 것이다. `git add` 이후 `git commit`을 해야지만 로컬 branch의 HEAD가 변경 사항이 기록된 가장 최신의 커밋을 가리키게 된다.
+
+정리해보면 다음과 같다.
+
+cmd | working  directory | index | HEAD
+----|----|----|----
+git clone | v1 | v1 | v1
+$(modified) | v2 | v1 | v1
+git add | v2 | v2 | v1
+git commit | v2 | v2 | v2
+
+이후 `git push`를 하면 비로소 github.com의 해당 branch에 변경 내용이 기록된다.

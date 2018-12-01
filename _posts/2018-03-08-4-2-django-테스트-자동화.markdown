@@ -1,0 +1,432 @@
+---
+layout: post
+title:  "4-2. Django 테스트 자동화"
+date:   2018-03-08 11:00:11.823 +0900
+categories: [ django ]
+tags: [ Django, Python, 장고, 파이썬 ]
+---
+
+별 필요가 없다고 생각할 수도 있다. 하지만 그 이면에는 *안이함*과 *귀찮음*, 그리고 *버그따윈 있을리가*따위와 같은 생각들이 자리잡고 있을 것이다. 그러나 기능이 더해지면서 추가된 코드들은 기존의 코드에 영향을 주기 시작할 것이 분명한데, 그때마다 기존의 기능이 잘 동작하는지 확인하는 작업은 결코 허드렛일이 아니다. 어떤 형태로든 미래에 당면할 문제를 해결하기 위해 수많은 print와 원인 파악에 드는 시간을 절약할 수 있다면, 자동화된 테스트는 개중에 가장 값싼 *보험*이 분명하다.
+
+`blog/models.py`의 `Question` 클래스에 다음 함수를 추가하자.
+
+    import datetime
+    from django.utils import timezone
+
+    def was_published_recently(self):
+        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+
+언뜻 보기에는 명료해 보인다. *최근에 발간되었는가?*의 질문에, 현재 시점에서 하루동안 발간되었으면 True를, 아니면 False를 리턴할 것이다. 그러나 만약 발간 날짜가 미래라면? 그럼에도 True를 리턴할 것임을 어렵지 않게 유추할 수 있다.
+
+수동으로 테스트하려면 아마도 이런 식일 것이다.
+
+    >>> import datetime
+    >>> from blog.models import Question
+    >>> from django.utils import timezone
+    >>> q_the_future =Question( pub_date =timezone.now() +datetime.timedelta( days =30 ) )
+    >>> q_the_future.was_published_recently()
+    True
+
+이는 분명 *최근 발행되었는지를* 알아내는 함수로는 적절하지 못하다. 이제 위의 코드를 `blog/tests.py`에 작성해 보자. `QuestionModelTests`클래스가 `TestCase`클래스를 상속받고 있다. 그리고 앞에서 쉘로 테스트했던 코드를 이용하여 `test_was_published_recently_with_future_question`메서드를 만들어 (확인해보지는 않았지만 `TestCase`클래스로부터 상속받았음이 분명한) `assertIs()`로 테스트하고자 하는 메서드의 의도한 결과값을 지정하고 있다.
+
+    import datetime
+
+    from django.utils import timezone
+    from django.test import TestCase
+
+    from .models import Question
+
+    class QuestionModelTests( TestCase ):
+
+        def test_was_published_recently_with_future_question( self ):
+            """
+            was_published_recently() returns False for questions whose pub_date
+            is in the future.
+            """
+            time = timezone.now() +datetime.timedelta( days=30 )
+            q_the_future =Question( pub_date =time )
+            self.assertIs( q_the_future.was_published_recently(), False )
+
+그리고 터미널에서 `python manage.py test blog`를 날리면 다음 결과를 볼 수 있다.
+
+    $ python manage.py test blog
+    Creating test database for alias 'default'...
+    System check identified no issues (0 silenced).
+    F
+    ======================================================================
+    FAIL: test_was_published_recently_with_future_question (blog.tests.QuestionModelTests)
+    ----------------------------------------------------------------------
+    Traceback (most recent call last):
+      File "/home/rockheung/git/django-blog/_base/blog/tests.py", line 18, in 
+    test_was_published_recently_with_future_question
+        self.assertIs(future_question.was_published_recently(), False)
+    AssertionError: True is not False
+
+    ----------------------------------------------------------------------
+    Ran 1 test in 0.001s
+
+    FAILED (failures=1)
+    Destroying test database for alias 'default'...
+
+-------------------------------------------------
+
+뷰 테스트
+
+조금 의아할 수도 있다. Shell에서 웹브라우저에서나 볼 수 있는 뷰를 테스트한다니, 어떻게 그럴 수 있을까? 일단 터미널에 `python manage.py shell`를 날리자. 그리고 `setup_test_environment()`메서드를 임포트하자.
+
+    $ python manage.py shell
+    >>> from django.test.utils import setup_test_environment
+    >>> setup_test_environment()
+
+그러면 쉘에서도 http 요청을 날릴 수 있다. 이렇게 말이다.
+
+    >>> from django.test import Client
+    >>> client =Client()
+    >>> response =client.get('/')
+    >>> print(response)
+    <HttpResponseRedirect status_code=302, "text/html; charset=utf-8", url="/blog/">
+
+명확한 흐름이다. 도메인에 접속했더니, 도메인/blog/ 주소로 리다이렉트되었다. 이전 글에서 마지막에 `_base/urls.py`에 작성한 부분이 잘 작동됨을 확인할 수 있다. 만약 해당 부분을 하지 않았다면, 다음과 같이 *그런거 없어* 라고 404에러를 보여줄 것이다.
+
+    >>> print( client.get( '/nothing-like-that/' ) )
+    Not Found: /nothing-like-that/
+    <HttpResponseNotFound status_code=404, "text/html">
+
+일반적인 응답은, 물론 *status_code=200*일 때다.
+
+    >>> from django.urls import reverse
+    >>> print( client.get( reverse( blog:index ) ) )
+    <TemplateResponse status_code=200, "text/html; charset=utf-8">
+    >>> response.content
+    b'\n<ul>\n  \n  <li><a href="/blog/1/">What&#39;s up?</a></li>\n  \n</ul>\n\n\n'
+
+blog앱은 Question의 pub_date가 미래로 설정되어 있어도 그 시점이 되기 전에 보여지는 문제가 있다. `blog/views.py`를 수정해서 해결하자.
+
+    class IndexView(generic.ListView):
+            template_name = 'blog/index.html'
+            context_object_name = 'latest_question_list'
+
+        def get_queryset(self):
+            """Return the last five published questions."""
+            return Question.objects.order_by('-pub_date')[:5]
+
+`get_queryset()`메서드를 수정하여 현재 시점과 비교하는 과정을 추가할 생각이다.
+
+    from django.utils import timezone
+
+    def get_queryset(self):
+        """
+        Return the last five published questions (not including those set to be
+        published in the future).
+        """
+        return Question.objects.filter( pub_date__lte =timezone.now() ).order_by( '-pub_date' )[ :5 ]
+
+조금 이상한가? pub_date__lte는 어디서 튀어나온 것일까? 이는 장고의 *Field Lookup*이 사용된 것이다. 기본적인 형태는 `field__lookuptype=value`의 형태이다. 이것은 하나의 SQL WHERE 구문이 뜻할 의미를 명시하고, `filter()`, `exclude()`, 그리고 `get()`와 같은 QuerySet` 메서드에게 전달한다. `_lte`는 그러니까 lookuptype을 나타내는 듯 싶다. 
+
+    >>> from blog.models. import Question
+    >>> q =Question.objects.filter(pub_date__lte='2019-01-01')
+    /home/rockheung/.virtualenvs/django-blog/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1423: RuntimeWarning: DateTimeField Question.pub_date received a naive datetime (2019-01-01 00:00:00) while time zone support is active.
+      RuntimeWarning)
+    >>> q
+    <QuerySet [<Question: What's up?>]>
+
+위에서 대충 얘기하면 `SELECT * FROM blog_entry WHERE pub_date <= '2019-01-01';`와 같은 쿼리가 DB를 훓고 결과를 긁어온 것이다.
+
+어떻게 이것이 가능할까? 파이썬에서는 메서드의 인수를 dict타입으로도 받는다. 아래의 예시를 보자. [출처](https://docs.python.org/3/tutorial/controlflow.html#tut-keywordargs)
+
+    def cheeseshop(kind, *arguments, **keywords):
+        print("-- Do you have any", kind, "?")
+        print("-- I'm sorry, we're all out of", kind)
+        for arg in arguments:
+            print(arg)
+        print("-" * 40)
+        for kw in keywords:
+            print(kw, ":", keywords[kw])
+
+    >>> cheeseshop("Limburger", "It's very runny, sir.", \
+           "It's really very, VERY runny, sir.", \
+           shopkeeper="Michael Palin", \
+           client="John Cleese", \
+           sketch="Cheese Shop  Sketch")
+    -- Do you have any Limburger ?
+    -- I'm sorry, we're all out of Limburger
+    It's very runny, sir.
+    It's really very, VERY runny, sir.
+    ----------------------------------------
+    shopkeeper : Michael Palin
+    client : John Cleese
+    sketch : Cheese Shop Sketch
+
+*치즈가게* 메서드에서 *"Limburger"*문자열은 `kind`인수에, 그 다음 *"It's very runny, sir.", "It's really very, VERY runny, sir.",* 는 `arguments` 인수에 리스트 타입으로,  *shopkeeper="Michael Palin", client="John Cleese", sketch="Cheese Shop  Sketch"*는 `keywords`인수에 딕셔너리 타입으로 입력된 것을 확인할 수 있을 것이다. 보다시피, 별게 아니라 그냥 파이썬 구문이다.
+
+--------------------------------
+
+뷰 테스트 스크립트 작성
+
+이제까지 내용을 참고해서 질문을 생성하여 그것이 과거, 현재, 미래에 발간publish되었을때, 보여질 것만 보여지는지를 확인해 볼 것이다. 아까와 마찬가지로 `blog/test.py`에 다음과 같이 작성한다. 
+
+    def create_question(question_text, days):
+        """
+        Create a question with the given `question_text` and published the
+        given number of `days` offset to now (negative for questions published
+        in the past, positive for questions that have yet to be published).
+        """
+        time = timezone.now() + datetime.timedelta(days=days)
+        return Question.objects.create(question_text=question_text, pub_date=time)
+    
+    
+    class QuestionIndexViewTests(TestCase):
+        def test_no_questions(self):
+            """
+            If no questions exist, an appropriate message is displayed.
+            """
+            response = self.client.get(reverse('blog:index'))
+            self.assertEqual(response.status_code, 200)
+            self.assertContains(response, "No Blog available.")
+            self.assertQuerysetEqual(response.context['latest_question_list'], [])
+    
+        def test_past_question(self):
+            """
+            Questions with a pub_date in the past are displayed on the
+            index page.
+            """
+            create_question(question_text="Past question.", days=-30)
+            response = self.client.get(reverse('blog:index'))
+            self.assertQuerysetEqual(
+                response.context['latest_question_list'],
+                ['<Question: Past question.>']
+            )
+    
+        def test_future_question(self):
+            """
+            Questions with a pub_date in the future aren't displayed on
+            the index page.
+            """
+            create_question(question_text="Future question.", days=30)
+            response = self.client.get(reverse('blog:index'))
+            self.assertContains(response, "No Blog available.")
+            self.assertQuerysetEqual(response.context['latest_question_list'], [])
+    
+        def test_future_question_and_past_question(self):
+            """
+            Even if both past and future questions exist, only past questions
+            are displayed.
+            """
+            create_question(question_text="Past question.", days=-30)
+            create_question(question_text="Future question.", days=30)
+            response = self.client.get(reverse('blog:index'))
+            self.assertQuerysetEqual(
+                response.context['latest_question_list'],
+                ['<Question: Past question.>']
+            )
+    
+        def test_two_past_questions(self):
+            """
+            The questions index page may display multiple questions.
+            """
+            create_question(question_text="Past question 1.", days=-30)
+            create_question(question_text="Past question 2.", days=-5)
+            response = self.client.get(reverse('blog:index'))
+            self.assertQuerysetEqual(
+                response.context['latest_question_list'],
+                ['<Question: Past question 2.>', '<Question: Past question 1.>']
+            )
+
+앞에서와 마찬가지로 테스트 스크립트를 실행해 보자
+
+    $ python manage.py test blog
+    Creating test database for alias 'default'...
+    System check identified no issues (0 silenced).
+    ........
+    ----------------------------------------------------------------------
+    Ran 8 tests in 0.021s
+    
+    OK
+    Destroying test database for alias 'default'...
+
+잘 작동한다.
+
+---------------------------
+
+DetailView의 문제
+
+앞에서 미래의 설문이 보이지 않게 수정하고 테스트 스크립트를 통해 검증하였다. 그러나 URL가 알려진 질문은 접근할 수 있다. `blog/views.py`에서 현재 시점까지의 질문만 DB에서 참조하도록 제한하자.
+
+    class DetailView(generic.DetailView):
+        ...
+        def get_queryset(self):
+            """
+            Excludes any questions that aren't published yet.
+            """
+            return Question.objects.filter(pub_date__lte=timezone.now())
+
+`blog/tests.py`에 다음을 작성하자.
+
+    class QuestionDetailViewTests(TestCase):
+        def test_future_question(self):
+            """
+            The detail view of a question with a pub_date in the future
+            returns a 404 not found.
+            """
+            future_question = create_question(question_text='Future question.', days=5)
+            url = reverse('blog:detail', args=(future_question.id,))
+            response = self.client.get(url)
+            self.assertEqual(response.status_code, 404)
+    
+        def test_past_question(self):
+            """
+            The detail view of a question with a pub_date in the past
+            displays the question's text.
+            """
+            past_question = create_question(question_text='Past Question.', days=-5)
+            url = reverse('blog:detail', args=(past_question.id,))
+            response = self.client.get(url)
+            self.assertContains(response, past_question.question_text)
+
+역시 잘 작동함을 확인할 수 있을 것이다.
+
+------------------------------------
+
+다른 테스트도 작성해 보자. `ResultView`가 남았다. detail과 거의 같게 하면 된다. `blog/views.py`를 수정하고, `blog/texts.py`에 좀전과 마찬가지로 테스트 클래스를 작성하자.
+
+    class ResultsView(generic.DetailView):
+        model = Question
+        template_name = 'blog/results.html'
+
+        def get_queryset(self):                  
+            """
+            Excludes any questions that aren't published yet.
+            """
+            return Question.objects.filter(pub_date__lte=timezone.now())
+
+@blog/tests.py
+
+    class QuestionResultsViewTests(TestCase):
+        def test_future_question(self):
+            """
+            The results view of a question with a pub_date in the future
+            returns a 404 not found.
+            """
+            future_question = create_question(question_text='Future question.', days=5)
+            url = reverse('blog:results', args=(future_question.id,))
+            response = self.client.get(url)
+            self.assertEqual(response.status_code, 404)
+    
+        def test_past_question(self):
+            """
+            The results view of a question with a pub_date in the past
+            displays the question's text.
+            """
+            past_question = create_question(question_text='Past Question.', days=-5)
+            url = reverse('blog:results', args=(past_question.id,))
+            response = self.client.get(url)
+            self.assertContains(response, past_question.question_text)
+
+----------------------------------------------------
+
+다른 여러가지 테스트도 생각해 볼 수 있다. 가령, 선택지가 없는 질문을 배제한다던가, 관리자에게만은 선택지가 없거나 미래에 보일 질문들은 보이게 한다던가 하는 테스트 말이다. 앞의 것은 어렵지 않을 것 같다. 테스트 코드를 먼저 작성해 보자. 다음의 테스트 코드를 추가하자. 의미는 명료하다. 일단 index 페이지에서 선택지가 없는 질문은 배제하는 것이다. client가 index 페이지에 get요청을 해서 받은 응답 중에 표시되어야 할 질문의 스트링이 포함되어 있는지를 확인하는 코드이다.
+
+    class QuestionEmptyChoiceUnvisibleTests(TestCase):
+
+        def test_empty_choice_question_index(self):
+            empty_choice_question =Question.objects.create(question_text ='Empty Choice Question.', pub_date =timezone.now())
+            response =self.client.get(reverse('blog:index'))
+            self.assertNotContains(response, empty_choice_question.question_text)
+
+        def test_non_empty_choice_question_index(self):
+            empty_choice_question =Question.objects.create(question_text ='Non-Empty Choice Question.', pub_date =timezone.now())
+            empty_choice_question.choice_set.create(choice_text ='One', votes =0 )
+            empty_choice_question.choice_set.create(choice_text ='Two', votes =0 )
+            empty_choice_question.choice_set.create(choice_text ='Three', votes =0 )
+            response =self.client.get(reverse('blog:index'))
+            self.assertContains(response, empty_choice_question.question_text)
+
+이대로 테스트를 실행하면 당연히 오류가 뜬다. index view에서 빈 질문에 대한 필터가 없기 때문이다. `blog.views.py`의 인덱스 뷰에 추가하자. [chained filter](https://docs.djangoproject.com/ko/2.0/topics/db/queries/#chaining-filters)를 참고해서 작성하였다. 
+
+    def get_queryset(self): 
+        """Return the last five published questions."""
+         return Question.objects.filter( pub_date__lte =timezone.now() 
+                               ).exclude( choice__isnull =True 
+                               ).order_by('-pub_date')[:5]
+
+현재 이전에 작성한 글 중에 질문이 없는 글을 제외하는 조건을 더했다. 다시 테스트 스크립트를 실행해 보자.
+
+    $ python manage.py test blog
+    Creating test database for alias 'default'...
+    System check identified no issues (0 silenced).
+    .....F.FF.....
+    ======================================================================
+    FAIL: test_future_question_and_past_question (blog.tests.QuestionIndexViewTests)
+    ----------------------------------------------------------------------
+    Traceback (most recent call last):
+      File "/home/rockheung/git/django-blog/_base/blog/tests.py", line 96, in test_future_question_and_past_question
+        ['<Question: Past question.>']
+      File "/home/rockheung/.virtualenvs/django-blog/lib/python3.5/site-packages/django/test/testcases.py", line 940, in assertQuerysetEqual
+        return self.assertEqual(list(items), values, msg=msg)
+    AssertionError: Lists differ: [] != ['<Question: Past question.>']
+    
+    Second list contains 1 additional elements.
+    First extra element 0:
+    '<Question: Past question.>'
+    
+    - []
+    + ['<Question: Past question.>']
+    
+    ======================================================================
+    FAIL: test_past_question (blog.tests.QuestionIndexViewTests)
+    ----------------------------------------------------------------------
+    Traceback (most recent call last):
+      File "/home/rockheung/git/django-blog/_base/blog/tests.py", line 70, in test_past_question
+        ['<Question: Past question.>']
+      File "/home/rockheung/.virtualenvs/django-blog/lib/python3.5/site-packages/django/test/testcases.py", line 940, in assertQuerysetEqual
+        return self.assertEqual(list(items), values, msg=msg)
+    AssertionError: Lists differ: [] != ['<Question: Past question.>']
+    
+    Second list contains 1 additional elements.
+    First extra element 0:
+    '<Question: Past question.>'
+    
+    - []
+    + ['<Question: Past question.>']
+    
+    ======================================================================
+    FAIL: test_two_past_questions (blog.tests.QuestionIndexViewTests)
+    ----------------------------------------------------------------------
+    Traceback (most recent call last):
+      File "/home/rockheung/git/django-blog/_base/blog/tests.py", line 110, in test_two_past_questions
+        ['<Question: Past question 2.>', '<Question: Past question 1.>']
+      File "/home/rockheung/.virtualenvs/django-blog/lib/python3.5/site-packages/django/test/testcases.py", line 940, in assertQuerysetEqual
+        return self.assertEqual(list(items), values, msg=msg)
+    AssertionError: Lists differ: [] != ['<Question: Past question 2.>', '<Question: Past question 1.>']
+    
+    Second list contains 2 additional elements.
+    First extra element 0:
+    '<Question: Past question 2.>'
+    
+    - []
+    + ['<Question: Past question 2.>', '<Question: Past question 1.>']
+    
+    ----------------------------------------------------------------------
+    Ran 14 tests in 0.041s
+    
+    FAILED (failures=3)
+    Destroying test database for alias 'default'...
+
+잘 작동하던 테스트 스크립트가 오류를 뿜어 잠시 당황하였으나, 생각해보니 당연한 결과다. 기존의 코드에서 과거와 미래의 질문을 임시로 작성할 때 선택지는 넣지 않았던 것이다. 이를 간단하게 수정하자. 그저 임시로 만드는 질문에 선택지를 넣으면 된다.
+
+    q =create_question(question_text="Future question.", days=30)
+    q.choice_set.create()
+
+위에서 뜬 3가지 오류 이외에  `test_future_question()`메서드도 수정해야 맞다. 에러를 띄우지 않았던 이유는 애초에 아무것도 표시되지 않기를 기대했기 때문이다. 사실 위에서 선택지를 만드는 것도 엄밀히 말하면 아주 맞는 것은 아닌데, 아무 내용이 없는 선택지를 가정한 것이기 때문이다. 수정이 잘 되었다면 테스트 스크립트를 실행해 보자.
+
+    $ python manage.py test tuto
+    Creating test database for alias 'default'...
+    System check identified no issues (0 silenced).
+    ..............
+    ----------------------------------------------------------------------
+    Ran 14 tests in 0.043s
+    
+    OK
+    Destroying test database for alias 'default'...
+
+에러 없이 잘 완료한 것을 볼 수 있다.
