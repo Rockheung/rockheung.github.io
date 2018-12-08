@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ site.title }} - {% if page.title %}
+        {{ page.title }}
+      {% else %}
+        {{ site.description }}
+      {% endif %}</title>
+    <meta name="robots" content="follow, all">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+    <meta name="description" content="{{ site.description }}">
+    <meta name="keywords" content="{{ site.posts | map: "tags" | uniq | sort | join: ", "}}">
+    <meta name="author" content="Rockheung">
+    <link rel="pingback" href="/xmlrpc/">
+    <link rel="home" href="/">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- D2-coding webfont -->
+    <link href="https://cdn.jsdelivr.net/gh/joungkyun/font-d2coding/d2coding.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Monofett|Zilla+Slab+Highlight:700" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="/assets/js/html5shiv.js"></script>
+      <script src="/assets/js/respond.min.js"></script>
+    <![endif]-->
+    {% include icon.html %}
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Nanum+Myeongjo" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/main.css" type="text/css">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div id="banner" class="hidden-xs col-sm-12">
+        <a href="http://plex.rockheung.xyz" target="_blank">
+          <img src="https://res.cloudinary.com/rockheung/image/upload/v1518684835/plex-logo_cn5za9.png"/>
+        </a>
+      </div>
+    </div>
+    <div class="wrapper">
+      <!-- sidebar.html -->
+      <nav id="sidebar">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header text-center">
+          <a href="/">
+            Sundry Codes
+          </a>
+        </div>
+        <div class="sidebar-search visible-xs">
+          <div class="col-xs-12">
+            <form action="" class="search-form">
+              <div class="form-group has-feedback">
+                <label for="search" class="sr-only">Search</label>
+                <input type="text" class="search-query form-control" placeholder="Search" name="pattern" value="pattern" >
+                <span class="glyphicon glyphicon-search form-control-feedback"></span>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- Sidebar Links -->
+        <div class="container">
+          <ul class="list-unstyled components">
+            <!-- Here would be better off instorucing my Info. -->
+            <li class="active">
+              <a href="#categorySubmenu" data-toggle="collapse" aria-expanded="true">
+                Categories
+              </a>
+              <ul class="collapse in list-unstyled" id="categorySubmenu">
+                {% assign lists_categories = site.posts | map: "categories" %}
+                {% assign categories = lists_categories | uniq | sort %}
+                {% if categories != empty %}
+                  {% for category in categories %}
+                    <li class="{% if page.categories contains category %}current{% endif %}">
+                      <a href="/category/#{{ category }}"
+                         title="Show all entries in {{ category }}">{{ category }}
+                         <span class="label pull-right">
+                           {% assign post_count = 0 %}
+                           {% for i in lists_categories %}
+                             {% if i contains category %}
+                               {% assign post_count = post_count | plus: 1 %}
+                             {% endif %}
+                           {% endfor %}
+                           {% case post_count %}
+                             {% when 0 %}No post
+                             {% when 1 %}{{ post_count }} post
+                             {% else %}{{ post_count }} posts
+                           {% endcase %}
+                         </span>
+                      </a>
+                    </li>
+                  {% endfor %}
+                {% else %}
+                  <li class="">
+                    <a href="#">No categories yet.</a>
+                  </li>
+                {% endif %}
+              </ul>
+            </li>
+            <li class="active">
+              <a href="#recententriesSubmenu" data-toggle="collapse" aria-expanded="true">
+                Recent posts
+              </a>
+              <ul class="collapse in list-unstyled" id="recententriesSubmenu">
+                {% if site.posts != empty %}
+                  {% for post in site.posts %}
+                    {% if forloop.index > 10 %}
+                      {% break %}
+                    {% endif %}
+                    <li class="">
+                      <a href="{{ post.url | absolute_url }}" title="{{ post.title }}" rel="bookmark">{{ post.title }}</a>
+                    </li>
+                  {% endfor %}
+                {% else %}
+                  <li class="">
+                    <a href="#">No posts yet.</a>
+                  </li>
+                {% endif %}
+              </ul>
+            </li>
+            <li class="active">
+              <a href="#tagcloudSubmenu" data-toggle="collapse" aria-expanded="true">
+                Tags
+              </a>
+              {% assign lists_tags = site.posts | map: "tags" %}
+              {% assign tags = lists_tags | uniq | sort %}
+              {% assign avg = tags.size | times: 1.0 | divided_by: lists_tags.size %}
+              <ul id="tagcloudSubmenu" class="callapse in list-unstyled {% if tags == empty %}no-{% endif %}tag-cloud">
+                {% if tags != empty %}
+                  {% for tag in tags %}
+                    {% assign post_count = 0 %}
+                    {% for i in lists_tags %}
+                      {% if i contains tag %}
+                        {% assign post_count = post_count | plus: 1 %}
+                      {% endif %}
+                    {% endfor %}
+                    <li>
+                      <a href="/tag/#{{ tag }}"
+                         title="{% case post_count %}
+                         {% when 0 %}No post
+                         {% when 1 %}{{ post_count }} post tagged by {{ tag }}
+                         {% else %}{{ post_count }} posts tagged by {{ tag }}
+                         {% endcase %}"
+                         class="tag-{{ post_count | divided_by: avg | times: 2.5 | floor }}{% if post.tags contains tag %} current{% endif %}">{{ tag }}</a>
+                    </li>
+                  {% endfor %}
+                {% else %}
+                  <li>
+                    No tags yet.
+                  </li>
+                {% endif %}
+              </ul>
+            </li>
+            <li class="active">
+              <a href="#recentcomments" data-toggle="collapse" aria-expanded="true">
+                Recent comments
+              </a>
+              <div id="recentcomments" class="dsq-widget collapse in"><script type="text/javascript" src="https://sundry-rockheung.disqus.com/recent_comments_widget.js?num_items=5&hide_avatars=1&avatar_size=32&excerpt_length=200"></script></div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div id="content">
+        <!-- header.html -->
+        <nav class="navbar" role="navigation">
+          <div class="container-fluid">
+            <div class="navbar-header"></div>
+            <div class="container-fluid">
+              <div class="row">
+                <!-- toggle button -->
+                <div class="col-xs-2 col-sm-3">
+                  <button type="button" id="sidebarCollapse" class="btn navbar-btn">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="glyphicon glyphicon-align-left"></i>
+                  </button>
+                </div>
+                <div class="visible-xs col-xs-2 col-xs-push-8">
+                  <div class="pull-right">
+                    <a href="/" title="Rockheung's Sundry" class="navbar-brand" rel="home">
+                      <img src="/assets/ico/home.png" class="img-rounded home-img" alt="Rockheung's Sundry" >
+                    </a>
+                  </div>
+                </div>
+                <div class="hidden-xs col-sm-6">
+                  <div class="col-sm-12 text-center">
+                    <a href="/" title="Rockheung's Sundry" class="navbar-brand aps-pos" rel="home">
+                      <img src="/assets/ico/home.png" class="img-rounded home-img" alt="Rockheung's Sundry" >
+                    </a>
+                  </div>
+                </div>
+                <div class="clearfix visible-xs"></div>
+                <div class="col-xs-12 col-sm-3 hidden-xs">
+                  <form class="search-form" method="get" action="http://www.google.com/search" target="_blank" >
+                    <div class="form-group has-feedback">
+                      <label for="search" class="sr-only">Search</label>
+                      <input type="hidden" name="sitesearch" value="{{ site.url }}">
+                      <input class="search-query form-control" type="text" name="q" maxlength="255" placeholder="Search" value="">
+                      <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-xs-11 col-xs-push-1 col-sm-10 col-sm-push-1 col-md-8 col-md-push-2 col-lg-6 col-lg-push-3">
+              <!-- breadcrubs.html -->
+              <div class="breadcrumbs">
+                <ul class="breadcrumb">
+                  {% assign date_array = page.date | date: "^%Y^%b^%-d^" %}
+                  {% assign breadcrumbs = page.bread | default: "Post" | append: date_array | append: page.title | split: '^' %}
+                  {% for crumb in breadcrumbs %}
+                  <li {% if forloop.last %}{% else %}class="deactive"{% endif %}>
+                    {{ crumb }}
+                  </li>
+                {% endfor %}
+                </ul>
+              </div>
+              {{ content }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- script.html -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- jQuery Custom Scroller CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- Custom -->
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#sidebar").mCustomScrollbar({
+          theme: "minimal"
+        });
+        $('#sidebarCollapse').on('click', function () {
+          // open or close navbar
+          $('#sidebar, #content, #banner').toggleClass('active');
+          // close dropdowns
+          $('#sidebar.collapse.in').toggleClass('in');
+          // and also adjust aria-expanded attributes we use for the open/closed arrows
+          // in our CSS
+          $('.page-header').toggleClass('active');
+          //Custom for entry_title
+          $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+      });
+    </script>
+  </body>
+</html>
+

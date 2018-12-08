@@ -1,17 +1,14 @@
-
-          <footer class="entry-footer">
-
-            <p class="entry-tags">
-              <span class="glyphicon glyphicon-tags"></span> <strong>Tags</strong> :
-              {% if post.tags != empty %}
-                {% for tag in post.tags | sort %}
-                  <a href="/tag/#{{ tag }}"
-                     title="Show all entries tagged by {{ tag }}"
-                     rel="tag">{{ tag }}</a>
-                {% endfor %}
-              {% else %}
-                <span>No tags</span>
-              {% endif %}
-            </p>
-
-          </footer>
+<div class="tags">
+  <i class="fas fa-tags"></i> <strong>Tags</strong> :
+  {% if post.tags != empty %}
+    {% for tag in post.tags | sort %}
+      <span class="tag is-white">
+      <a href="/tag/#{{ tag }}"
+         title="Show all entries tagged by {{ tag }}"
+         rel="tag">{{ tag }}</a>
+      </span>
+    {% endfor %}
+  {% else %}
+    <span class="tag is-white">No tags</span>
+  {% endif %}
+</div>

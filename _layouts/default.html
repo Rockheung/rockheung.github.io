@@ -1,30 +1,34 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en" }}">
-
-  {% include head.html %}
-
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="follow, all">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+    <meta name="description" content="{{ site.description }}">
+    <meta name="keywords" content="{{ site.posts | map: "tags" | uniq | sort | join: ", "}}">
+    <meta name="author" content="Rockheung">
+    <link rel="home" href="/">
+    {% include webfont.html %}
+    {% include icon.html %}
+    <!--[if lt IE 9]>
+      <script src="/assets/js/html5shiv.js"></script>
+      <script src="/assets/js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
+    <title>{{ site.title }} - {% if page.title %}{{ page.title }}{% else %}{{ site.description }}{% endif %}</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  </head>
   <body>
-    {% include plex.html %}
-
-    <div class="wrapper">
-      {% include sidebar.html %}
-
-      <div id="content">
-        {% include header.html %}
-
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-xs-11 col-xs-push-1 col-sm-10 col-sm-push-1 col-md-8 col-md-push-2 col-lg-6 col-lg-push-3">
-              {% include breadcrumbs.html %}
-              {{ content }}
-            </div>
-          </div>
+    <section class="section">
+      {% include navbar.html %}
+      <div class="columns is-multiline is-centered" >
+        {% include sidebar.html %}
+        <div class="column is-half is-fluid" style="max-width: 729px; width: 100%;">
+          {% include breadcrumbs.html %}
+          {{ content }}
         </div>
       </div>
-    </div>
-
-    {% include script.html %}
-
+    </section>
   </body>
-
 </html>

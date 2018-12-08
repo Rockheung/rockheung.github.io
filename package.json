@@ -1,0 +1,23 @@
+{
+  "name": "jekyll-theme-sundrycodes",
+  "version": "1.0.0",
+  "description": "Welcome to your new Jekyll theme! In this directory, you'll find the files you need to be able to package up your theme into a gem. Put your layouts in `_layouts`, your includes in `_includes`, your sass files in `_sass` and any other assets in `assets`.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rockheung/jekyll-theme-sundrycodes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rockheung/jekyll-theme-sundrycodes/issues"
+  },
+  "homepage": "https://github.com/Rockheung/jekyll-theme-sundrycodes#readme",
+  "devDependencies": {
+    "bulma": "^0.7.2",
+    "bulma-badge": "^2.0.0"
+  }
+}
