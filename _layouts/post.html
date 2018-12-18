@@ -3,25 +3,26 @@ layout: default
 ---
 <article class="content">
   <header>
-    <h1>{{ page.title | escape }}</h1>
-    <span>
-      [&nbsp;
-      {% for tag in page.tags %}
-        {% capture tag_name %}{{ tag }}{% endcapture %}
-        <a><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
-      {% endfor %}
-      ]
-    </span>
+    <h1 class="title">{{ page.title | escape }}</h1>
     <p>
-      <time>
-        {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
-        {{ page.date | date: date_format }}
-      </time>
-      {% if page.author %}
-        • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span>{{ page.author }}</span></span>
-      {% endif %}
+      {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+      {{- page.date | date: date_format -}}
+      {%- if page.author -%}
+        • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span>{{- page.author -}}</span></span>
+      {%- endif -%}
     </p>
+    {% if page.tags %}
+    {% if page.tags.size != 0 %}
+    <p>[&nbsp;
+      {%- for tag in page.tags -%}
+        {%- capture tag_name -%}{{- tag -}}{%- endcapture -%}
+        <a><nobr>{{- tag_name -}}</nobr></code>&nbsp;</a>
+      {%- endfor -%}
+      ]</p>
+    {% endif %}
+    {% endif %}
   </header>
+  <br>
   <div>
     {{ content }}
   </div>
