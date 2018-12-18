@@ -1,5 +1,6 @@
 @import "../node_modules/bulma/bulma";
 @import "../node_modules/bulma-badge/dist/css/bulma-badge";
+@import "vim";
 
 a {
   color: #191970;
@@ -11,6 +12,7 @@ article.content {
     margin: 0rem;
     pre {
     text-align: initial;
+    background-color: #333;
     }
   }
   header {
@@ -43,7 +45,6 @@ article.content {
 }
 
 #menu-frame {
-  width: 295px;
   .menu-list span.badge {
     margin-left: 0.3rem;
   }

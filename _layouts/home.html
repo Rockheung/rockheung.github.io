@@ -5,7 +5,7 @@ layout: default
   {{ content }}
   {% if site.posts %}
     <div>
-      {% for post in site.posts %}
+      {% for post in site.posts limit:7 %}
         {% include previewed_post.html post=post %}
       {% endfor %}
     </div>

@@ -5,14 +5,20 @@
     {% for crumb in breadcrumbs %}
       {% if forloop.first %}
         <li>
-          <a href="/">{{ crumb }}</a>
-        </li>
-      {% else if forloop.last %}
-        <li class="is-active">
-          <a aria-current="page">{{ crumb }}</a>
+          <a href="/">
+            <span class="icon is-small">
+              <i class="fas fa-home" area-hidden="true"></i>
+            </span>
+          </a>
         </li>
       {% else %}
-        <li><a>{{ crumb }}</a></li>
+        {% if forloop.last %}
+        <li class="is-active">
+          <a area-current="page">{{ crumb }}</a>
+        </li>
+        {% else %}
+          <li><a>{{ crumb }}</a></li>
+        {% endif %}
       {% endif %}
     {% endfor %}
   </ul>

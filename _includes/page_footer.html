@@ -1,0 +1,117 @@
+<div class="columns" id="menu-frame">
+  <div class="column">
+    <p class="menu-label">
+      Recent comments
+    </p>
+    <ul class="menu-list" id="recentcomments" class="dsq-widget">
+      <script type="text/javascript" src="https://sundry-rockheung.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&excerpt_length=30&hide_avatars=0&avatar_size=32"></script>
+      <script>
+        var dsqWidget = document.getElementById("recentcomments");
+        //remove given style
+        dsqWidget.getElementsByTagName("style")[0].remove();
+        dsqWidget.getElementsByTagName("ul")[0].setAttribute("hidden",true);
+        //get recent comments
+        var dsqWidgetItems = dsqWidget.getElementsByClassName("dsq-widget-item");
+        var dsqRestyler = (i) => {
+          var avatar_img = i.getElementsByClassName("dsq-widget-avatar")[0];
+          var user_a = i.getElementsByClassName("dsq-widget-user")[0];
+          var comment = document.createTextNode(i.getElementsByClassName("dsq-widget-comment")[0].children[0].childNodes[0].nodeValue);
+          var meta = i.getElementsByClassName("dsq-widget-meta")[0].children[1].childNodes[0].nodeValue;
+          var meta_src = i.getElementsByClassName("dsq-widget-meta")[0].children[1].getAttribute("href");
+          var wrapper = document.createElement("li");
+          wrapper.innerHTML = '<li><a><div class="media"><figure class="media-left"><p class="image is-32x32"></p></figure><div class="media-content"><span class="badge is-badge-small is-badge-outlined is-badge-danger"></span></div></div></a></li>';
+          var dsqHtmlRestyled = wrapper.firstChild;
+          avatar_img.classList.add("is-rounded");
+          //comment.classList.add("level-item");
+          dsqHtmlRestyled.getElementsByClassName("image")[0].appendChild(avatar_img);
+          dsqHtmlRestyled.getElementsByClassName("badge")[0].setAttribute("data-badge", meta);
+          var spanBadge = dsqHtmlRestyled.getElementsByClassName("badge")[0];
+          spanBadge.setAttribute("data-badge", meta);
+          dsqHtmlRestyled.getElementsByClassName("media-content")[0].insertBefore(comment, spanBadge);
+          dsqHtmlRestyled.getElementsByTagName("a")[0].setAttribute("href", meta_src);
+          dsqWidget.appendChild(dsqHtmlRestyled);
+        }
+        for (let c of dsqWidgetItems) {
+          dsqRestyler(c);
+        }
+      </script>
+    </ul>
+    <p class="menu-label">
+      Categories
+    </p>
+    <ul class="menu-list">
+      {% assign lists_categories = site.posts | map: "categories" %}
+      {% assign categories = lists_categories | uniq | sort %}
+      {% if categories %}
+        {% for category in categories %}
+          <li>
+            <a class="{% if page.categories contains category %}is-active{% endif %}"
+               href="/category/#{{ category }}"
+               title="Show all entries in {{ category }}">{{ category }}
+               {%- assign post_count = 0 -%}
+               {%- for i in lists_categories -%}
+                 {%- if i contains category -%}
+                   {%- assign post_count = post_count | plus: 1 -%}
+                 {%- endif -%}
+               {%- endfor -%}
+               <span class="badge is-badge-small is-badge-outlined is-badge-danger" data-badge="{{ post_count }}"></span>
+            </a>
+          </li>
+        {% endfor %}
+      {% else %}
+        <li>No categorie yet.</li>
+      {% endif %}
+    </ul>
+    <p class="menu-label">
+      Recent posts
+    </p>
+    <ul class="menu-list">
+      {% if site.posts %}
+        {% for post in site.posts %}
+          {% if forloop.index > 7 %}
+            {% break %}
+          {% endif %}
+          <li class="">
+            <a href="{{ post.url | absolute_url }}" title="{{ post.title }}" rel="bookmark">{{ post.title }}</a>
+          </li>
+        {% endfor %}
+      {% else %}
+        <li>No post yet.</li>
+      {% endif %}
+    </ul>
+  </div>
+  <div class="column">
+    <p class="menu-label">
+      Tags
+    </p>
+    {% assign lists_tags = site.posts | map: "tags" %}
+    {% assign tags = lists_tags | uniq | sort %}
+    {% assign avg = tags.size | times: 1.0 | divided_by: lists_tags.size %}
+    <div class="tags">
+      {% if tags %}
+        {% for tag in tags %}
+          {% assign post_count = 0 %}
+          {% for i in lists_tags %}
+            {% if i contains tag %}
+              {% assign post_count = post_count | plus: 1 %}
+            {% endif %}
+          {% endfor %}
+          <span class="tag is-light">
+            <a href="/tag/#{{ tag }}"
+               title="{%- case post_count -%}
+               {%- when 0 -%}No post
+               {%- when 1 -%}{{ post_count }} post tagged by {{ tag }}
+               {%- else -%}{{ post_count }} posts tagged by {{ tag }}
+               {%- endcase -%}"
+               class="tag-{{ post_count | divided_by: avg | times: 2.5 | floor }}{% if post.tags contains tag %} is-danger{% endif %}">{{ tag }}</a>
+          </span>
+        {% endfor %}
+      {% else %}
+        <li>
+          No tag yet.
+        </li>
+      {% endif %}
+    </div>
+  </div>
+</div>
+

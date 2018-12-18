@@ -30,8 +30,8 @@ github_username: rockheung
 # Build settings
 markdown: kramdown
 # theme: sundrycodes
-plugins:
-  - jekyll-feed
+# plugins:
+#   - jekyll-paginate
 
 timezone: Asia/Seoul
 
@@ -87,7 +87,7 @@ exclude:
 # 
 # # Conversion
 # # markdown:    kramdown
-# highlighter: rouge
+highlighter: rouge
 # lsi:         false
 # excerpt_separator: "\n\n"
 # incremental: false
@@ -101,7 +101,8 @@ exclude:
 # 
 # # Outputting
 # permalink:     date
-# paginate_path: /page:num
+# paginate: 7
+# paginate_path: "blog/page:num/"
 # # timezone:      null
 # 
 # quiet:    false

@@ -31,10 +31,13 @@
     </section>
     <section class="section">
       <div class="columns is-multiline is-centered" >
+        {% comment %}
         {% include sidebar.html %}
+        {% endcomment %}
         <div id="main-frame" class="column is-half is-fluid">
           {% include breadcrumbs.html %}
           {{ content }}
+          {% include page_footer.html %}
         </div>
       </div>
     </section>
