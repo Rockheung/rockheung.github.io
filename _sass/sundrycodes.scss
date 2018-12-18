@@ -6,12 +6,20 @@ a {
 }
 
 article.content {
-  margin-bottom:7rem !important;
-  figure pre {
-    text-align: initial;
-  }
-  .tag {
+  margin-bottom: 4rem !important;
+  figure {
     margin: 0rem;
+    pre {
+    text-align: initial;
+    }
+  }
+  header {
+    > p {
+      margin-bottom: 1rem;
+    }
+  }
+  div:last-child {
+    margin-top: 1rem;
   }
 }
 

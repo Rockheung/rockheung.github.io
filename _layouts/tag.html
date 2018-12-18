@@ -2,17 +2,13 @@
 layout: default
 ---
 <div>
-  {% if page.title %}
-    <h1>{{ page.title }}</h1>
-  {% endif %}
   {{ content }}
   {% if site.posts %}
-    <h2>{{ page.list_title | default: "Posts" }}</h2>
     {% assign lists_tags = site.posts | map: "tags" %}
     {% assign tags = lists_tags | uniq | sort %}
     <div>
     {% for tag in tags %}
-      <h5 id="{{ tag }}" title="{{ tag }}"><strong># </strong>{{ tag }}</h5>
+      <p class="subtitle"  id="{{ tag }}" title="{{ tag }}"><strong># </strong>{{ tag }}</p>
         {% for post in site.posts %}
           {% if post.tags contains tag %}
             {% include previewed_post.html post=post %}
