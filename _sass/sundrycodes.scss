@@ -1,8 +1,12 @@
 @import "../node_modules/bulma/bulma";
 @import "../node_modules/bulma-badge/dist/css/bulma-badge";
 
+a {
+  color: #191970;
+}
 
-.content {
+article.content {
+  margin-bottom:7rem !important;
   figure pre {
     text-align: initial;
   }
@@ -17,7 +21,16 @@
     transition: all .30s;
   }
   span.icon {
-    color: #363636;
+    color: #FFF;
+  }
+  input {
+    color: #FFF;
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: unset;
+  }
+  input::placeholder {
+    color: #FFF;
   }
 }
 

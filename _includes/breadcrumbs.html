@@ -1,9 +1,13 @@
 <nav class="breadcrumb is-small" area-label="breadcrumbs">
   <ul>
     {% assign date_array = page.date | date: "^%Y^%b^%-d^" %}
-    {% assign breadcrumbs = page.bread | default: "Post" | append: date_array | append: page.title | split: '^' %}
+    {% assign breadcrumbs = page.bread | default: "Home" | append: date_array | append: page.title | split: '^' %}
     {% for crumb in breadcrumbs %}
-      {% if forloop.last %}
+      {% if forloop.first %}
+        <li>
+          <a href="/">{{ crumb }}</a>
+        </li>
+      {% else if forloop.last %}
         <li class="is-active">
           <a aria-current="page">{{ crumb }}</a>
         </li>

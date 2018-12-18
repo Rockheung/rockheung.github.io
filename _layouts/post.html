@@ -2,31 +2,31 @@
 layout: default
 ---
 <article class="content">
-  <header class="">
-    <h1 class="">{{ page.title | escape }}</h1>
-    <span class="">
+  <header>
+    <h1>{{ page.title | escape }}</h1>
+    <span>
       [&nbsp;
       {% for tag in page.tags %}
         {% capture tag_name %}{{ tag }}{% endcapture %}
-        <a class=""><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
+        <a><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
       {% endfor %}
       ]
     </span>
-    <p class="">
-      <time class="">
+    <p>
+      <time>
         {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
         {{ page.date | date: date_format }}
       </time>
       {% if page.author %}
-        • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="">{{ page.author }}</span></span>
+        • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span>{{ page.author }}</span></span>
       {% endif %}
     </p>
   </header>
-  <div class="">
+  <div>
     {{ content }}
   </div>
   {% if site.disqus.shortname %}
     {% include disqus_comments.html %}
   {% endif %}
-  <a class="" hidden></a>
+  <a hidden></a>
 </article>
