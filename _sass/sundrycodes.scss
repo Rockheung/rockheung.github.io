@@ -11,17 +11,20 @@ body {
   }
 }
 
-section.section a {
-  color: #191970 !important;
-}
-
-section {
+section.hero {
+  div.hero-foot {
+    background-color: rgba(124,124,245,0.1);
+  }
   nav.level > div {
     margin-top: unset !important;
   }
   a.navbar-burger {
     margin-left: unset;
   }
+}
+
+section.section a {
+  color: #191970 !important;
 }
 
 article.content {
