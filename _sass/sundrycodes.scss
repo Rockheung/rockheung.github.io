@@ -2,6 +2,15 @@
 @import "../node_modules/bulma-badge/dist/css/bulma-badge";
 @import "vim";
 
+body {
+  font-family: BlinkMacSystemFont, -apple-system, "Ubuntu", "Nanum Gothic", "Roboto", "Oxygen", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  p, pre {
+    > code {
+      font-family: D2Coding, 'D2 coding', 'Anonymous Pro', monospace;
+    }
+  }
+}
+
 section.section a {
   color: #191970 !important;
 }
@@ -50,6 +59,7 @@ article.content {
   }
   input::placeholder {
     color: #FFF;
+    font-size: 0.75rem;
   }
 }
 
@@ -64,7 +74,18 @@ article.content {
   width: 100%;
 }
 
-#recentcomments li a div.media {
-  align-items: center;
+#recentcomments {
+  li {
+    line-height: 2.4rem;
+    a div.media {
+      align-items: center;
+      div.media-content {
+          width: 0rem;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+      }
+    }
+  }
 }
 
