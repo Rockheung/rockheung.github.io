@@ -2,8 +2,17 @@
 @import "../node_modules/bulma-badge/dist/css/bulma-badge";
 @import "vim";
 
-a {
-  color: #191970;
+section.section a {
+  color: #191970 !important;
+}
+
+section {
+  nav.level > div {
+    margin-top: unset !important;
+  }
+  a.navbar-burger {
+    margin-left: unset;
+  }
 }
 
 article.content {
@@ -59,64 +68,3 @@ article.content {
   align-items: center;
 }
 
-/* default disqus comment style unset.
-#recentcomments.dsq-widget ul.dsq-widget-list {
-  padding: unset;
-  margin: unset;
-  text-align: unset;
-  img.dsq-widget-avatar {
-    width: unset;
-    height: unset;
-    border: unset;
-    margin: unset;
-    padding: unset;
-    float: unset;
-  }
-  a.dsq-widget-user {
-    font-weight: unset;
-  }
-  a.dsq-widget-thread {
-    font-weight: unset;
-  }
-  p.dsq-widget-meta {
-    clear: unset;
-    font-size: unset;
-    padding: unset;
-    margin: unset;
-  }
-  li.dsq-widget-item {
-    margin: unset;
-    list-style-type: unset;
-    clear: unset;
-  }
-  span.dsq-widget-clout {
-    padding: unset;
-    background-color: unset;
-    color: unset;
-  }
-  table.dsq-widget-horiz td {
-    padding-right: unset;
-  }
-  .dsq-widget-comment p {
-    display: unset;
-  }
-}
-
-
-#recentcomments.dsq-widget ul.dsq-widget-list {
-  li.dsq-widget-item {
-    a img.dsq-widget-avatar {
-    }
-    a.dsq-widget-user {
-    }
-  }
-  p.dsq-widget-meta {
-    a:nth-of-type(1) {
-    }
-    a:nth-of-type(2) {
-    }
-  }
-  .dsq-widget-comment p {
-  }
-}
-*/
