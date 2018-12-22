@@ -23,26 +23,33 @@ section.hero {
   }
 }
 
-section.section a {
-  color: #191970 !important;
-}
-
-article.content {
-  margin-bottom: 4rem !important;
-  figure {
-    margin: 0rem;
-    pre {
-    text-align: initial;
-    background-color: #333;
-    }
+section.section {
+  a {
+    color: #191970 !important;
   }
-  header {
-    > p {
-      margin-bottom: 1rem;
+  article.content {
+    margin-bottom: 4rem !important;
+    figure {
+      margin: 0rem;
+      pre {
+      text-align: initial;
+      background-color: #333;
+      }
     }
-  }
-  div:last-child {
-    margin-top: 1rem;
+    header {
+      > p {
+        margin-bottom: 1rem;
+      }
+    }
+    div p > a::before {
+      display: none;
+      font-family: "Font Awesome 5 Free";
+      content: "\f360";
+      font-weight: 900;
+    }
+    div:last-child {
+      margin-top: 1rem;
+    }
   }
 }
 
