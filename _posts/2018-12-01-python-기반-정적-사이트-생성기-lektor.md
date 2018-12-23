@@ -1,5 +1,5 @@
 ---
-title: Python 기반 정적 사이트 생성기: Lektor
+title: "Python 기반 정적 사이트 생성기: Lektor"
 layout: post
 category: 삽질
 tags: jekyll lector
