@@ -12,8 +12,8 @@
 
 그러나 파일명을 URL로 변환하는 과정에서 ascii로 인코딩하는 방식이라 기존대로는 한글 URL을 만들 수가 없었다. 그리고 장점으로 내세웠던 Jinja 템플릿 지원 부분에서 truncate 메서드가 작동하지 않았다. 이렇게 일부 메서드를 지원하지 않아 잦은 오류를 겪게 되니, 본인의 신뢰가 점차 깨졌다. URL 정도야 fork해서 *나만의 Lektor* 로 수정하여 쓸 수 있었지만, 플러그인도 한동안 업데이트가 되지 않아 webpack 3 기반의 설정 파일도 직접 webpack 4 버전으로 업그레이드하고, 때문에 바뀐 scss 처리용 노드 패키지도 바꾸고 등등의 끊임없는 오버헤드가 발생했다.
 
-그러던 와중에 웹앱 형태의 마크다운 에디터인 [StackEdit](https://stackedit.io/){:target="_blank"}가 깃허브 페이지와 연동된다는 점을 알게 되었다. 구글 드라이브에 전반적인 작업 내역이 동기화되어 저장되고, 깃허브 페이지로 사용되는 깃허브의 Repository 주소와 그 하위, 예를 들어 `_draft/Hello-StackEdit.md` 와 같이 새로운 파일을 만들어 
+그러던 와중에 웹앱 형태의 마크다운 에디터인 [StackEdit](https://stackedit.io/){:target="_blank"} 가 깃허브 페이지와 연동된다는 점을 알게 되었다. 구글 드라이브에 전반적인 작업 내역이 동기화되어 저장되고, 깃허브 페이지로 사용되는 깃허브의 Repository 주소와 그 하위, 예를 들어 `_draft/Hello-StackEdit.md` 와 같이 새로운 파일을 만들어 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTQyMzIyNzgsLTc3NzU3NzA2MSw2MDEyOT
-A4NTFdfQ==
+eyJoaXN0b3J5IjpbLTE2NDMxMjEyNTIsLTc3NzU3NzA2MSw2MD
+EyOTA4NTFdfQ==
 -->
