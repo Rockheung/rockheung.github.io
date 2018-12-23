@@ -4,16 +4,18 @@ layout: default
 <article class="content">
   <header>
     <h1 class="title">{{ page.title | escape }}</h1>
+    {%- if page.author -%}
     <p>
-      <i class="fas fa-folder-open"></i>&nbsp;{{ page.categories | default: "Etc." }}
+      <i class="fas fa-pen"></i>&nbsp;<small class="is-size-7">written by</small>&nbsp;<span itemprop="author" itemscope itemtype="http://schema.org/Person"><span>{{- page.author -}}</span></span>
+    </p>
+    {%- endif -%}
+    <p>
+      <i class="fas fa-folder-open"></i>&nbsp;<small class="is-size-7">on</small>&nbsp;{{ page.categories | default: "Etc." }}
     </p>
     {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
     <p>
-      <i class="fas fa-calendar-alt"></i>&nbsp;{{- page.date | date: date_format -}}
-      {%- if page.author -%}
-      <i class="fas fa-circle is-size-7"></i><span itemprop="author" itemscope itemtype="http://schema.org/Person"><span>{{- page.author -}}</span></span>
+      <i class="fas fa-calendar-alt"></i>&nbsp;<small class="is-size-7">at</small>&nbsp;{{- page.date | date: date_format -}}
     </p>
-    {%- endif -%}
     {% if page.tags %}
     {% if page.tags.size != 0 %}
       <p>[&nbsp;
