@@ -8,10 +8,10 @@
 
 ...그런데 앞에서 말했던 사소한 귀찮음이 발생한 거였다. 이건 점차 쌓여 짜증으로 발전했고, 결국 한동안 게시물 작성이 뜸하게 되었다.
 
-그러다 Python 기반의 정적 사이트 생성기 [Lektor](https://www.getlektor.com/){:target="_blank"} 를 발견했다. 익숙한 파이썬 기반에, 사용자도 적지 않았고, 웹 기반 문서 편집이 가능했으며, Jekyll과는 다르게 폴더 트리 구조가 그대로 반영되어 하위 포스트를 작성하는 것이 쉬웠다.
+그러다 Python 기반의 정적 사이트 생성기 [Lektor](https://www.getlektor.com/){:target="_blank"} 를 발견했다. Flask를 만든 개발자가 작성한 툴이라는 점에 일단 신뢰가 생겼고, 익숙한 파이썬 기반에, 사용자도 적지 않았고, 웹 기반 문서 편집이 가능했으며, Jekyll과는 다르게 폴더 트리 구조가 그대로 반영되어 하위 포스트를 작성하는 것이 쉬웠다.
 
-그러나 장점으로 내세웠던 Jinja 템플릿 지원 부분에서 본인의 신뢰가 깨졌다. 모든 메서드를 지원하지 않아 잦은 오류를 겪게 되니, 
+그러나 한글 URL을 만들 수가 없었다. 장점으로 내세웠던 Jinja 템플릿 지원 부분에서 본인의 신뢰가 깨졌다. 그리고 모든 메서드를 지원하지 않아 잦은 오류를 겪게 되니, 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA1MTM0MDEyMiwtNzc3NTc3MDYxLDYwMT
-I5MDg1MV19
+eyJoaXN0b3J5IjpbNDIzODkxNDgzLC03Nzc1NzcwNjEsNjAxMj
+kwODUxXX0=
 -->
