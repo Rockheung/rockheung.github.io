@@ -3,15 +3,19 @@
 @import "vim";
 
 body {
-  font-family: BlinkMacSystemFont, -apple-system, "Ubuntu", "Nanum Gothic", "Roboto", "Oxygen", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-family: BlinkMacSystemFont, -apple-system, "Ubuntu", "Noto Serif KR", "Roboto", "Oxygen", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", serif;
+  font-weight: 400;
   p, pre {
     > code {
-      font-family: D2Coding, 'D2 coding', 'Anonymous Pro', monospace;
+      font-family: 'Nanum Gothic Coding', monospace;
     }
   }
 }
 
 section.hero {
+  div.hero-body h1 {
+    font-family: 'Press Start 2P', cursive;
+  }
   div.hero-foot {
     background-color: rgba(124,124,245,0.1);
   }
@@ -37,15 +41,24 @@ section.section {
       }
     }
     header {
+      h1, h2 {
+        font-weight: 700;
+      }
       > p {
         margin-bottom: 1rem;
       }
     }
-    div p > a::before {
-      display: none;
-      font-family: "Font Awesome 5 Free";
-      content: "\f360";
-      font-weight: 900;
+    div {
+      font-weight: 200;
+      h3, h4, h5, h6 {
+        font-weight: 400;
+      }
+      p > a::before {
+        display: none;
+        font-family: "Font Awesome 5 Free";
+        content: "\f360";
+        font-weight: 900;
+      }
     }
     div:last-child {
       margin-top: 1rem;
