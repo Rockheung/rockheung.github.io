@@ -6,12 +6,12 @@
 
 그래서 올해 초에 Django 의 Zinnia 기반 블로그를 만들어 쓰다가 월 5달러씩 내는 클라우드 서버 비용도 아까워질 지경이 되어(취준생이라) Jekyll 기반 블로그로 옮겨왔다. DB에서 md 파일들로 변환 추출하는 코드를 덕분에 열심히 작성하는 [과정](https://blog.rockheung.xyz/%EC%9D%BC%EC%83%81/2018/06/17/Django-blog-zinnia%EC%97%90%EC%84%9C-github-pages%EB%A1%9C.html){:target="_blank"} 이 따랐다. 템플릿 언어도 Jinja에서 생소한 Liquid로 바꾸고, 여차 해서 이사를 마쳤다. 
 
-...그런데 앞에서 말했던 끊잉 사소한 귀찮음이 발생한 거였다. 이건 점차 쌓여 짜증으로 발전했고, 결국 한동안 게시물 작성이 뜸하게 되었다.
+...그런데 앞에서 말했던 끊임없는 한영키 입력이 필요한 사소한 귀찮음이 발생한 거였다. 이건 점차 쌓여 짜증으로 발전했고, 결국 한동안 게시물 작성이 뜸하게 되었다.
 
-그러다 Python 기반의 정적 사이트 생성기 [Lektor](https://www.getlektor.com/){:target="_blank"} 를 발견했다. Flask를 만든 개발자가 작성한 툴이라는 점에 일단 신뢰가 생겼고, 익숙한 파이썬 기반에, 사용자도 적지 않았고, 웹 기반 문서 편집이 가능했으며, Jekyll과는 다르게 폴더 트리 구조가 그대로 반영되어 하위 포스트를 작성하는 것이 쉬웠다.
+그러다 Python 기반의 정적 사이트 생성기 [Lektor](https://www.getlektor.com/){:target="_blank"} 를 발견했다. Flask를 만든 개발자가 작성한 툴이라는 점에 일단 신뢰가 생겼고, 익숙한 파이썬 기반에, 사용자도 적지 않았고, 웹 기반 문서 편집이 가능했으며, Jekyll과는 다르게 URL에 폴더 트리 구조가 그대로 반영되어 하위 포스트를 작성하는 것이 쉬웠다. Jekyll은 모든 글들이 `_posts`에 바로 담겨야 되는 데에 반해, Lektor는 얼마든지 하위 폴더로 Depth를 늘리는 것이 가능했다.
 
 그러나 파일명을 URL로 변환하는 과정에서 ascii로 인코딩하는 방식이라 기존대로는 한글 URL을 만들 수가 없었다. 그리고 장점으로 내세웠던 Jinja 템플릿 지원 부분에서 truncate 메서드가 작동하지 않았다. 이렇게 일부 메서드를 지원하지 않아 잦은 오류를 겪게 되니, 본인의 신뢰가 점차 깨졌다. URL 정도야 fork해서 *나만의 Lektor* 로 수정하여 쓸 수 있었지만, 플러그인도 한동안 업데이트가 되지 않아 webpack 3 기반의 설정 파일도 직접 webpack 4 버전으로 업그레이드하고, 때문에 바뀐 scss 처리용 노드 패키지도 바꾸고 등등의 끊임없는 오버헤드가 발생했다.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjAzMjMxNzk4NSwtNzc3NTc3MDYxLDYwMT
+eyJoaXN0b3J5IjpbMTU3MzIxNTA1OSwtNzc3NTc3MDYxLDYwMT
 I5MDg1MV19
 -->
