@@ -2,7 +2,7 @@
 title: "Python 기반 정적 사이트 생성기: Lektor"
 layout: post
 category: 삽질
-tags: jekyll lector
+tags: jekyll lektor
 ---
 
 최근에 알게 된 [Lektor](https://www.getlektor.com) 로 이 블로그를 갈아타려 했었다. 결과는, 그리 만족스럽지 못했다.
