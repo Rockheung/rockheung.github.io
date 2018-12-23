@@ -10,8 +10,8 @@
 
 그러다 Python 기반의 정적 사이트 생성기 [Lektor](https://www.getlektor.com/){:target="_blank"} 를 발견했다. Flask를 만든 개발자가 작성한 툴이라는 점에 일단 신뢰가 생겼고, 익숙한 파이썬 기반에, 사용자도 적지 않았고, 웹 기반 문서 편집이 가능했으며, Jekyll과는 다르게 폴더 트리 구조가 그대로 반영되어 하위 포스트를 작성하는 것이 쉬웠다.
 
-그러나 파일명을 ascii로 인코딩하는 방식이라 기존대로는 한글 URL을 만들 수가 없었다. 장점으로 내세웠던 Jinja 템플릿 지원 부분에서 truncate 메서드가 작동하지 않았다. 이렇게 모든 메서드를 지원하지 않아 잦은 오류를 겪게 되니, 본인의 신뢰가 깨졌다. URL 정도야 fork해서 *나만의 Lektor* 로 수정하여 쓸 수 있었지만, 
+그러나 파일명을 URL로 변환하는 과정에서 ascii로 인코딩하는 방식이라 기존대로는 한글 URL을 만들 수가 없었다. 그리고 장점으로 내세웠던 Jinja 템플릿 지원 부분에서 truncate 메서드가 작동하지 않았다. 이렇게 일부 메서드를 지원하지 않아 잦은 오류를 겪게 되니, 본인의 신뢰가 점차 깨졌다. URL 정도야 fork해서 *나만의 Lektor* 로 수정하여 쓸 수 있었지만, 플러그인도 한동안 업데이트가 되지 않아 webpack 3 기반의 설정 파일도 직접 webpack 4 버전으로 업그레이드하고, 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMxMzg0MjAyNywtNzc3NTc3MDYxLDYwMT
+eyJoaXN0b3J5IjpbLTEwMTM3NjY0NCwtNzc3NTc3MDYxLDYwMT
 I5MDg1MV19
 -->
