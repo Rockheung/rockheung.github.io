@@ -5,12 +5,15 @@ layout: default
   <header>
     <h1 class="title">{{ page.title | escape }}</h1>
     <p>
-      {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+      <i class="fas fa-folder-open"></i>&nbsp;{{ page.categories | default: "Etc." }}
+    </p>
+    {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+    <p>
       <i class="fas fa-calendar-alt"></i>&nbsp;{{- page.date | date: date_format -}}
       {%- if page.author -%}
-        • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span>{{- page.author -}}</span></span>
-      {%- endif -%}
+      <i class="fas fa-circle is-size-7"></i><span itemprop="author" itemscope itemtype="http://schema.org/Person"><span>{{- page.author -}}</span></span>
     </p>
+    {%- endif -%}
     {% if page.tags %}
     {% if page.tags.size != 0 %}
       <p>[&nbsp;
