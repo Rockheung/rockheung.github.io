@@ -1,12 +1,12 @@
 ---
 layout: post
-title:  "3. Django 시작하기"
-date:   2018-03-02 11:08:44.792 +0900
-categories: [ django ]
-tags: [ Python, virtualenv, virtualenvwrapper, 파이썬, 장고, Django ]
+title: "3. Django 시작하기"
+date: 2018-03-02 11:08:44.792 +0900
+categories: Study
+tags: python virtualenv django tutorial
 ---
 
-### 이 글에서는 Django를 사용할 가상환경을 만들고 프로젝트 및 앱 생성까지 진행한다. 
+### 이 글에서는 Django를 사용할 가상환경을 만들고 프로젝트 및 앱 생성까지 진행한다.
 
 -----------------
 
@@ -19,7 +19,7 @@ tags: [ Python, virtualenv, virtualenvwrapper, 파이썬, 장고, Django ]
 
 파이썬 3 버전이 기본인 가상 환경이다. 이후 모든 `python` 키워드는 `python3`을 가리킬 것이다. 실제로 `~/.virtualenvs/django-blog/bin/` 경로에 가보면 `python` 심볼릭 링크가 `python3`으로 연결되어 있음을 확인할 수 있다.
 
-물론 가상환경 이름과는 다르게 아직 이 환경에 설치된 파이썬 패키지를 보면 Django는 없는 것을 확인할 수 있다. 
+물론 가상환경 이름과는 다르게 아직 이 환경에 설치된 파이썬 패키지를 보면 Django는 없는 것을 확인할 수 있다.
 
     $ pip list
     EPRECATION: The default ....
@@ -35,7 +35,7 @@ tags: [ Python, virtualenv, virtualenvwrapper, 파이썬, 장고, Django ]
 
 ------------------
 
-이제 장고 프로젝트를 새로 만들면 된다. 여기서 주의할 점이 있다. 파이썬 코드가 웹서버의 DocumentRoot에 위치하는 것은 권장하지 않는다(출처:[docs.djangoproject.com](https://docs.djangoproject.com/ko/2.0/intro/tutorial01/)). 홈 폴더 등에 두면 좋을 것 같다. 
+이제 장고 프로젝트를 새로 만들면 된다. 여기서 주의할 점이 있다. 파이썬 코드가 웹서버의 DocumentRoot에 위치하는 것은 권장하지 않는다(출처:[docs.djangoproject.com](https://docs.djangoproject.com/ko/2.0/intro/tutorial01/)). 홈 폴더 등에 두면 좋을 것 같다.
 
 다음 명령어로 홈 경로에서 프로젝트 뼈대를 만들자. 물론 파이썬 가상환경이 활성화된 상태여야 한다. 안 되어 있다면 `workon django-blog` 명령어로 활성화시킨 후 진행하자.
 
@@ -50,18 +50,18 @@ tags: [ Python, virtualenv, virtualenvwrapper, 파이썬, 장고, Django ]
     │   └── wsgi.py
     ├── manage.py
 
-`tree`명령어가 없다면 다음 명령으로 설치할 수 있다. 
+`tree`명령어가 없다면 다음 명령으로 설치할 수 있다.
 
     $ sudo apt install tree          # Debian / Mint / Ubuntu Linux
     # yum install tree              # RHEL / CentOS / Fedora Linux
 
 bash에서 $와 #의 차이는 루트 권한이냐 아니냐의 차이다. 궁금하면 지금 당장 `sudo -i`를 날려보자. root 유저로 쉘이 바뀌면서 $가 #으로 바뀔 것이다. 물론 뒤쪽 #은 주석처리된 것이다. 혹시 전부 복붙을 했는데 작동하지 않는다고 당황하지 말자. 주석에서 명시했듯이, 사용하는 리눅스의 계열에 따라 다른 명령어를 사용해야 한다. 자세한 내용은 [나무위키: 리눅스 베포판](https://namu.wiki/w/%EB%A6%AC%EB%88%85%EC%8A%A4#s-9)에서 좀 더 알아볼 수 있겠다.
 
-새로운 프로젝트를 생성했다면 작동하는지 확인해보자. 
+새로운 프로젝트를 생성했다면 작동하는지 확인해보자.
 
     $ python manage.py runserver
     Performing system checks...
-    
+
     System check identified no issues (0 silenced).
     March 02, 2018 - 11:36:38
     Django version 2.0.2, using settings '_base.settings'
@@ -74,7 +74,7 @@ bash에서 $와 #의 차이는 루트 권한이냐 아니냐의 차이다. 궁�
 
 [![](http://res.cloudinary.com/rockheung/image/upload/v1519992906/Screenshot_from_2018-03-02_20-39-33_eoccbe.png)](http://res.cloudinary.com/rockheung/image/upload/v1519992906/Screenshot_from_2018-03-02_20-39-33_eoccbe.png)
 
-권장되지는 않지만, 만약 로컬이 아니라 외부에서 접속할 수 있도록 하고 싶다면 다음과 같은 명령을 날리고 서버의 공인 아이피에 `8000`포트로 접근하면 된다. 
+권장되지는 않지만, 만약 로컬이 아니라 외부에서 접속할 수 있도록 하고 싶다면 다음과 같은 명령을 날리고 서버의 공인 아이피에 `8000`포트로 접근하면 된다.
 
     $ python manage.py runserver 0:8000
 

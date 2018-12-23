@@ -1,8 +1,8 @@
 ---
 title: AWS Serverless 과정 첫 주차
 layout: post
-category: 스터디파이
-tags: AWS Serverless
+category: Study
+tags: aws serverless studypie
 ---
 
 조금 밀렸지만, 슬랙에 올라오는 자료를 들어보고 있다. [AWS Serverless](https://studypie.co/ko/course/aws_serverless) 과정을 신청했다.
@@ -19,7 +19,7 @@ tags: AWS Serverless
 
 *졸았다*
 
-문득 잠에서 깨어 보니 AWS AI 서비스도 있다고 한다... 개중에 텍스트를 음성으로 바꿔주는 서비스도 있었는데, 어디서 많이 들어본... X가지니...? 톤의 목소리도 있었다. 
+문득 잠에서 깨어 보니 AWS AI 서비스도 있다고 한다... 개중에 텍스트를 음성으로 바꿔주는 서비스도 있었는데, 어디서 많이 들어본... X가지니...? 톤의 목소리도 있었다.
 
 보안성은 수많은 유저들이 있는 만큼, 그리고 각국의 수많은 인증도 받은 만큼 좋은 것 같다. *자체 데이터센터보다 더욱 보안성이 우수하다*는 어떤 회사의 몇 마디도 끼어 있었다.
 

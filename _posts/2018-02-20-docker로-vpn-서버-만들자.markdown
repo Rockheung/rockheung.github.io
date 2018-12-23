@@ -2,8 +2,8 @@
 layout: post
 title:  "docker로 VPN 서버 만들자"
 date:   2018-02-20 09:45:50.013 +0900
-categories: [ 서버 ]
-tags: [ VPN, L2TP, ip우회, 막힌사이트뚫기, 도커 ]
+categories: Guide
+tags: vpn l2tp ip-pypass docker
 ---
 
 Source: [도커-ce 설치](https://docs.docker.com/install/linux/docker-ce/ubuntu/#upgrade-docker-ce), [ipsec-vpn-server docker](https://github.com/hwdsl2/docker-ipsec-vpn-server)
@@ -33,7 +33,7 @@ Source: [도커-ce 설치](https://docs.docker.com/install/linux/docker-ce/ubunt
     VPN_USER=$(your_vpn_username)
     VPN_PASSWORD=$(your_vpn_password)
 
-터미널에서 바로 작성하고 싶다면, 
+터미널에서 바로 작성하고 싶다면,
 
     $ echo 'VPN_IPSEC_PSK=$(your_ipsec_pre_shared_key)
     > VPN_USER=$(your_vpn_username)
@@ -51,7 +51,7 @@ Source: [도커-ce 설치](https://docs.docker.com/install/linux/docker-ce/ubunt
     -d --privileged \
     hwdsl2/ipsec-vpn-server
 
-이제 VPN 서버가 완성되었다. 테스트를 위해 아이폰에서 설정 > VPN 을 선택하고 
+이제 VPN 서버가 완성되었다. 테스트를 위해 아이폰에서 설정 > VPN 을 선택하고
 
 유형 | L2TP
 ---|---

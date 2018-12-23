@@ -2,8 +2,8 @@
 layout: post
 title:  "eMMC 에서 mmcblkXbootY 의 역할"
 date:   2018-04-20 22:09:33.300 +0900
-categories: [ study ]
-tags: [ eMMC, mmcblk, mmcblkXbootY, 부트파티션, 쓰기해제 ]
+categories: Study
+tags: bBay-trail notebook emmc boot-patition-lock mmcblk
 ---
 
 베이트레일 노트북을 만지작 하다가 자주 맞닥뜨린 것이 바로 이 `mmcblkXbootY`라는 디스크 장치였다. 데스크탑이나 외장SSD가 들어가는 노트북에서는 `sda`나 `sdb`로 표시되던 디스크 장치가, 임베디드 계열의 노트북, 안드로이드 폰, 라즈베리 파이와 같은 eMMC에 설치되는 리눅스에서는 왠지 이름도 이상한 mmcblk로 표시되는 것이었다. 그리고 꼭 여기에는 무슨 역할인지 찾아도 잘 나오지 않는 mmcblk1boot0 과 같은 디스크 장치가 꼭 따라다녔다. 크기도 4MiB 정도 밖에 되지 않는 디스크들이 여럿 표시되는 걸 보고 이게 대체 무슨 *깔끔하지 않은* 구성인지 의문을 가졌다.

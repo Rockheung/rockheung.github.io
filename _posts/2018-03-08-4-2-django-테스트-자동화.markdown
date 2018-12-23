@@ -2,8 +2,8 @@
 layout: post
 title:  "4-2. Django 테스트 자동화"
 date:   2018-03-08 11:00:11.823 +0900
-categories: [ django ]
-tags: [ Django, Python, 장고, 파이썬 ]
+categories: Study
+tags: django python tutorial
 ---
 
 별 필요가 없다고 생각할 수도 있다. 하지만 그 이면에는 *안이함*과 *귀찮음*, 그리고 *버그따윈 있을리가*따위와 같은 생각들이 자리잡고 있을 것이다. 그러나 기능이 더해지면서 추가된 코드들은 기존의 코드에 영향을 주기 시작할 것이 분명한데, 그때마다 기존의 기능이 잘 동작하는지 확인하는 작업은 결코 허드렛일이 아니다. 어떤 형태로든 미래에 당면할 문제를 해결하기 위해 수많은 print와 원인 파악에 드는 시간을 절약할 수 있다면, 자동화된 테스트는 개중에 가장 값싼 *보험*이 분명하다.
@@ -57,7 +57,7 @@ tags: [ Django, Python, 장고, 파이썬 ]
     FAIL: test_was_published_recently_with_future_question (blog.tests.QuestionModelTests)
     ----------------------------------------------------------------------
     Traceback (most recent call last):
-      File "/home/rockheung/git/django-blog/_base/blog/tests.py", line 18, in 
+      File "/home/rockheung/git/django-blog/_base/blog/tests.py", line 18, in
     test_was_published_recently_with_future_question
         self.assertIs(future_question.was_published_recently(), False)
     AssertionError: True is not False
@@ -121,7 +121,7 @@ blog앱은 Question의 pub_date가 미래로 설정되어 있어도 그 시점�
         """
         return Question.objects.filter( pub_date__lte =timezone.now() ).order_by( '-pub_date' )[ :5 ]
 
-조금 이상한가? pub_date__lte는 어디서 튀어나온 것일까? 이는 장고의 *Field Lookup*이 사용된 것이다. 기본적인 형태는 `field__lookuptype=value`의 형태이다. 이것은 하나의 SQL WHERE 구문이 뜻할 의미를 명시하고, `filter()`, `exclude()`, 그리고 `get()`와 같은 QuerySet` 메서드에게 전달한다. `_lte`는 그러니까 lookuptype을 나타내는 듯 싶다. 
+조금 이상한가? pub_date__lte는 어디서 튀어나온 것일까? 이는 장고의 *Field Lookup*이 사용된 것이다. 기본적인 형태는 `field__lookuptype=value`의 형태이다. 이것은 하나의 SQL WHERE 구문이 뜻할 의미를 명시하고, `filter()`, `exclude()`, 그리고 `get()`와 같은 QuerySet` 메서드에게 전달한다. `_lte`는 그러니까 lookuptype을 나타내는 듯 싶다.
 
     >>> from blog.models. import Question
     >>> q =Question.objects.filter(pub_date__lte='2019-01-01')
@@ -163,7 +163,7 @@ blog앱은 Question의 pub_date가 미래로 설정되어 있어도 그 시점�
 
 뷰 테스트 스크립트 작성
 
-이제까지 내용을 참고해서 질문을 생성하여 그것이 과거, 현재, 미래에 발간publish되었을때, 보여질 것만 보여지는지를 확인해 볼 것이다. 아까와 마찬가지로 `blog/test.py`에 다음과 같이 작성한다. 
+이제까지 내용을 참고해서 질문을 생성하여 그것이 과거, 현재, 미래에 발간publish되었을때, 보여질 것만 보여지는지를 확인해 볼 것이다. 아까와 마찬가지로 `blog/test.py`에 다음과 같이 작성한다.
 
     def create_question(question_text, days):
         """
@@ -173,8 +173,8 @@ blog앱은 Question의 pub_date가 미래로 설정되어 있어도 그 시점�
         """
         time = timezone.now() + datetime.timedelta(days=days)
         return Question.objects.create(question_text=question_text, pub_date=time)
-    
-    
+
+
     class QuestionIndexViewTests(TestCase):
         def test_no_questions(self):
             """
@@ -184,7 +184,7 @@ blog앱은 Question의 pub_date가 미래로 설정되어 있어도 그 시점�
             self.assertEqual(response.status_code, 200)
             self.assertContains(response, "No Blog available.")
             self.assertQuerysetEqual(response.context['latest_question_list'], [])
-    
+
         def test_past_question(self):
             """
             Questions with a pub_date in the past are displayed on the
@@ -196,7 +196,7 @@ blog앱은 Question의 pub_date가 미래로 설정되어 있어도 그 시점�
                 response.context['latest_question_list'],
                 ['<Question: Past question.>']
             )
-    
+
         def test_future_question(self):
             """
             Questions with a pub_date in the future aren't displayed on
@@ -206,7 +206,7 @@ blog앱은 Question의 pub_date가 미래로 설정되어 있어도 그 시점�
             response = self.client.get(reverse('blog:index'))
             self.assertContains(response, "No Blog available.")
             self.assertQuerysetEqual(response.context['latest_question_list'], [])
-    
+
         def test_future_question_and_past_question(self):
             """
             Even if both past and future questions exist, only past questions
@@ -219,7 +219,7 @@ blog앱은 Question의 pub_date가 미래로 설정되어 있어도 그 시점�
                 response.context['latest_question_list'],
                 ['<Question: Past question.>']
             )
-    
+
         def test_two_past_questions(self):
             """
             The questions index page may display multiple questions.
@@ -240,7 +240,7 @@ blog앱은 Question의 pub_date가 미래로 설정되어 있어도 그 시점�
     ........
     ----------------------------------------------------------------------
     Ran 8 tests in 0.021s
-    
+
     OK
     Destroying test database for alias 'default'...
 
@@ -272,7 +272,7 @@ DetailView의 문제
             url = reverse('blog:detail', args=(future_question.id,))
             response = self.client.get(url)
             self.assertEqual(response.status_code, 404)
-    
+
         def test_past_question(self):
             """
             The detail view of a question with a pub_date in the past
@@ -311,7 +311,7 @@ DetailView의 문제
             url = reverse('blog:results', args=(future_question.id,))
             response = self.client.get(url)
             self.assertEqual(response.status_code, 404)
-    
+
         def test_past_question(self):
             """
             The results view of a question with a pub_date in the past
@@ -341,12 +341,12 @@ DetailView의 문제
             response =self.client.get(reverse('blog:index'))
             self.assertContains(response, empty_choice_question.question_text)
 
-이대로 테스트를 실행하면 당연히 오류가 뜬다. index view에서 빈 질문에 대한 필터가 없기 때문이다. `blog.views.py`의 인덱스 뷰에 추가하자. [chained filter](https://docs.djangoproject.com/ko/2.0/topics/db/queries/#chaining-filters)를 참고해서 작성하였다. 
+이대로 테스트를 실행하면 당연히 오류가 뜬다. index view에서 빈 질문에 대한 필터가 없기 때문이다. `blog.views.py`의 인덱스 뷰에 추가하자. [chained filter](https://docs.djangoproject.com/ko/2.0/topics/db/queries/#chaining-filters)를 참고해서 작성하였다.
 
-    def get_queryset(self): 
+    def get_queryset(self):
         """Return the last five published questions."""
-         return Question.objects.filter( pub_date__lte =timezone.now() 
-                               ).exclude( choice__isnull =True 
+         return Question.objects.filter( pub_date__lte =timezone.now()
+                               ).exclude( choice__isnull =True
                                ).order_by('-pub_date')[:5]
 
 현재 이전에 작성한 글 중에 질문이 없는 글을 제외하는 조건을 더했다. 다시 테스트 스크립트를 실행해 보자.
@@ -364,14 +364,14 @@ DetailView의 문제
       File "/home/rockheung/.virtualenvs/django-blog/lib/python3.5/site-packages/django/test/testcases.py", line 940, in assertQuerysetEqual
         return self.assertEqual(list(items), values, msg=msg)
     AssertionError: Lists differ: [] != ['<Question: Past question.>']
-    
+
     Second list contains 1 additional elements.
     First extra element 0:
     '<Question: Past question.>'
-    
+
     - []
     + ['<Question: Past question.>']
-    
+
     ======================================================================
     FAIL: test_past_question (blog.tests.QuestionIndexViewTests)
     ----------------------------------------------------------------------
@@ -381,14 +381,14 @@ DetailView의 문제
       File "/home/rockheung/.virtualenvs/django-blog/lib/python3.5/site-packages/django/test/testcases.py", line 940, in assertQuerysetEqual
         return self.assertEqual(list(items), values, msg=msg)
     AssertionError: Lists differ: [] != ['<Question: Past question.>']
-    
+
     Second list contains 1 additional elements.
     First extra element 0:
     '<Question: Past question.>'
-    
+
     - []
     + ['<Question: Past question.>']
-    
+
     ======================================================================
     FAIL: test_two_past_questions (blog.tests.QuestionIndexViewTests)
     ----------------------------------------------------------------------
@@ -398,17 +398,17 @@ DetailView의 문제
       File "/home/rockheung/.virtualenvs/django-blog/lib/python3.5/site-packages/django/test/testcases.py", line 940, in assertQuerysetEqual
         return self.assertEqual(list(items), values, msg=msg)
     AssertionError: Lists differ: [] != ['<Question: Past question 2.>', '<Question: Past question 1.>']
-    
+
     Second list contains 2 additional elements.
     First extra element 0:
     '<Question: Past question 2.>'
-    
+
     - []
     + ['<Question: Past question 2.>', '<Question: Past question 1.>']
-    
+
     ----------------------------------------------------------------------
     Ran 14 tests in 0.041s
-    
+
     FAILED (failures=3)
     Destroying test database for alias 'default'...
 
@@ -425,7 +425,7 @@ DetailView의 문제
     ..............
     ----------------------------------------------------------------------
     Ran 14 tests in 0.043s
-    
+
     OK
     Destroying test database for alias 'default'...
 

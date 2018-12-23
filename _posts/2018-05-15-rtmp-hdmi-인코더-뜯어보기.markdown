@@ -2,8 +2,8 @@
 layout: post
 title:  "RTMP - HDMI 인코더 뜯어보기"
 date:   2018-05-15 12:40:18.072 +0900
-categories: [ ]
-tags: [  ]
+categories: 삽질
+tags: encoder arm embedded
 ---
 
 사용된 칩들의 제원은 대략 다음과 같은 걸로 확인되었다.
@@ -22,7 +22,7 @@ MUX: Toshiba [Datasheet](https://toshiba.semicon-storage.com/info/docget.jsp?did
 
 ### `/etc/init.d/rcS`
 
-부팅을 시작하면 `/etc/init.d/rcS`에서 `/etc/init.d/S$$*` 파일들이 실행된다. 이후 `/box/load` 스크립트가 실행된다. 
+부팅을 시작하면 `/etc/init.d/rcS`에서 `/etc/init.d/S$$*` 파일들이 실행된다. 이후 `/box/load` 스크립트가 실행된다.
 
 ### `/box/load`
 

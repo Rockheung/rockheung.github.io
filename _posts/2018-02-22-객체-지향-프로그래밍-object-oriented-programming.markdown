@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "객체 지향 프로그래밍 | Object Oriented Programming"
-date:   2018-02-22 08:03:26.553 +0900
-categories: [ study ]
-tags: [ Python, 파이썬 ]
+title: "객체 지향 프로그래밍 | Object Oriented Programming"
+date: 2018-02-22 08:03:26.553 +0900
+categories: Study
+tags: python object-oriented-programming
 ---
 
 Source: [생활코딩: 객체지향프로그래밍](https://opentutorials.org/course/1750/9624)
@@ -12,7 +12,7 @@ Source: [생활코딩: 객체지향프로그래밍](https://opentutorials.org/co
 
 'egoing' 씨는 익숙해지는 것에 동영상의 목표를 설정했다. 그냥 자기가 궁금해서 프로그래밍을 시작했다고 한다.... 이 개념을 이해하는데 일년 정도 고민했다고 한다.
 
-본인은 파이썬의 클래스를 다루면서 개념적인 부분을 다지기 위한 목적으로 영상을 봤다. 
+본인은 파이썬의 클래스를 다루면서 개념적인 부분을 다지기 위한 목적으로 영상을 봤다.
 
 모듈: 개발한 함수 등을 담아 정리하는 목적으로, 복잡한 코드를 단순하게 하기 위함.
 여기서 나아간 것이 '객체 - Object' 이다.
@@ -51,7 +51,7 @@ Source: [생활코딩: 객체지향프로그래밍](https://opentutorials.org/co
     >>>         self.var_str = var_str + Str_ln.ln
     >>>     def get(self):
     >>>         print(self.var_str)
-    >>> 
+    >>>
     >>> dir(str_ln)
     [ $(str 클래스의 모든 메서드), ln, get ]
 
@@ -60,10 +60,10 @@ str 클래스를 상속받아 만든 Str_ln 클래스는 클래스 변수 ln 과
     >>> word = str_ln('Hello World!')
     >>> word.get()
     Hello World!
-    
+
     >>>
 
-str_ln 생성자가 인스턴스 변수(var_str)을 입력받을 때 개행문자('\n')가 추가되어 get() 메서드로 인해 화면에 출력됨을 확인할 수 있다. 이는 기존의 str 클래스에는 없는 메서드이다. 물론 기존의 str클래스의 모든 메서드도 사용할 수 있다. 
+str_ln 생성자가 인스턴스 변수(var_str)을 입력받을 때 개행문자('\n')가 추가되어 get() 메서드로 인해 화면에 출력됨을 확인할 수 있다. 이는 기존의 str 클래스에는 없는 메서드이다. 물론 기존의 str클래스의 모든 메서드도 사용할 수 있다.
 
 ---------------
 

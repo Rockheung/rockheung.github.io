@@ -1,8 +1,9 @@
 ---
 layout: post
-title:  "Django blog zinnia에서 github pages로"
+title:  "Django blog zinnia에서 github page로"
 date:   2018-06-17 20:57:01 +0900
-categories: 일상
+categories: 삽질
+tags: django zinnia python github-page jekyll
 ---
 
 {% raw %}

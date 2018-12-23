@@ -2,8 +2,8 @@
 layout: post
 title:  "2. 준비 - 파이썬 가상환경"
 date:   2018-02-13 11:38:16.669 +0900
-categories: [ django ]
-tags: [ 파이썬, Python, virtualenv, virtualenvwrapper, pip, pip2, pip3 ]
+categories: Guide
+tags: python virtualenv pip
 ---
 
 이 글에서는 VPS에서 파이썬 가상환경을 만드는 `virtualenvwrapper` 를 설치하여 Django를 실행시킬 가상환경을 구성하기 위한 준비를 한다. `virtualenv`를 사용할 때와는 다르게 `virtualenvwrapper`는 현재의 path에 상관없이 `workon $(가상환경 이름)`으로 해당 가상환경을 활성화할 수 있다. 마치 폴더를 만드는 것 처럼 쉽게 가상환경을 만들고, 지울 수 있다.
@@ -18,7 +18,7 @@ tags: [ 파이썬, Python, virtualenv, virtualenvwrapper, pip, pip2, pip3 ]
 
 파이썬 2.7.9 이후 버전과 3.4 이후 버전은 기본적으로 포함하고 있다고 하나, 가급적이면 최신 pip 패키지를 이용하는 편이 좋다. 최신 버전이 아닐 경우, pip을 실행 시에 업그레이드를 권하는 멘트가 뜬다. [여기 get-pip.py](https://bootstrap.pypa.io/get-pip.py)를 눌러 가장 최신 버전의 pip을 설치하는 파이썬 스크립트를 다운 받을 수 있다. 본인은 이 방식을 선호하나,  다른 방식을 찾는다면 [여기](https://pip.pypa.io/en/stable/installing/#)에서 공식 문서를 참조할 수 있다.
 
-Root 권한으로 다음을 실행시키면 최신 버전의 pip을 설치할 수 있다. 
+Root 권한으로 다음을 실행시키면 최신 버전의 pip을 설치할 수 있다.
 
     # python get-pip.py
 
@@ -26,7 +26,7 @@ Root 권한으로 다음을 실행시키면 최신 버전의 pip을 설치할 �
 
     # python3 get-pip.py
 
-이후 모든 `pip install $(패키지명)` 은 python 3을 위한 패키지만을 설치할 것이다. 자신의 현재 pip 이 어느 버전대의 파이썬 패키지를 설치하고 있는지 알고 싶다면, 
+이후 모든 `pip install $(패키지명)` 은 python 3을 위한 패키지만을 설치할 것이다. 자신의 현재 pip 이 어느 버전대의 파이썬 패키지를 설치하고 있는지 알고 싶다면,
 
     $ pip -V
     pip 9.0.1 from /usr/local/lib/python2.7/dist-packages (python 2.7)
