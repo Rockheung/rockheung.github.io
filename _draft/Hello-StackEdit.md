@@ -14,8 +14,8 @@
 
 그러던 와중에 웹앱 형태의 마크다운 에디터인 [StackEdit](https://stackedit.io/){:target="_blank"} 가 깃허브 페이지와 연동된다는 점을 알게 되었다. 구글 드라이브에 전반적인 작업 내역이 동기화되어 저장되고, 깃허브 페이지로 사용되는 깃허브의 Repository 주소와 그 하위, 예를 들어 `_draft/Hello-StackEdit.md` 와 같이 새로운 파일을 만들어 업데이트해 준다.
 
-
+웹페이지에서 바로 깃허브에 푸쉬를 때리는 것인지, 한번 서버를 거쳐서 해당 서버에서 푸쉬를 때리는 것인지 궁금하다. 크롬 개발자 도구의 네트워크 탭을 열어 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExMDYyNjEwNTEsLTE2NDMxMjEyNTIsLT
-c3NzU3NzA2MSw2MDEyOTA4NTFdfQ==
+eyJoaXN0b3J5IjpbLTU4MDM1ODQ4NCwtMTY0MzEyMTI1MiwtNz
+c3NTc3MDYxLDYwMTI5MDg1MV19
 -->
