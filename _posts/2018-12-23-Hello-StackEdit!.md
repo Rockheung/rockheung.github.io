@@ -1,6 +1,7 @@
 ---
 extensions:
-  preset: commonmark
+  preset: zero
+layout: post
 title: 'Hello, StackEdit!'
 author: Rockheung
 tags: Jekyll Lektor StackEdit
