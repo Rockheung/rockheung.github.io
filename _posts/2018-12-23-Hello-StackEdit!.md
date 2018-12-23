@@ -1,6 +1,4 @@
 ---
-extensions:
-  preset: zero
 layout: post
 title: 'Hello, StackEdit!'
 author: Rockheung
