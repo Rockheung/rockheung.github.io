@@ -3,7 +3,7 @@ extensions:
   preset: commonmark
 title: 'Hello, StackEdit!'
 author: Rockheung
-tags: 'Jekyll, Lektor, StackEdit'
+tags: Jekyll Lektor StackEdit
 categories: 일상
 
 ---
