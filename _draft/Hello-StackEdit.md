@@ -18,6 +18,10 @@
 
 이제 이걸로 개발자인척 해야겠다. 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAxMzQwNzE4MCwtMTY0MzEyMTI1MiwtNz
-c3NTc3MDYxLDYwMTI5MDg1MV19
+eyJwcm9wZXJ0aWVzIjoiZXh0ZW5zaW9uczpcbiAgcHJlc2V0Oi
+BnZm1cbnRpdGxlOiAnSGVsbG8sIFN0YWNrRWRpdCEnXG5hdXRo
+b3I6IFJvY2toZXVuZ1xudGFnczogJ0pla3lsbCwgTGVrdG9yLC
+BTdGFja0VkaXQnXG5jYXRlZ29yaWVzOiDsnbzsg4FcbiIsImhp
+c3RvcnkiOlstNzA1NzAxNzYzLDEwMTM0MDcxODAsLTE2NDMxMj
+EyNTIsLTc3NzU3NzA2MSw2MDEyOTA4NTFdfQ==
 -->
