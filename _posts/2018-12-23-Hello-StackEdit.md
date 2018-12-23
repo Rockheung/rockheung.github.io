@@ -2,7 +2,7 @@
 layout: post
 title: 'Hello, StackEdit!'
 author: Rockheung
-tags: jekyll lektor stackEdit
+tags: jekyll lektor stackedit
 categories: Daily
 
 ---
