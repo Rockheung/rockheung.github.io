@@ -7,8 +7,8 @@
 
 ...그런데 앞에서 말했던 사소한 귀찮음이 발생한 거였다. 이건 점차 쌓여 짜증으로 발전했고, 결국 한동안 게시물 작성이 뜸하게 되었다.
 
-그러다 Python 기반의 정적 사이트 생성기 [Lektor](https://www.getlektor.com/){:target="_blank"} 를 발견했다. 익숙한 파이썬 기반에, 
+그러다 Python 기반의 정적 사이트 생성기 [Lektor](https://www.getlektor.com/){:target="_blank"} 를 발견했다. 익숙한 파이썬 기반에, 사용자도 적지 않았고, 웹 기반 문서 편집이 가능했으며, Jekyll과는 다르게 폴더 트리 구조가 그대로 반영되어 하위 포스트를 작성하는 것이 쉬웠다.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI4MjMwOTM4MCwtNzc3NTc3MDYxLDYwMT
-I5MDg1MV19
+eyJoaXN0b3J5IjpbNzI3NDUyNjA4LC03Nzc1NzcwNjEsNjAxMj
+kwODUxXX0=
 -->
