@@ -62,7 +62,7 @@ section.section {
         font-weight: 900;
       }
     }
-    div:last-child {
+    > div:last-child {
       margin-top: 1rem;
     }
   }
