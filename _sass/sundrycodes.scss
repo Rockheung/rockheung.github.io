@@ -50,17 +50,31 @@ section.section {
         margin-bottom: 1rem;
       }
     }
-    div {
+    > div {
       font-weight: 200;
       line-height: 2.5;
+      > div {
+        margin-bottom: 1em;
+      }
       h3, h4, h5, h6 {
         font-weight: 400;
       }
-      p a::before {
+      * a::before {
         display: none;
         font-family: "Font Awesome 5 Free";
         content: "\f360";
         font-weight: 900;
+      }
+      .accordions .accordion .accordion-header + .accordion-body {
+        .accordion-content:first-child {
+          padding: 1em 1.25em 0em;
+        }
+        .accordion-content:last-child {
+          padding: 0em 1.25em 1em;
+        }
+        .accordion-content:not(:first-child):not(:last-child) {
+          padding: 0em 1.25em;
+        }
       }
     }
     > div:last-child {
