@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Rockheung/jekyll-theme-sundrycodes#readme",
   "devDependencies": {
     "bulma": "^0.7.2",
+    "bulma-accordion": "^2.0.0",
     "bulma-badge": "^2.0.0"
   }
 }

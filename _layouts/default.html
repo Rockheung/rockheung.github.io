@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
     <title>{{ site.title }} - {% if page.title %}{{ page.title }}{% else %}{{ site.description }}{% endif %}</title>
     <script data-search-pseudo-elements defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script type="text/javascript" src="/node_modules/bulma-accordion/dist/js/bulma-accordion.min.js"></script>
   </head>
   <body>
     {% include navbar.html %}
@@ -42,5 +43,8 @@
         </p>
       </div>
     </footer>
+    <script>
+      var accordions = bulmaAccordion.attach();
+    </script>
   </body>
 </html>
