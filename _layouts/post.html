@@ -10,11 +10,11 @@ layout: default
     </p>
     {%- endif -%}
     <p>
-      <i class="fas fa-folder-open"></i>&nbsp;<small class="is-size-7">on</small>&nbsp;{{ page.categories | default: "Etc." }}
+      <i class="fas fa-folder-open"></i>&nbsp;<small class="is-size-7">in</small>&nbsp;{{ page.categories | default: "Etc." }}
     </p>
     {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
     <p>
-      <i class="fas fa-calendar-alt"></i>&nbsp;<small class="is-size-7">at</small>&nbsp;{{- page.date | date: date_format -}}
+      <i class="fas fa-calendar-alt"></i>&nbsp;<small class="is-size-7">on</small>&nbsp;{{- page.date | date: date_format -}}
     </p>
     {% if page.tags %}
     {% if page.tags.size != 0 %}
