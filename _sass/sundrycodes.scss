@@ -50,7 +50,7 @@ section.section {
         margin-bottom: 1rem;
       }
     }
-    > div {
+    > div:first-child {
       font-weight: 200;
       line-height: 2.5;
       > div {
