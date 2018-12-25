@@ -50,16 +50,16 @@ section.section {
         margin-bottom: 1rem;
       }
     }
-    > div:first-child {
+    > div {
       font-weight: 200;
       line-height: 2.5;
       > div {
         margin-bottom: 1em;
       }
-      h3, h4, h5, h6 {
+      h1, h2, h3, h4, h5, h6 {
         font-weight: 400;
       }
-      * a::before {
+      *:not(span) a::before {
         display: none;
         font-family: "Font Awesome 5 Free";
         content: "\f360";
