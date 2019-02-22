@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'HTTP-method-GET-POST'
+title: 'HTTP method: GET, POST'
 author: Rockheung
 tags: codestates javascript bootcamp
 categories: Study
