@@ -20,7 +20,8 @@ categories: Study
 </code></pre>
 <p>크롬 확장 프로그램을 받아 다음과 같이 설정해줍니다.<br>
 <img src="https://res.cloudinary.com/rockheung/image/upload/v1551350351/github.io/github_page_-_stackedit.io/google_api_hack.png" alt=""></p>
-<p>이제 구글 API 테스트를 다시 시작할 수 있습니다.</p>
+<p>설치한 확장 프로그램을 활성화시키면 이제 구글 API 테스트를 다시 시작할 수 있습니다.</p>
+<p>위 과정은 google API 서버에 AJAX 요청을 보낼 때 헤더에서 Referrer와 Origin을 변조해 줍니다. 마치 구글 API 설명 페이지에서 발생한 요청인 것 처럼 말이죠. html 파일 등에서 Referrer는 숨겨줄 수 있지만 Origin 변경은 브라우저에서 허용해 주지 않습니다. 이를 크롬 확장 앱을 통해 가능하도록 하여 주는 것입니다.</p>
 <blockquote>
 <p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
 </blockquote>
