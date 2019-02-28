@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'youtube-api-키가-제한되었을때'
+title: 'youtube api 키가 제한되었을때'
 author: Rockheung
 tags: javascript bootcamp youtube
 categories: Study
