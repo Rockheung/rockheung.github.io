@@ -11,7 +11,7 @@ categories: Study
 - 크롬 확장 프로그램: [Moesif Orign & CORS Changer](https://chrome.google.com/webstore/detail/moesif-orign-cors-changer/digfbfaphojjndkpccljibejjbppifbc?utm_source=chrome-ntp-icon)
 - HTML 파일 헤드에 한줄 추가
 
-[Search: list &nbsp;|&nbsp; YouTube Data API (v3) &nbsp;|&nbsp; Google Developers](https://developers.google.com/youtube/v3/docs/search/list?hl=ko&apix_params=%7B%22part%22%3A%22snippet%22%2C%22safeSearch%22%3A%22none%22%2C%22type%22%3A%22video%22%2C%22fields%22%3A%22items%2Fid%2FvideoId%2Citems%2Fsnippet%2Ftitle%2Citems%2Fsnippet%2Fdescription%2Citems%2Fsnippet%2Fthumbnails%2Fdefault%2Furl%22%7D)에 가면 웹에서 API 요청을 테스트하는 부분이 맨 아래에 있습니다. 한 번이라도 EXCUTE 버튼을 눌러 요청을 발생시키고 크롬 콘솔의 네트워크 부분에서 search 키워드로 검색하시면 웹페이지에서 테스트하는 데에 사용되는 키를 얻으실 수 있는데, 이 키를 api 요청을 하는 get 요청의 url에 포함시킬 것입니다.
+[Search: list &nbsp;-&nbsp; YouTube Data API (v3) &nbsp;-&nbsp; Google Developers](https://developers.google.com/youtube/v3/docs/search/list?hl=ko&apix_params=%7B%22part%22%3A%22snippet%22%2C%22safeSearch%22%3A%22none%22%2C%22type%22%3A%22video%22%2C%22fields%22%3A%22items%2Fid%2FvideoId%2Citems%2Fsnippet%2Ftitle%2Citems%2Fsnippet%2Fdescription%2Citems%2Fsnippet%2Fthumbnails%2Fdefault%2Furl%22%7D)에 가면 웹에서 API 요청을 테스트하는 부분이 맨 아래에 있습니다. 한 번이라도 EXCUTE 버튼을 눌러 요청을 발생시키고 크롬 콘솔의 네트워크 부분에서 search 키워드로 검색하시면 웹페이지에서 테스트하는 데에 사용되는 키를 얻으실 수 있는데, 이 키를 api 요청을 하는 get 요청의 url에 포함시킬 것입니다.
 
 개발중인 HTML 파일의 `<head>` 태그에 한 줄을 추가하여 요청의 헤더에서 Referrer를 없애줍니다.
 
