@@ -13,12 +13,21 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: wanna.be.coder
+# title: wanna.be.coder
+title_left    : "wanna.be."
+title_right   : "coder" # default: ""
 
 # Customized filed
-pronunciation: ˈwônə-bē-kōdər
-tabs:
-  - ":TIL"
+# pronunciation: ˈwônə-bē-kōdər
+# tabs:
+#   - ":TIL"
+
+# navbar pages
+navbar:
+  - slug : about
+    title: About
+  - slug : blog
+    title: Blog
 
 email: rockheung@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
@@ -31,13 +40,33 @@ url: "https://blog.rockheung.xyz" # the base hostname & protocol for your site, 
 
 # SNS
 # twitter_username: jekyllrb
-github_username: rockheung
+# github_username: rockheung
+google_analytics  : UA-XXXXX-XX
+twitter_username  : ""
+comments_enabled  : false # if enabled (set to true), please provide your disqus_username
+disqus_shortname  : ""
+postshare_enabled : false
+
+# Author settings
+author:
+  name     : "John Doe"
 
 # Build settings
+permalink   : /:year/:title/
 markdown: kramdown
+highlighter : rouge
+source      : ./
+destination : ./_site
 # theme: sundrycodes
-# plugins:
-#   - jekyll-paginate
+plugins:
+  - jekyll-sitemap
+  - bourbon
+  - jekyll-paginate
+
+# Sass configuration
+sass:
+  sass_dir  : assets/scss
+  style     : compressed # expanded
 
 timezone: Asia/Seoul
 
@@ -47,12 +76,13 @@ excerpt_separator: <!--more-->
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - node_modules/
-  - package.json
-  - apply_theme.sh
+exclude: ["gulp", "node_modules", "bower", "bower_components", "config.rb", "src", "Gemfile", "Gemfile.lock", ".rvmrc", ".rbenv-version", "package.json", "gulpfile.js", "README.md", "Rakefile", "changelog.md", "script"]
+# exclude:
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules/
+#   - package.json
+#   - apply_theme.sh
 #   - vendor/bundle/
 #   - vendor/cache/
 #   - vendor/gems/

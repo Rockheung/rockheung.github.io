@@ -1,37 +1,16 @@
 ---
 layout: default
 ---
-<article class="content">
-  <header>
-    <h1 class="title">{{ page.title | escape }}</h1>
-    {%- if page.author -%}
-    <p>
-      <i class="fas fa-pen"></i>&nbsp;<small class="is-size-7">written by</small>&nbsp;<span itemprop="author" itemscope itemtype="http://schema.org/Person"><span>{{- page.author -}}</span></span>
-    </p>
-    {%- endif -%}
-    <p>
-      <i class="fas fa-folder-open"></i>&nbsp;<small class="is-size-7">in</small>&nbsp;{{ page.categories | default: "Etc." }}
-    </p>
-    {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-    <p>
-      <i class="fas fa-calendar-alt"></i>&nbsp;<small class="is-size-7">on</small>&nbsp;{{- page.date | date: date_format -}}
-    </p>
-    {% if page.tags %}
-    {% if page.tags.size != 0 %}
-      <p>[&nbsp;
-      {%- for tag in page.tags -%}
-        {%- capture tag_name -%}{{- tag -}}{%- endcapture -%}
-        <a><nobr>{{- tag_name -}}</nobr></code>&nbsp;</a>
-      {%- endfor -%}
-      ]</p>
-    {% endif %}
-    {% endif %}
+
+<article class="post container" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+    <p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time>{% if page.author %} &middot; <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>{% endif %}</p>
+    <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
   </header>
-  <div class="has-text-justified">
+  <div class="post-content" itemprop="articleBody">
     {{ content }}
+    {% include post-share.html %}
   </div>
-  {% if site.disqus.shortname %}
-    {% include disqus_comments.html %}
-  {% endif %}
-  <a hidden></a>
 </article>
+
+{% include comments.html %}
