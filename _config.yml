@@ -31,7 +31,7 @@ navbar:
 
 email: rockheung@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Rockheung's developer cosplay page.
+  컴퓨터에 관한 거의 모든 것을 좋아합니다.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://blog.rockheung.xyz" # the base hostname & protocol for your site, e.g. http://example.com
 # languages: ["en", "kr"]
@@ -49,7 +49,7 @@ postshare_enabled : false
 
 # Author settings
 author:
-  name     : "John Doe"
+  name     : "Rockheung"
 
 # Build settings
 permalink   : /:year/:title/
