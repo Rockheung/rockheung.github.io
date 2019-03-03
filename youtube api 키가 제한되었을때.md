@@ -15,9 +15,9 @@ categories: Study
 
 개발중인 HTML 파일의 `<head>` 태그에 한 줄을 추가하여 요청의 헤더에서 Referrer를 없애줍니다.
 
-{% highlight html %}
+```html
 <meta name="referrer" content="no-referrer" />
-{% endhighlight %}
+```
 
 크롬 확장 프로그램을 받아 다음과 같이 설정해줍니다.
 ![](https://res.cloudinary.com/rockheung/image/upload/v1551350351/github.io/github_page_-_stackedit.io/google_api_hack.png)
