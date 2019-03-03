@@ -1,6 +1,8 @@
 // Typography
-@import url('https://fonts.googleapis.com/css?family=Overpass+Mono:400,700');
-$base-font-family: 'Overpass Mono', monospace;
+@import url('https://cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack-subset.css');
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif+KR');
+$base-font-family: 'Noto Serif KR', serif;
+$code-font-family: 'Hack', monospace;
 $heading-font-family: $base-font-family;
 
 // Font Sizes
