@@ -8,9 +8,9 @@ categories: Study
 ---
 ###  생김새
 
-```shell
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ2IiwidGl0bGUiOiJKV1Q6IEpzb24gV2ViIFRva2VuIiwiYXV0aG9yIjoiUm9ja2hldW5nIn0.46Oqgx5iLypy2r-cdMk6J8uElk6H97lOhG3Byu8PaZs
-```
+<pre>
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ2IiwidGl0bGUiOiJKV1<br>Q6IEpzb24gV2ViIFRva2VuIiwiYXV0aG9yIjoiUm9ja2hldW5nIn0.46Oqgx5iLypy2<br>r-cdMk6J8uElk6H97lOhG3Byu8PaZs</pre>
+
 
 
 ### 구성
