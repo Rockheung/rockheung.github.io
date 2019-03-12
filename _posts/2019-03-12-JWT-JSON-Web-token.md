@@ -19,8 +19,8 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ2IiwidGl0bGUiOiJKV1Q6IEpzb24gV2V
 
 |Header|Payload|Signature|
 |----|----|----|
-|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9|eyJpZCI6IjQ2IiwidGl0bGUiOiJKV1Q6IEpzb24gV2ViIFRva2VuIiwiYXV0aG9yIjoiUm9ja2hldW5nIn0|46Oqgx5iLypy2r-cdMk6J8uElk6H97lOhG3Byu8PaZs|
-|{ "alg": "HS256", "typ": "JWT" }|{ "id": "46", "title": "JWT: Json Web Token",  "author": "Rockheung" }|HMACSHA256( base64UrlEncode(header) + "." +  base64UrlEncode(payload), *your-256-bit-secret* )|
+|eyJhbGciOiJIUzI1NiI<br>sInR5cCI6IkpXVCJ9|eyJpZCI6IjQ2IiwidGl0b<br>GUiOiJKV1Q6IEpzb24gV2V<br>iIFRva2VuIiwiYXV0aG9<br>yIjoiUm9ja2hldW5nIn0|46Oqgx5iLypy2r-cdMk6J<br>8uElk6H97lOhG3Byu8PaZs|
+|<pre>{<br>&nbsp;&nbsp;"alg": "HS256",<br>&nbsp;&nbsp;"typ": "JWT"<br>}</pre>|<pre>{<br>&nbsp;&nbsp;"id": "46",<br>&nbsp;&nbsp;"title": "JWT: Json Web Token", <br>&nbsp;&nbsp;"author": "Rockheung"<br>}</pre>|HMACSHA256(<br> &nbsp;&nbsp;base64UrlEncode(header) + "." +<br> &nbsp;&nbsp;base64UrlEncode(payload),<br>&nbsp;&nbsp;**your-256-bit-secret**<br>)|
 
 
 #### Header
