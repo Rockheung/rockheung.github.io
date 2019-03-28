@@ -21,7 +21,8 @@ categories: Study
 [DOC: Settings]([https://github.com/prettier/prettier-vscode#settings](https://github.com/prettier/prettier-vscode#settings))
 
 > .prettierrc: 사실 다음 값이 defualt
-```json
+
+```javascript
 {
   "trailingComma": "none",
   "tabWidth": 2,
