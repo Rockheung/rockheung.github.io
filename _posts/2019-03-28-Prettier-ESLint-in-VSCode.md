@@ -18,7 +18,7 @@ categories: Study
 -   "es5" - Trailing commas where valid in ES5 (objects, arrays, etc)
 -   "all" - Trailing commas wherever possible (function arguments)
 
-[DOC: Settings]([https://github.com/prettier/prettier-vscode#settings](https://github.com/prettier/prettier-vscode#settings))
+[DOC: Settings](https://github.com/prettier/prettier-vscode#settings)
 
 > .prettierrc: 사실 다음 값이 defualt
 
@@ -29,6 +29,13 @@ categories: Study
   "semi": true,
   "singleQuote": false
  }
+```
+
+> settings.json: vscode setting.json
+```json
+{
+  "javascript.format.enable": false
+}
 ```
 
 - VSCode Extension: ESLint
