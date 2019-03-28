@@ -19,8 +19,9 @@ categories: Study
 -   "all" - Trailing commas wherever possible (function arguments)
 
 [DOC: Settings]([https://github.com/prettier/prettier-vscode#settings](https://github.com/prettier/prettier-vscode#settings))
+
+> .prettierrc: 사실 다음 값이 defualt
 ```json
-// .prettierrc: 사실 다음 값이 defualt
 {
   "trailingComma": "none",
   "tabWidth": 2,
