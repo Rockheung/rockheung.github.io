@@ -32,15 +32,43 @@ categories: Study
 ```
 
 > settings.json: vscode setting.json
+
 ```json
 {
+  "editor.formatOnSave":  false,
+  // Enable per-language
+  "[javascript]":  {
+    "editor.formatOnSave":  true
+  },
   "javascript.format.enable": false
 }
 ```
 
-- VSCode Extension: ESLint
-
+- VSCode Extension: ESLint: 작성중
 airbnb lint 규칙이 react 규칙을 포함하나 꽤 엄밀하여 당장은 필요없다고 판단.
+
+> .eslintrc.js
+
+```javascript
+module.exports = {
+  "extends": "standard",
+  "rules": {
+  "no-undef-init": 0,
+  "semi": [2, 'always'],
+  "no-path-concat": 0
+  }
+};
+```
+
+```bash
+npm install -g eslint-config-standard \
+  eslint-plugin-import \
+  eslint-plugin-node \
+  eslint-plugin-promise \
+  eslint-plugin-standard
+```
+
+
 
 
 > Written with [StackEdit](https://stackedit.io/).
