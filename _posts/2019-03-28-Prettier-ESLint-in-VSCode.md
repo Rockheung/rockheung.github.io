@@ -33,10 +33,9 @@ categories: Study
 
 > settings.json: vscode setting.json
 
-```json
+```javascript
 {
   "editor.formatOnSave":  false,
-  // Enable per-language
   "[javascript]":  {
     "editor.formatOnSave":  true
   },
