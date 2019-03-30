@@ -35,9 +35,12 @@ categories: Study
 
 ```javascript
 {
-  "editor.formatOnSave":  false,
-  "[javascript]":  {
-    "editor.formatOnSave":  true
+  "editor.formatOnSave": false,
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "[javascriptreact]": {
+    "editor.formatOnSave": true
   },
   "javascript.format.enable": false
 }
