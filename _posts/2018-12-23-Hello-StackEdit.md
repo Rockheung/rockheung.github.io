@@ -2,8 +2,8 @@
 layout: post
 title: 'Hello, StackEdit!'
 author: Rockheung
-tags: jekyll lektor stackedit
-categories: Daily
+tags: Jekyll Lektor StackEdit
+categories: 일상
 
 ---
 본인의 컴퓨터 중 휴대용으로 들고다니는 노트북은 Ubuntu 18.04 LTS이다. 2017년 중순에 개발 및 업무용으로 샀다가 주욱 쓰고 있다(물론 운영체제는 LTS 버전 나오는거 기다렸다가 한번 밀고 다시 설치한 것이다).
@@ -23,3 +23,6 @@ categories: Daily
 웹페이지에서 바로 깃허브에 푸쉬를 때리는 것인지, 한번 서버를 거쳐서 해당 서버에서 푸쉬를 때리는 것인지 궁금했다. 크롬 개발자 도구의 네트워크 탭을 열어 보니,  `app.js`가 바로 `https://api.github.com/repos/Rockheung/rockheung.github.io/contents/_draft%2FHello-StackEdit.md?ref=master&t=1545563315855` 로 리퀘스트를 때리고 있다. 한때 Jekyll을 처음 접했을 무렵, CLI에서 푸쉬를 때리다가 웹페이지에서 푸쉬를 때릴 수 있으면 멋질 거 같다는 생각을 했었다. github에서 graphql 형태의 API를 지원하는 걸 보고 가능할거 같았는데, 정말 그런 툴이 나타날 줄이야.
 
 이제 이걸로 개발자인척 해야겠다.
+
+
+
