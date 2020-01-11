@@ -8,33 +8,35 @@ tags: django tutorial python
 
 ### 이제 뭐가 남았을까?
 
-{% raw %}
-분명히 뭔가 남았다. 우리가 인터넷에서 보는 사이트는 이렇게 단조로운 흑백의 모노톤이 아니었다. 장고에서 사용하는 uwsgi 서버가 작성해주는 html파일 이외에도 blog앱은 갖가지 태그의 서식을 정의하고, 글자의 크기와 줄넘김 등 수많은 속성을 부여할 css 파일이 필요하다. 사진과 필요하면 폰트 파일도 여기에 포함될 것이다. 이들을 장고에서는 정적 파일이라 부르는데, 일반적으로 `blog/static/blog`의 폴더에 집어넣는다. 이들 파일은 템플릿 폴더의 index.html 파일 등에서 맨 위에 `{% load static %}`를 적어주면 로드된다. 해보자.
-{% endraw %}
+분명히 뭔가 남았다. 우리가 인터넷에서 보는 사이트는 이렇게 단조로운 흑백의 모노톤이 아니었다. 장고에서 사용하는 uwsgi 서버가 작성해주는 html파일 이외에도 blog앱은 갖가지 태그의 서식을 정의하고, 글자의 크기와 줄넘김 등 수많은 속성을 부여할 css 파일이 필요하다. 사진과 필요하면 폰트 파일도 여기에 포함될 것이다. 이들을 장고에서는 정적 파일이라 부르는데, 일반적으로 `blog/static/blog`의 폴더에 집어넣는다. 이들 파일은 템플릿 폴더의 index.html 파일 등에서 맨 위에 `{% raw %}{% load static %}{% endraw %}`를 적어주면 로드된다. 해보자.
 
 다음의 아주 간단한, `li` 태그 하위의 `a`태그에 녹색을 지정해 주는 `style.css`를 작성해 `blog/static/blog`에 추가하자.
 
-    li a {
-        color: green;
-    }
+{% highlight css %}
+li a {
+    color: green;
+}
+{% endhighlight %}
 
 그리고 앞서 말한 대로 index.html 파일을 다음과 같이 수정한다.
 
-{% raw %}
-    {% load static %}
+{% highlight html %}
+{% raw %}{% load static %}{% endraw %}
 
-    <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}" />
-{% endraw %}
+<link rel="stylesheet" type="text/css" href="{% raw %}{% static blog/style.css %}{% endraw %}" />
+{% endhighlight %}
 
-{% raw %}
-`link`태그의 {% static %} 는 정적 파일의 절대 경로를 생성해 준다.
-{% endraw %}
+
+`link`태그의 `{% raw %}{% static %}{% endraw %}` 는 정적 파일의 절대 경로를 생성해 준다.
+
 
 사진을 추가하고 싶은가? 간단하다. 이미지 파일을 `blog/static/blog/images`에 추가한 후 앞서 작성했던 `style.css`에 `body`태그의 배경을 정의하는 내용을 작성하자.
 
-    body {
-        background: white url("images/background.gif") no-repeat;
-    }
+{% highlight css %}
+body {
+    background: white url("images/background.gif") no-repeat;
+}
+{% endhighlight %}
 
 css에서 background 속성의 syntax는 `background: bg-color bg-image position/bg-size bg-repeat bg-origin bg-clip bg-attachment initial|inherit;`이다. 그러니까 순서대로 *흰색 바탕에 `background.gif`파일을
  배경 이미지로 깔되 반복하진 말아* 라는 뜻이다. 혹시 다른 옵션이 궁금하면, html에 대한 모든 내용이 [w3schools.com](https://www.w3schools.com/)에 있다. 여기서부터는 장고의 범주를 넘어서는 내용이다. html과 css, 이미지 파일 등을 어떻게 작성하여 사이트에 집어넣는지에 대한 내용이기 때문이다. 여기서 더 얘기하는 것 보다 직접 인터넷에서 찾아보는 편이 빠를 것이다.
@@ -51,36 +53,41 @@ css에서 background 속성의 syntax는 `background: bg-color bg-image position
 
 현재는 단순히 Question 클래스를 가져와 등록만 해 놓은 상태이다. 관리자 페이지에서는 `Question text`, `Date Publushed` 순서로 보이는데, 이 순서를 바꾸어 보자.
 
-    class QuestionAdmin(admin.ModelAdmin):
-        fields = ['pub_date', 'question_text']
+{% highlight python %}
+class QuestionAdmin(admin.ModelAdmin):
+    fields = ['pub_date', 'question_text']
 
-    admin.site.register(Question, QuestionAdmin)
+admin.site.register(Question, QuestionAdmin)
+{% endhighlight %}
 
 `admin.ModelAdmin` 클래스를 상속받는 `QuestionAdmin` 클래스를 새로 생성하여, 필드의 순서를 재정의하고 이를 관리자 페이지에 등록했다. 지금 장고 개발 서버를 실행하여 직접 확인해 보자.
 
 만약 필드가 아주 많고 이를 어떤 그룹화 시키고 싶다면, 직관적이게도 다음과 같이 `fieldsets`를 정의하면 된다.
 
-    class QuestionAdmin(admin.ModelAdmin):
-        fieldsets = [
-            (None,               {'fields': ['question_text']}),
-            ('Date information', {'fields': ['pub_date']}),
-        ]
+{% highlight python %}
+class QuestionAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None,               {'fields': ['question_text']}),
+        ('Date information', {'fields': ['pub_date']}),
+    ]
+{% endhighlight %}
 
 fieldsets는 튜플의 리스트로 이루어져 있는데, 각 튜플의 첫 번째 인자는 각 set의 제목을 나타낸다. `None`는 그러니까 제목이 없는 set인 것이다.
 
 이전의 과정에서 `admin.py`에 `Choice` 클래스를 추가하였을 것이다. 덕분에 관리자 페이지에서 개별의 Choice를 넣고 뺄 수 있다. 그러나 어쩌면, Question을 정의할 때 같이 Choice도 정의할 수 있다면 조금의 클릭질을 줄일 수 있을 것 같다. 바로 해보자. 일단 `admin.site.register(Choice)`를 지우고 시작한다.
 
-    class ChoiceInline(admin.StackedInline):
-        model = Choice
-        extra = 1
+{% highlight python %}
+class ChoiceInline(admin.StackedInline):
+    model = Choice
+    extra = 1
 
-
-    class QuestionAdmin(admin.ModelAdmin):
-        fieldsets = [
-            (None,               {'fields': ['question_text']}),
-            ('Date information', {'fields': ['pub_date'], 'classes': ['collapse']}),
-        ]
-        inlines = [ChoiceInline]
+class QuestionAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None,               {'fields': ['question_text']}),
+        ('Date information', {'fields': ['pub_date'], 'classes': ['collapse']}),
+    ]
+    inlines = [ChoiceInline]
+{% endhighlight python %}
 
 위의 내용을 `blog/admin.py`에 추가하면서, 이제 관리자 페이지의 Question에서 해당 Choice를 바로 편집할 수 있게 되었다. extra의 개수는 Choice가 없는 Question 에서도 추가할 수 있는 여분의 Choice 필드를 제공한다. 만약 이를 제거하면, 기본값인 3이 그대로 반영된다.
 
@@ -88,21 +95,25 @@ fieldsets는 튜플의 리스트로 이루어져 있는데, 각 튜플의 첫 �
 
 필드의 모양을 정의하는 다른 옵션들이 궁금하다. 쉘에서 `from django.contrib import admin`를 날려보니 위에서 사용한 세 가지 옵션, `ModelAdmin`, `StackedInline`, `TabularInline`은 모두 `django.contrib.admin.options` 하위에 있었다. 같은 종류의 클래스를 찾아보니 다음이 있었다.
 
-          BaseModelAdmin     | <class 'django.contrib.admin.options.BaseModelAdmin'>
-    IncorrectLookupParameters| <class 'django.contrib.admin.options.IncorrectLookupParameters
-         InlineModelAdmin    | <class 'django.contrib.admin.options.InlineModelAdmin'>
-            ModelAdmin       | <class 'django.contrib.admin.options.ModelAdmin'>
-          StackedInline      | <class 'django.contrib.admin.options.StackedInline'>
-          TabularInline      | <class 'django.contrib.admin.options.TabularInline'>
+{% highlight bash %}
+      BaseModelAdmin     | <class 'django.contrib.admin.options.BaseModelAdmin'>
+IncorrectLookupParameters| <class 'django.contrib.admin.options.IncorrectLookupParameters'>
+     InlineModelAdmin    | <class 'django.contrib.admin.options.InlineModelAdmin'>
+        ModelAdmin       | <class 'django.contrib.admin.options.ModelAdmin'>
+      StackedInline      | <class 'django.contrib.admin.options.StackedInline'>
+      TabularInline      | <class 'django.contrib.admin.options.TabularInline'>
+{% endhighlight %}
 
 바로 찾은 것은 아니고 본인이 파이썬의 모듈을 탐색할 때 사용하는 자작 툴을 이용하여 sublime 3로 가공한 결과다. 그러나 위에서 사용한 세 가지 옵션 이외에는 admin의 네임스페이스에 없어 앞에서 사용한 방식으로는 사용할 수 없는 듯 싶다. `__bases__` 속성을 이용하여 어떤 클래스의 차일드인지 알아봤다.
 
-    >>> admin.ModelAdmin.__bases__
-    (<class 'django.contrib.admin.options.BaseModelAdmin'>,)
-    >>> admin.StackedInline.__bases__
-    (<class 'django.contrib.admin.options.InlineModelAdmin'>,)
-    >>> admin.TabularInline.__bases__
-    (<class 'django.contrib.admin.options.InlineModelAdmin'>,)
+{% highlight bash %}
+>>> admin.ModelAdmin.__bases__
+(<class 'django.contrib.admin.options.BaseModelAdmin'>,)
+>>> admin.StackedInline.__bases__
+(<class 'django.contrib.admin.options.InlineModelAdmin'>,)
+>>> admin.TabularInline.__bases__
+(<class 'django.contrib.admin.options.InlineModelAdmin'>,)
+{% endhighlight %}
 
 `IncorrectLookupParamiters` 이외의 두 클래스는 부모 클래스였다. `help(options.IncorrectLookupParameters)`로 보니 이 클래스는 `builtins.Exceptin`클래스를 상속받고 있었다. 사용법에 대한 자세한 설명은 없었는데, 이름에서 추측컨대 찾으려는 필드가 DB에 없을 때 이를 예외처리하는 클래스인 모양이다.
 
@@ -110,31 +121,41 @@ Question을 관리하는 페이지는 이제 괜찮아 보인다. 그렇다면 �
 
 질문 목록을 테이블 형태로 표현해 보자.  다음처럼 수정하면 원하는 대로 보일 것이다.
 
-    class QuestionAdmin(admin.ModelAdmin):
-        # ...
-        list_display = ('question_text', 'pub_date', 'was_published_recently')
+{% highlight python %}
+class QuestionAdmin(admin.ModelAdmin):
+    # ...
+
+    list_display = ('question_text', 'pub_date', 'was_published_recently')
+{% endhighlight %}
 
 명료하다. 관리자 페이지에서 위 순서대로 정확히 표현된다.
 
 임의의 메서드인 `was_published_recently()`를 제외하고, 열의 머리글을 클릭하면 해당 필드의 종류에 맞춰 알맞게 정렬된다. 임의의 메서드는 아래와 같은 속성을 추가하여 좀 더 낫게 보이게 하자.
 
-    class Question(models.Model):
-        # ...
-        def was_published_recently(self):
-            now = timezone.now()
-            return now - datetime.timedelta(days=1) <= self.pub_date <= now
-        was_published_recently.admin_order_field = 'pub_date'
-        was_published_recently.boolean = True
-        was_published_recently.short_description = 'Published recently?'
+{% highlight python %}
+class Question(models.Model):
+    # ...
+
+    def was_published_recently(self):
+        now = timezone.now()
+        return now - datetime.timedelta(days=1) <= self.pub_date <= now
+    was_published_recently.admin_order_field = 'pub_date'
+    was_published_recently.boolean = True
+    was_published_recently.short_description = 'Published recently?'
+{% endhighlight %}
 
 이제 `was_published_recently()` 메서드는 pub_date에 맞춰 정렬되고, 열의 머리글 텍스트가 바뀌었다. 또한 단순히 True 또는 False만 표시되던 이전의 리스트에서 좀 더 쉽게 식별 가능한 형태로 바뀌었다.
 
 다음은 적용 가능한 다양한 다른 메서드이다.
 
-    # 필터 목록이 표시되는데, QuestionAdmin 클래스에 추가하면 관리자 페이지에 해당 필드에 알맞는 필터 조건이 뜬다.
+{% highlight python %}
+# 필터 목록이 표시되는데, QuestionAdmin 클래스에 추가하면 관리자 페이지에 해당 필드에 알맞는 필터 조건이 뜬다.
+
     list_filter = ['pub_date']
-    # 관리자 페이지의 질문 목록에 검색창이 추가된다. 참조할 문자열 필드를 지정하면 된다.
+# 관리자 페이지의 질문 목록에 검색창이 추가된다. 참조할 문자열 필드를 지정하면 된다.
+
     search_fields = ['question_text']
+{% endhighlight %}
 
 참고할 점은, 검색 기능은 내부적으로 `LIKE`쿼리를 사용한다.
 
@@ -144,25 +165,29 @@ Question을 관리하는 페이지는 이제 괜찮아 보인다. 그렇다면 �
 
 지금까지 각각의 앱에 속한 템플릿을 수정해 봤다. 그러나 admin은 앱 폴더가 없다. 이런 경우, 그냥 프로젝트의 최상위 경로에 templates 폴더를 만들어 이를 `_base/setting.py` 에서 명시하면 된다. 아래와 같이 `'DIRS': [os.path.join(BASE_DIR, 'templates')],` 한 줄을 추가하자.
 
-    TEMPLATES = [
-        {
-            'BACKEND': 'django.template.backends.django.DjangoTemplates',
-            'DIRS': [os.path.join(BASE_DIR, 'templates')],
-            'APP_DIRS': True,
-            'OPTIONS': {
-                (...)
-            },
+{% highlight python %}
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            (...)
         },
-    ]
+    },
+]
+{% endhighlight %}
 
 지금, 기존에 있던  `admin`앱의 탬플릿을 재정의하는 것이다. `templates/admin` 경로에 장고의 admin앱의 템플릿 코드를 복사하자. 어디있는지 모르겠다면 터미널에서 다음의 명령이 도움을 줄 것이다.
 
-    $ python -c "import django; print(django.__path__)"
+{% highlight bash %}
+$ python -c "import django; print(django.__path__)"
+{% endhighlight %}
 
 물론, 가상환경을 사용하고 있다면 `workon`으로 먼저 파이썬 가상환경을 활성화시키자. 다음과 같은 형태면 잘 된 것이다.
 
-{% highlight console %}
-(django-blog) rockheung@ubuntu:~/git/django-blog/_base/templates/admin$ ls -alhF
+{% highlight bash %}
+$ ls -alhF
 total 116K
 drwxrwxr-x 6 rockheung rockheung 4.0K Mar 14 22:13 ./
 drwxrwxr-x 3 rockheung rockheung 4.0K Mar 14 22:13 ../
@@ -195,6 +220,4 @@ drwxrwxr-x 2 rockheung rockheung 4.0K Mar  2 17:53 includes/
 drwxrwxr-x 2 rockheung rockheung 4.0K Mar  2 17:53 widgets/
 {% endhighlight %}
 
-{% raw %}
-이제 `base_site.html`파일을 수정하여 관리자 페이지 제목을 수정해 보자. `{{site_header|default:_ ('Django administration' }}`를 제목으로 사용하고 싶은 문자열로 수정한다. 깔끔하게 관리자 페이지의 제목이 바뀜을 확인할 수 있다. 이런 식으로 관리자 페이지의 어떤 부분이든 다시 정의할 수 있다. 장고는 `INSTALLED_APPS`의 앱을 정의된 순서대로 보여준다. 원한다면, admin앱의 첫 화면인 `index.html`을 수정해볼 수도 있을 것이다.
-{% endraw %}
+이제 `base_site.html`파일을 수정하여 관리자 페이지 제목을 수정해 보자. `{% raw %}{{site_header|default:_ ('Django administration' }}{% endraw %}`를 제목으로 사용하고 싶은 문자열로 수정한다. 깔끔하게 관리자 페이지의 제목이 바뀜을 확인할 수 있다. 이런 식으로 관리자 페이지의 어떤 부분이든 다시 정의할 수 있다. 장고는 `INSTALLED_APPS`의 앱을 정의된 순서대로 보여준다. 원한다면, admin앱의 첫 화면인 `index.html`을 수정해볼 수도 있을 것이다.
