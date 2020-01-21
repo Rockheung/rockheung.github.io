@@ -5,5 +5,20 @@
  */
 
 module.exports = {
-  /* Your site config here */
+  plugins: [
+    "gatsby-plugin-react-helmet",
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `posts`,
+        path: `${__dirname}/_posts/`,
+      },
+    },
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [],
+      },
+    },
+  ],
 }
