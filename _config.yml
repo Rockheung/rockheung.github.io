@@ -13,9 +13,9 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-# title: wanna.be.coder
-title_left    : "wanna.be."
-title_right   : "coder" # default: ""
+title: Dig.log
+# title_left    : "wanna.be."
+# title_right   : "coder" # default: ""
 
 # Customized filed
 # pronunciation: ˈwônə-bē-kōdər
@@ -123,7 +123,7 @@ exclude: ["gulp", "node_modules", "bower", "bower_components", "config.rb", "src
 # 
 # # Conversion
 # # markdown:    kramdown
-highlighter: rouge
+# highlighter: rouge
 # lsi:         false
 # excerpt_separator: "\n\n"
 # incremental: false
