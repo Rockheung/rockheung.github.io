@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 'youtube api 키가 제한되었을때'
+date:   2019-02-28 00:00:00.234 +0900
 author: Rockheung
 tags: javascript bootcamp youtube
 categories: Study

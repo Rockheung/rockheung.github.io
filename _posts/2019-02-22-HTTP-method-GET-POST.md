@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 'HTTP method: GET, POST'
+date:   2019-02-22 00:00:00.123 +0900
 author: Rockheung
 tags: codestates javascript bootcamp
 categories: Study

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: '프로토타입: Prototype'
+date:   2019-02-14 00:00:00.123 +0900
 author: Rockheung
 tags: codestates javascript bootcamp
 categories: Study

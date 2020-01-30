@@ -1,6 +1,7 @@
 ---
 layout: post
 title: '자바스크립트: __proto__, constructor, prototype'
+date:   2019-02-18 00:00:00.123 +0900
 author: Rockheung
 tags: codestates javascript bootcamp
 categories: Study

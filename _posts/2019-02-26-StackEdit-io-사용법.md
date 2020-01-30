@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 'StackEdit.io 사용법'
+date:   2019-02-26 00:00:00.123 +0900
 author: Rockheung
 tags: blogging stackedit jekyll github-page
 categories: Study

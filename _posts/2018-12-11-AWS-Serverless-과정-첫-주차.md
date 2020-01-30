@@ -1,6 +1,7 @@
 ---
 title: AWS Serverless 과정 첫 주차
 layout: post
+date:   2018-12-11 00:00:00.123 +0900
 category: Study
 tags: aws serverless studypie
 ---
