@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Git의 개념잡기"
-date:   2018-02-15 05:28:09.440 +0900
+title: 'Git의 개념잡기'
+date: 2018-02-15 05:28:09.440 +0900
 categories: Guide
 tags: git basic
 ---
@@ -34,11 +34,11 @@ git에서 파일 versioning이 어떻게 동작하는지를 고민해보자.
 
 정리해보면 다음과 같다.
 
-cmd | working  directory | index | HEAD
-----|----|----|----
-git clone | v1 | v1 | v1
-$(modified) | v2 | v1 | v1
-git add | v2 | v2 | v1
-git commit | v2 | v2 | v2
+| cmd          | working directory | index | HEAD |
+| ------------ | ----------------- | ----- | ---- |
+| git clone    | v1                | v1    | v1   |
+| \$(modified) | v2                | v1    | v1   |
+| git add      | v2                | v2    | v1   |
+| git commit   | v2                | v2    | v2   |
 
 이후 `git push`를 하면 비로소 github.com의 해당 branch에 변경 내용이 기록된다.

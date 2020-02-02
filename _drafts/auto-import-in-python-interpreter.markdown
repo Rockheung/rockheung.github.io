@@ -1,18 +1,18 @@
 ---
-    layout: post
-    title:  "Auto import in python interpreter"
-    date:   2018-02-23 12:36:06.996 -0600
-    categories: [ study ]
-    tags: [ python, 파이썬, auto-import, PYTHONSTARTUP ]
+layout: post
+title: 'Auto import in python interpreter'
+date: 2018-02-23 12:36:06.996 -0600
+categories: [study]
+tags: [python, 파이썬, auto-import, PYTHONSTARTUP]
 ---
 
-`dir()`는 파이썬을 쓰다가 현재 어떤 모듈이 임포트되어 있는지 궁금할 때 자주 사용하는 함수이다. 
+`dir()`는 파이썬을 쓰다가 현재 어떤 모듈이 임포트되어 있는지 궁금할 때 자주 사용하는 함수이다.
 
     >>> import os
     >>> dir()
     ['__builtins__', '__cached__', '__doc__', '__loader__', '__name__', '__package__', '__spec__', os]
 
-아무것도 임포트하지 않고 사용할 때 대개 위와 비슷할 것이다. 리스트형을 반환하기 때문에 초심자들은 나열되는 오브젝트가 궁금할 때 하나씩 다 쳐보게 된다. 
+아무것도 임포트하지 않고 사용할 때 대개 위와 비슷할 것이다. 리스트형을 반환하기 때문에 초심자들은 나열되는 오브젝트가 궁금할 때 하나씩 다 쳐보게 된다.
 
     >>> dir(os)
 
@@ -40,7 +40,7 @@ os 모듈은 빌트인이다. 파일의 경로부터 시작해서 다양한 객�
     $ export PYTHONSTARTUP=~/python_auto_import.py
     $ echo $PYTHONSTARTUP
     /home/$(yourhome)/python_auto_import.py
-    $ 
+    $
     $ cat ~/python_auto_import.py
     from __future__ import print_function
     import os, sys, time
@@ -68,21 +68,21 @@ os 모듈은 빌트인이다. 파일의 경로부터 시작해서 다양한 객�
         for i in dir(object)
             print(i)
 
-__main__모듈은 처음에 임포트되지 않았지만 `import __main__`이후 `dir(__main__) == dir()`이길래 위와 같은 코드를 작성해 보았다. `dir`함수가 빌트인이어서 그런지 default 인수값을 알 수가 없었다. 
+**main**모듈은 처음에 임포트되지 않았지만 `import __main__`이후 `dir(__main__) == dir()`이길래 위와 같은 코드를 작성해 보았다. `dir`함수가 빌트인이어서 그런지 default 인수값을 알 수가 없었다.
 
 이렇게 한동안 사용하다 보면 조금 더 나아가고 싶다. 각 객체들의 종류도 동시에 알고 싶은 것이다. 그래서 조금 고민하다가 다음과 같은 코드를 작성했다.
 
-    from __future__ import print_function                                                                    
-                                                                                                         
+    from __future__ import print_function
+
     def ll( messy=eval('globals()'), kwd= '', exc= ['__doc__', 'll']):
-    
+
       maxLen = max( list( map( len, messy) ) )
       keys = sorted(list(messy))
       for i in keys:
         if kwd in i:
-          if i not in exc: 
+          if i not in exc:
             print('{:^{w}} {}'.format( i, messy[i], w = maxLen ) )
-    
+
     del print_function
 
 함수 명이 `ll`인 것은 우분투에서 본인이 가장 자주 쓰는 명령어가 이것이기 때문이다. 이것은 사실 `ls -alF`와 같은 명령어인데, `~/.bashrc`에서 `alias ll='ls -alF'`로 미리 설정되어 있다. 우분투를 처음 깔면 기본으로 이와 같이 되어 있다.

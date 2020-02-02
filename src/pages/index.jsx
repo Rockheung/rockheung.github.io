@@ -1,25 +1,27 @@
 import React from 'react';
-// import { css } from "@emotion/core"
 import { Link, graphql } from 'gatsby';
-// import { rhythm } from "../utils/typography"
-import { Layout } from '../components';
+import { Layout, Intro, ProfileImage } from '../components';
+
+const menu = [<p>Home</p>, <p>Post</p>, <p>About</p>, <p>Login</p>];
 
 export default ({ data }) => {
   return (
     <Layout>
-      <div>
+      <Intro>
         <h1>{data.site.siteMetadata.title}</h1>
-        {data.allMarkdownRemark.edges.map(({ node }) => (
-          <div key={node.id}>
-            <Link to={node.fields.slug}>
-              <h3>
-                {node.frontmatter.title} <span>— {node.frontmatter.date}</span>
-              </h3>
-              <p>{node.excerpt}</p>
-            </Link>
-          </div>
-        ))}
-      </div>
+        <ProfileImage src={data.site.siteMetadata.profile_img} />
+        <p>{data.site.siteMetadata.description}</p>
+      </Intro>
+
+      {data.allMarkdownRemark.edges.map(({ node }) => (
+        <div key={node.id}>
+          <Link to={node.fields.slug}>
+            <h3>
+              {node.frontmatter.title} <span>— {node.frontmatter.date}</span>
+            </h3>
+          </Link>
+        </div>
+      ))}
     </Layout>
   );
 };
@@ -29,11 +31,13 @@ export const query = graphql`
     site {
       siteMetadata {
         title
+        profile_img
+        description
       }
     }
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
-      limit: 10
+      limit: 20
     ) {
       totalCount
       edges {

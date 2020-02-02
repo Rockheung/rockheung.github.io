@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "한글이 포함된 고정폭monospace 폰트 적용하기."
+title: '한글이 포함된 고정폭monospace 폰트 적용하기.'
 date: 2018-03-09 09:19:42.888 +0900
 categories: Study
 tags: d2-coding webfont monospace
@@ -20,10 +20,10 @@ tags: d2-coding webfont monospace
 
 D2-coding 폰트가 유력한 대안이었으나 이는 구글 폰트 사이트에서 제공하지 않았다. ttf파일을 바로 서버에 올려 사용하자니(HTML5 부터 `@font-face`를 통해 이를 지원한다) 폰트 파일의 용량이 무척 컸다. 사이트의 로딩 속도가 느려질 것이 분명했다.
 
-다행히 깃허브에서 방법을 찾았다. [Joungkyun: D2 coding](https://github.com/Joungkyun/font-d2coding)를 블로그 서버에 받아 서버 `static/font` 폴더로 심볼릭 링크를 만들었다.  그리고 다음과 같은 코드를 템플릿에 추가했다.
+다행히 깃허브에서 방법을 찾았다. [Joungkyun: D2 coding](https://github.com/Joungkyun/font-d2coding)를 블로그 서버에 받아 서버 `static/font` 폴더로 심볼릭 링크를 만들었다. 그리고 다음과 같은 코드를 템플릿에 추가했다.
 
 {% raw %}
-    <link rel="stylesheet" href="{% static "font/d2coding.css" %}" type="text/css">
+<link rel="stylesheet" href="{% static "font/d2coding.css" %}" type="text/css">
 {% endraw %}
 
 아주 잘 작동한다.

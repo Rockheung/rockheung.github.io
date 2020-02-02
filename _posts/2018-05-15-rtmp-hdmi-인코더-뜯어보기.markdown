@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "RTMP - HDMI 인코더 뜯어보기"
-date:   2018-05-15 12:40:18.072 +0900
+title: 'RTMP - HDMI 인코더 뜯어보기'
+date: 2018-05-15 12:40:18.072 +0900
 categories: 삽질
 tags: encoder arm embedded
 ---

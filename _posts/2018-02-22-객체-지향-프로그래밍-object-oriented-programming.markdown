@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "객체 지향 프로그래밍 | Object Oriented Programming"
+title: '객체 지향 프로그래밍 | Object Oriented Programming'
 date: 2018-02-22 08:03:26.553 +0900
 categories: Study
 tags: python object-oriented-programming
@@ -19,7 +19,7 @@ Source: [생활코딩: 객체지향프로그래밍](https://opentutorials.org/co
 
 > 클래스-class 와 인스턴스-instance
 
-> *종류*와 *구체적인 예*
+> *종류*와 _구체적인 예_
 
 인스턴스는 구체적인 사례, 예 정도로 보면 되는데, 종류 - 구체적인 예 정도로 이해하면 되는 것 같다.
 
@@ -65,7 +65,7 @@ str 클래스를 상속받아 만든 Str_ln 클래스는 클래스 변수 ln 과
 
 str_ln 생성자가 인스턴스 변수(var_str)을 입력받을 때 개행문자('\n')가 추가되어 get() 메서드로 인해 화면에 출력됨을 확인할 수 있다. 이는 기존의 str 클래스에는 없는 메서드이다. 물론 기존의 str클래스의 모든 메서드도 사용할 수 있다.
 
----------------
+---
 
 ###객체 제작
 

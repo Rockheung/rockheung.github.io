@@ -1,13 +1,13 @@
 ---
 layout: post
-title:  "Git repo 되돌리기"
-date:   2018-02-14 13:33:00.597 +0900
+title: 'Git repo 되돌리기'
+date: 2018-02-14 13:33:00.597 +0900
 categories: Guide
 tags: git rollback reset
 ---
 
 Source: [7.7 Git 도구 - Reset 명확히 알고 가기](https://git-scm.com/book/ko/v2/Git-%EB%8F%84%EA%B5%AC-Reset-%EB%AA%85%ED%99%95%ED%9E%88-%EC%95%8C%EA%B3%A0-%EA%B0%80%EA%B8%B0)
-원 글의 제목은 *명확히 알고 가기* 이나 내용이 너무 중구난방으로 널뛰어서 가볍게 정리해봤다.
+원 글의 제목은 _명확히 알고 가기_ 이나 내용이 너무 중구난방으로 널뛰어서 가볍게 정리해봤다.
 
 <!--more-->
 
@@ -16,11 +16,11 @@ Source: [7.7 Git 도구 - Reset 명확히 알고 가기](https://git-scm.com/boo
 
     $ git reset $(특정 커밋) --hard
 
-그냥 바로 이전 커밋은 `HEAD~` 또는  `HEAD^`로 지칭할 수 있다. `~`, `^`의 갯수가 얼마나 이전 커밋을 가리킬지 나타낸다.
+그냥 바로 이전 커밋은 `HEAD~` 또는 `HEAD^`로 지칭할 수 있다. `~`, `^`의 갯수가 얼마나 이전 커밋을 가리킬지 나타낸다.
 
     $ git reset HEAD^ --hard
 
-해당 커밋의 상태로 깔끔하게 Rollback 된다. HEAD가 해당 커밋으로 바뀌며  작업중인 폴더(working directory)의 내용도 완벽하게 바뀐다. 만약 추가된 파일이 있다면 unstage 상태로 유지되는 것 같다(이 부분은 확실하지 않다).
+해당 커밋의 상태로 깔끔하게 Rollback 된다. HEAD가 해당 커밋으로 바뀌며 작업중인 폴더(working directory)의 내용도 완벽하게 바뀐다. 만약 추가된 파일이 있다면 unstage 상태로 유지되는 것 같다(이 부분은 확실하지 않다).
 이 상태에서 그냥 `git push $(remote) $(branch)` ex) `git push origin master`를 때리면 현재 github.com의 커밋에 비해 작업중인 폴더가 이전 커밋이므로 push가 되지 않는다(친절하게 몇 개의 커밋 뒤에 있는지도 나타내준다). 강제하는 옵션인 `-f`를 추가한다
 
     $ git push -f $(remote) $(branch)

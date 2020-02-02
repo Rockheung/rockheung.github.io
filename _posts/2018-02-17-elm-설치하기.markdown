@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Elm 설치하기 | Elm Install"
-date:   2018-02-17 07:25:54.536 +0900
+title: 'Elm 설치하기 | Elm Install'
+date: 2018-02-17 07:25:54.536 +0900
 categories: Guide
 tags: elm-0.18 install-error eacces
 ---
@@ -15,6 +15,7 @@ Elm 가이드에서 제시하는 npm을 이용한 설치 방식은 기본 환경
 <!--more-->
 
 > ### Guided Install process - Not working
+>
 >     $ sudo apt-get install -y build-essential
 >     $ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 >     $ sudo apt-get install -y nodejs

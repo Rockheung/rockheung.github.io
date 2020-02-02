@@ -1,13 +1,12 @@
 ---
 layout: post
 title: 'youtube api 키가 제한되었을때'
-date:   2019-02-28 00:00:00.234 +0900
+date: 2019-02-28 00:00:00.234 +0900
 author: Rockheung
 tags: javascript bootcamp youtube
 categories: Study
+---#### 준비물
 
----
-#### 준비물
 - 크롬
 - 크롬 확장 프로그램: [Moesif Orign & CORS Changer](https://chrome.google.com/webstore/detail/moesif-orign-cors-changer/digfbfaphojjndkpccljibejjbppifbc?utm_source=chrome-ntp-icon)
 - HTML 파일 헤드에 한줄 추가
@@ -27,8 +26,4 @@ categories: Study
 
 위 과정은 google API 서버에 AJAX 요청을 보낼 때 헤더에서 Referrer와 Origin을 변조해 줍니다. 마치 구글 API 설명 페이지에서 발생한 요청인 것 처럼 말이죠. html 파일 등에서 Referrer는 숨겨줄 수 있지만 Origin 변경은 브라우저에서 허용해 주지 않습니다. 이를 크롬 확장 앱을 통해 가능하도록 하여 주는 것입니다.
 
-
 > Written with [StackEdit](https://stackedit.io/).
-
-
-

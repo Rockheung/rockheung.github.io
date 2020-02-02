@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "WELCOME!"
-date:   2018-02-05 15:38:29.798 +0900
+title: 'WELCOME!'
+date: 2018-02-05 15:38:29.798 +0900
 categories: Daily
 tags: start blog
 ---

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "4. Django 앱 작성하기"
+title: '4. Django 앱 작성하기'
 date: 2018-03-03 09:39:17.252 +0900
 categories: Study
 tags: python django sqlite tutorial
@@ -8,19 +8,19 @@ tags: python django sqlite tutorial
 
 이 글에서는 장고 공식 사이트의 [첫 번째 장고 앱 작성하기](https://docs.djangoproject.com/ko/2.0/intro/tutorial01/)를 참고하여 설문조사 앱을 작성할 것이다. 장고 앱의 코드를 거의 건드리지 않고도 `django-blog-zinnia` 파이썬 패키지를 이용하면 큰 어려움 없이 본인과 같은 블로그를 쉽게 만들 수 있다. 그런 독자들은 이 글을 건너 뛰고 바로 [5. Django 패키지 이용하기:draft](https://rockheung.xyz/E/)로 넘어가도 큰 문제는 없을 것이다. <!--more-->
 
--------------------------------------
+---
 
 이전 글에서 `blog`란 이름의 앱의 뼈대를 만들었다. 그러나 이 앱에는 현재 아무것도 없다. 뼈대만 있는 파일이 있을 뿐이다. 이제 일반적인 상식을 떠올려 보자. 전문적인 지식이 없어도 인터넷 브라우저를 사용해봤다면, 쉽게 이해할 수 있을 것이다.
 
 인터넷을 이용할 때 우리는 주소창에 어떤 사이트의 주소: URL을 입력한다. 그러면 웹브라우저는 해당 주소에 접속해 무언가를 받아와 보여준다. 예를 들어 주소창에 `naver.com`을 치면, 네이버 홈페이지가 뜬다. `google.com`을 치면, 구글 검색바가 있는 검색 사이트가 표시된다. 그렇다면, 한 사이트 안에서 표시되는 여러 페이지는 어떤가? 각 페이지만의 고유 주소가 있을 것이다. 크게 주의를 기울이지 않고도, 인터넷을 이용하다 보면 이 페이지들이 어떤 '패턴'을 가지고 있음을 알 수 있을 것이다.
 
----------------------------------
+---
 
 사용할 앱의 url 패턴을 추가
 
 장고에서 이를 정하는 것이 프로젝트 폴더의 `_base/urls.py`파일이다. 어떤 주소로 접근할 경우에 어떤 페이지를 보여주도록 할지를 결정하는 첫 번째 파일인 것이다.
 
-이 파일을 열어보면 `base URL Configuration`으로 시작하는 아주 긴 주석과, 관리자 페이지로 연결되는 주소인 `admin/`에 대한 설정이 미리 되어 있다. 주석의 내용에 보면  다른 URLconf를 설정하는 경우 `include`패키지를 임포트하라고 적혀 있다. `urls.py`를 사용하는 문서에 대한 링크도 제공하고 있으니, 원하면 참조하는 것도 좋겠다.
+이 파일을 열어보면 `base URL Configuration`으로 시작하는 아주 긴 주석과, 관리자 페이지로 연결되는 주소인 `admin/`에 대한 설정이 미리 되어 있다. 주석의 내용에 보면 다른 URLconf를 설정하는 경우 `include`패키지를 임포트하라고 적혀 있다. `urls.py`를 사용하는 문서에 대한 링크도 제공하고 있으니, 원하면 참조하는 것도 좋겠다.
 
 먼저 작성한 `blog`앱에 별도의 urls.py를 만들어 이 기본 URL 설정 파일에 추가하고 싶다. 주석에 써있는 대로, `include`패키지를 가져오자. 다음을 `_base/urls.py`에 추가한다.
 
@@ -28,8 +28,8 @@ tags: python django sqlite tutorial
 from django.urls import include
 
 urlpatterns =[
-    path( 'blog/', include( 'blog.urls' ) ),
-    # 기존의 admin/에 대한 url의 설정
+path( 'blog/', include( 'blog.urls' ) ),
+# 기존의 admin/에 대한 url의 설정
 ]
 {% endhighlight %}
 
@@ -40,11 +40,11 @@ from django.urls import path
 from . import views
 
 urlpatterns =[
-    path( '', views.index, name ='index' )
+path( '', views.index, name ='index' )
 ]
 {% endhighlight %}
 
-----------------------------------
+---
 
 아주 간단한 문자열 뷰 만들기
 
@@ -56,14 +56,14 @@ urlpatterns =[
 from django.http import HttpResponse
 
 def index( request ):
-    return HttpResponse( "Hello, Django Blog!" )
+return HttpResponse( "Hello, Django Blog!" )
 {% endhighlight %}
 
-----------------------
+---
 
 장고 프로젝트 전용 파이썬 인터프리터 사용하기
 
-기존에 적혀 있던 `from django.shortcuts import render`는 여기서는 사용하지 않으니 지워도 상관 없다. 궁금하다면 바로 파이썬 가상환경(django-blog)가 활성화된  터미널에 `python`을 날려 `from django.shortcuts import render`를 친 다음 `help(render)`를 날려 보자. 방금 파이썬 인터프리터를 실행한 것이다. 바로 구글링을 해도 좋지만 본인은 일단 help를 쳐 보고 난 후에 검색해보는 편이다. 버릇 들여 나쁠 것은 없을 것이다.
+기존에 적혀 있던 `from django.shortcuts import render`는 여기서는 사용하지 않으니 지워도 상관 없다. 궁금하다면 바로 파이썬 가상환경(django-blog)가 활성화된 터미널에 `python`을 날려 `from django.shortcuts import render`를 친 다음 `help(render)`를 날려 보자. 방금 파이썬 인터프리터를 실행한 것이다. 바로 구글링을 해도 좋지만 본인은 일단 help를 쳐 보고 난 후에 검색해보는 편이다. 버릇 들여 나쁠 것은 없을 것이다.
 
 다음과 같은 친절하고 간단명료한 설명이 기다리고 있다.
 
@@ -77,26 +77,27 @@ def index( request ):
 방금 작성한 index 함수도 `HttpResponse`를 리턴하는 것으로 보아 공통점이 있어 보인다. 찾아보니 `django.http.response.HttpResponse`라는 클래스다. 파이썬 인터프리터를 사용하여 알아낸 것인데 장고는 해당 프로젝트만의 인터프리터를 사용할 수도 있다. 프로젝트 폴더의 `manage.py`를 사용하여 다음과 같이 뒤에 `shell`키워드를 붙이자.
 
 {% highlight console %}
-$ python manage.py shell
+\$ python manage.py shell
 {% endhighlight %}
 
 이렇게 실행해야만 django 모듈의 모든 속성에 접근할 수 있었다. 프로젝트의 특정 환경변수(이름이라던지) 등을 가져오는 듯 싶다. 장고를 인터프리터로 접근할 때는 이제 위와 같은 명령을 사용하자.
 
 다시 클래스로 돌아가서, `HttpResponse`클래스는 `__bases__` 속성을 가지고 있었는데, HttpResponseBase`클래스를 상속받고 있었다. response의 다른 클래스도 같은 클래스를 상속받지 않을까 생각한다.
 
-------------------------------
+---
 
 장고 개발 서버 실행하기
 
 자, 이제 간단하게나마 뷰를 작성했다. 다음 명령어로 개발 서버를 띄워 웹브라우저로 접속해 보자.
 
 {% highlight console %}
-$ python manage.py runserver
+\$ python manage.py runserver
 {% endhighlight %}
 
 `views.py`에서 작성한 `index`함수가 `HttpResponse`를 잘 리턴한다면, 위에서 작성한 문자열을 웹브라우저로 볼 수 있을 것이다. 마치 언어를 처음 배울때 `Hello World!`를 출력하는 기분이다. 다음은 크롬 개발자 도구로 본 페이지의 소스코드이다.
 
 {% highlight html %}
+
 <html>
   <head></head>
   <body style>Hello, Django Blog!</body>
@@ -105,7 +106,7 @@ $ python manage.py runserver
 
 단순 텍스트만을 담은 웹 페이지가 보여짐을 알 수 있다. 여기까지의 내용은, 일상생활에서 인터넷을 사용할 때 누구나 겪는 과정이다. URL로 해당 웹서버에 request를 보내서 response를 받는, 단순하고 평범한 과정을 담고 있다. 그러나 여기서 작성한 웹페이지는, 아주 단순화된 정적 사이트라고 볼 수 있다. 전 세계의 누가 접속하더라도 언제나 변하지 않고 같은 내용을 보여줄 것이다. 데이터베이스도 없고, 사용자 구분도 하지 않는 아주 단순한 사이트이다. 만약 url의 어떤 키워드에 따라 웹서버 내부의 데이터베이스를 참조해서 보여지는 페이지의 내용이 바뀌도록 작성한다면, 이 사이트는 더 이상 정적 사이트가 아니다.
 
--------------------------------
+---
 
 DB를 활용하여 동적 사이트 초석 닦기
 
@@ -118,13 +119,13 @@ LANGUAGE_CODE = 'ko-kr'
 TIME_ZONE = 'Asia/Seoul'  
 {% endhighlight %}
 
-먼저 모델에 아무것도 없을 때 여기에 따라 DB를 생성하여 들여다 보자. DB에는 단순히 `blog`앱 의 모델에 따른 테이블 뿐만 아니라, 이 _base 프로젝트에서 쓰이는 모든 앱 - *그러니까 `_base/setting.py`의 `INSTALLED_APPS`에 현 시점에 활성화되어 있는 기본으로 포함되는 app* - 이 사용할 테이블이 모두 들어있다. 따라서 비어있지 않을 것이다. 다음 명령으로 DB를 생성하자.
+먼저 모델에 아무것도 없을 때 여기에 따라 DB를 생성하여 들여다 보자. DB에는 단순히 `blog`앱 의 모델에 따른 테이블 뿐만 아니라, 이 \_base 프로젝트에서 쓰이는 모든 앱 - _그러니까 `_base/setting.py`의 `INSTALLED_APPS`에 현 시점에 활성화되어 있는 기본으로 포함되는 app_ - 이 사용할 테이블이 모두 들어있다. 따라서 비어있지 않을 것이다. 다음 명령으로 DB를 생성하자.
 
     $ python manage.py migrate
 
 migrate 명령은 INSTALLED_APPS 의 설정을 탐색하여, `_base/settings.py` 의 데이터베이스 설정과 app 과 함께 제공되는 데이터베이스 migrations 에 따라, 필요한 데이터베이스 테이블을 생성한다. 자세한 내용은 [여기](https://docs.djangoproject.com/ko/2.0/intro/tutorial02/#database-setup)를 참고하면 되겠다.
 
-----------------------------------
+---
 
 장고 앱의 모델 정의하기
 
@@ -132,18 +133,18 @@ migrate 명령은 INSTALLED_APPS 의 설정을 탐색하여, `_base/settings.py`
 
 {% highlight python %}
 class Question( models.Model ) :
-    question_text =models.CharField( max_length =200 )
-    pub_data =models.DateTimeField( 'date published' )
+question_text =models.CharField( max_length =200 )
+pub_data =models.DateTimeField( 'date published' )
 
 class Choice( models.Model ) :
-    question =models.ForeignKey( Question, on_delete =models.CASCADE )
-    choice_text =models.CharField( max_length =200 )
-    votes =models.IntegerField( default =0 )
+question =models.ForeignKey( Question, on_delete =models.CASCADE )
+choice_text =models.CharField( max_length =200 )
+votes =models.IntegerField( default =0 )
 {% endhighlight %}
 
-여기서 Question 클래스와 Choice 클래스가 일대다 - *one_to_many* - 의 관계를 맺고 있다. 하나의 Question이 여러 Choice와 연결되어 있는 것이다. 이때 Question 인스턴스에서 `q.choice_set.create()`와 같은 메서드로 이와 연결된 Choice 인스턴스를 추가하거나 수정 등을 할 수 있다. 자세한 내용은 [여기](https://docs.djangoproject.com/ko/2.0/ref/models/relations/)에서 좀 더 알아보자.
+여기서 Question 클래스와 Choice 클래스가 일대다 - _one_to_many_ - 의 관계를 맺고 있다. 하나의 Question이 여러 Choice와 연결되어 있는 것이다. 이때 Question 인스턴스에서 `q.choice_set.create()`와 같은 메서드로 이와 연결된 Choice 인스턴스를 추가하거나 수정 등을 할 수 있다. 자세한 내용은 [여기](https://docs.djangoproject.com/ko/2.0/ref/models/relations/)에서 좀 더 알아보자.
 
----------------------------
+---
 
 장고의 DB가 어떤 형태로 만들어질까?
 
@@ -153,7 +154,7 @@ class Choice( models.Model ) :
 
 만약 sqlite3가 설치되어 있지 않다면 에러를 띄울 것이다. 우분투 패키지 관리자를 통해 설치해야 한다. `sudo apt install sqlite3` 명령어로 설치가 완료되면 위의 명령을 다시 실행시키자.
 
-`.help`를 사용해 어떠한 명령어가 있는지 자세히 볼 수 있지만, 여기서 SQLite를 자세히 다룰 것은 아니다. `.table`을 치면 현재 테이블들의 목록이 보인다.  `.schema`를 날리면 전체 테이블들의 스키마를 보여 줄 텐데, 이때 특정 테이블명을 명시하면 해당 테이블의 스키마만 볼 수 있다. 이런 식이다.
+`.help`를 사용해 어떠한 명령어가 있는지 자세히 볼 수 있지만, 여기서 SQLite를 자세히 다룰 것은 아니다. `.table`을 치면 현재 테이블들의 목록이 보인다. `.schema`를 날리면 전체 테이블들의 스키마를 보여 줄 텐데, 이때 특정 테이블명을 명시하면 해당 테이블의 스키마만 볼 수 있다. 이런 식이다.
 
     sqlite> .table
     auth_group                  auth_user_user_permission
@@ -173,8 +174,8 @@ class Choice( models.Model ) :
 
 {% highlight python %}
 INSTALLED_APPS = [
-    'blog.apps.BlogConfig',
-    # 원래 있던 활성화된 앱들
+'blog.apps.BlogConfig',
+# 원래 있던 활성화된 앱들
 ]
 {% endhighlight %}
 
@@ -206,14 +207,14 @@ blog앱의 폴더에 migrations라는 새로운 폴더와, 파이썬 스크립�
 
 model에서 클래스명 및 클래스변수 등을 바꿔서 적용해 보자. 새로운 마이그레이션 파일이 생성됨을 확인할 수 있다.
 
-------------------------------------
+---
 
 DB에 어떤 쿼리가 전달되는지 알아보기.
 
 혹 특정 마이그레이션 파이썬 스크립트가 어떤 SQL 쿼리를 날리는지 궁금하다면, 다음과 같이 `sqlmigrate` 명령을 사용하면 된다. 어떤 DB를 사용중이냐에 따라 결과가 다를 것이다. 아래 출력에서는 SLQite에 적용되는 쿼리를 볼 수 있다.
 
 {% highlight console %}
-$ python manage.py sqlmigrate blog 0001
+\$ python manage.py sqlmigrate blog 0001
 {% endhighlight %}
 {% highlight sql %}
 BEGIN;
@@ -228,35 +229,33 @@ CREATE TABLE "blog_question" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
 --
 -- Add field question to choice
 --
-ALTER TABLE "blog_choice" RENAME TO "blog_choice__old";
+ALTER TABLE "blog_choice" RENAME TO "blog_choice**old";
 CREATE TABLE "blog_choice" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "choice_text" varchar(200) NOT NULL, "votes" integer NOT NULL, "question_id" integer NOT NULL REFERENCES "blog_question" ("id") DEFERRABLE INITIALLY DEFERRED);
-INSERT INTO "blog_choice" ("votes", "id", "question_id", "choice_text") SELECT "votes", "id", NULL, "choice_text" FROM "blog_choice__old";
-DROP TABLE "blog_choice__old";
+INSERT INTO "blog_choice" ("votes", "id", "question_id", "choice_text") SELECT "votes", "id", NULL, "choice_text" FROM "blog_choice**old";
+DROP TABLE "blog_choice\_\_old";
 CREATE INDEX "blog_choice_question_id_8fce957b" ON "blog_choice" ("question_id");
 COMMIT;
 {% endhighlight %}
 
 이제 장고의 데이터베이스 API를 이용해 직접 DB에 데이터를 저장하고 값을 알아볼 수 있다. `python manage.py shell`을 실행하여 모델의 클래스를 임포트하면, DB에 저장된 값을 Shell을 통해 저장하고 읽어올 수 있다. 자세한 방법은 [여기](https://docs.djangoproject.com/ko/2.0/intro/tutorial02/#playing-with-the-api)에서 확인할 수 있다.
 
--------------------------------
+---
 
 장고 모델 표현 변경하기- 정보가 잘 표현될 수 있도록,
 
 이제 `__str__()` 메서드를 blog앱의 모델에 추가하여 Shell에서는 물론 관리자 사이트에서 객체의 표현을 사용할 수 있도록 하자. `blog.models.py`의 각 클래스에 다음과 같이 추가하자. 참고로 `__str__()`메서드는 파이썬에서 매직 메서드Magic method라 불리는데, 자세한 설명은 [여기](http://schoolofweb.net/blog/posts/%ED%8C%8C%EC%9D%B4%EC%8D%AC-oop-part-6-%EB%A7%A4%EC%A7%81-%EB%A9%94%EC%86%8C%EB%93%9C-magic-method/)에서 더 알아볼 수 있다.
 
 {% highlight python %}
-class Question( models.Model ):
-    # ...
-    def __str__( self ):
-        return self.question_text
+class Question( models.Model ): # ...
+def **str**( self ):
+return self.question_text
 
-class Choice( models.Model ):
-    # ...
-    def __str__( self ):
-        return self.choice_text
+class Choice( models.Model ): # ...
+def **str**( self ):
+return self.choice_text
 {% endhighlight %}
 
---------------------------------------
+---
 
 이제, 사이트의 관리자 계정을 만들 시간이다.
 
@@ -281,7 +280,7 @@ admin.site.register(Question)
 admin.site.register(Choise)
 {% endhighlight %}
 
-이후 다시 장고 개발 서버를 실행하여 관리자 페이지로 접속하면, blog앱의 Questions와 Choices가 표시될 것이다. 만약 이전에 Shell을 통해 DB에 새로운 데이터를 저장했다면, 여기서 볼 수 있다. 모델의 각 필드 유형들은 여기서 적절한 HTML 형식으로 알맞게 표시됨을 알 수 있다. 예를 들어, Question 클래스의 클래스변수 question_text와 pub_date는 각각 CharField, DateTimeField로 정의되어 있는데, 각 필드의 데이터 형태에 알맞게 관리자 페이지에서 표시됨을 알 수 있다.  다른 필드는 어떤 것들이 있는지 궁금하다면, 다음과 같이 간단하게 알아볼 수 있다. 총 31개의 필드 종류가 검색된다.
+이후 다시 장고 개발 서버를 실행하여 관리자 페이지로 접속하면, blog앱의 Questions와 Choices가 표시될 것이다. 만약 이전에 Shell을 통해 DB에 새로운 데이터를 저장했다면, 여기서 볼 수 있다. 모델의 각 필드 유형들은 여기서 적절한 HTML 형식으로 알맞게 표시됨을 알 수 있다. 예를 들어, Question 클래스의 클래스변수 question_text와 pub_date는 각각 CharField, DateTimeField로 정의되어 있는데, 각 필드의 데이터 형태에 알맞게 관리자 페이지에서 표시됨을 알 수 있다. 다른 필드는 어떤 것들이 있는지 궁금하다면, 다음과 같이 간단하게 알아볼 수 있다. 총 31개의 필드 종류가 검색된다.
 
     $ python manage.py shell
     Python 3.5.2 (default, Nov 23 2017, 16:37:01)
@@ -294,7 +293,7 @@ admin.site.register(Choise)
 
 물론 검색되는 `FieldDoesNotExist`는 필드의 종류가 아니다.
 
----------------------------------
+---
 
 DB값을 불러오는 동적 뷰 만들기
 
@@ -302,27 +301,27 @@ DB값을 불러오는 동적 뷰 만들기
 
 {% highlight python %}
 def detail( request, question_id ):
-    return HttpResponse( "You're looking at question %s." % question_id )
+return HttpResponse( "You're looking at question %s." % question_id )
 
 def results( request, question_id ):
-    response = "You're looking at the results of question %s."
-    return HttpResponse( response % question_id )
+response = "You're looking at the results of question %s."
+return HttpResponse( response % question_id )
 
 def vote( request, question_id):
-    return HttpResponse( "You're voting on question %s." % question_id )
+return HttpResponse( "You're voting on question %s." % question_id )
 {% endhighlight %}
 
 그리고 `blog/urls.py`에 해당 뷰로 연결되는 path도 정해줘야 한다.
 
 {% highlight python %}
 urlpatterns = [
-    # 기존 path 설정
-    # ex: /blog/5/
-    path( '<int:question_id>/', views.detail, name='detail' ),
-    # ex: /blog/5/results/
-    path( '<int:question_id>/results/', views.results, name='results' ),
-    # ex: /blog/5/vote/
-    path( '<int:question_id>/vote/', views.vote, name='vote' ),
+# 기존 path 설정
+# ex: /blog/5/
+path( '<int:question_id>/', views.detail, name='detail' ),
+# ex: /blog/5/results/
+path( '<int:question_id>/results/', views.results, name='results' ),
+# ex: /blog/5/vote/
+path( '<int:question_id>/vote/', views.vote, name='vote' ),
 ]
 {% endhighlight %}
 
@@ -332,12 +331,12 @@ urlpatterns = [
 
 {% highlight python %}
 def index( request ):
-    latest_question_list =Question.objects.order_by( '-pub_date' )[ :5 ]
-    output =', '.join( [ q.question_text for q in latest_question_list ] )
-    return HttpResponse( output )
+latest_question_list =Question.objects.order_by( '-pub_date' )[ :5 ]
+output =', '.join( [ q.question_text for q in latest_question_list ] )
+return HttpResponse( output )
 {% endhighlight %}
 
-----------------------------
+---
 
 첫 번째 템플릿 작성하기.
 
@@ -346,6 +345,7 @@ def index( request ):
 {% highlight jinja %}
 {% raw %}
 {% if latest_question_list %}
+
   <ul>
   {% for question in latest_question_list %}
     <li><a href="/blog/{{ question.id }}/">{{ question.question_text }}</a></li>
@@ -363,25 +363,25 @@ def index( request ):
 from django.shortcuts import render
 
 def index( request ):
-    latest_question_list = Question.objects.order_by( '-pub_date' )[ :5 ]
-    context = { 'latest_question_list': latest_question_list }
-    return render( request, 'blog/index.html', context )
+latest_question_list = Question.objects.order_by( '-pub_date' )[ :5 ]
+context = { 'latest_question_list': latest_question_list }
+return render( request, 'blog/index.html', context )
 {% endhighlight %}
 
 {% raw %}
-`index.html`에서 기존의 html 코드와는 조금 다른 점이 보이는가?  `{{ }}`와 `{% %}`가 여기저기 보인다. 이것은 [Jinja](http://jinja.pocoo.org/)의 문법이다. [이 글]이 Jinja를 이용한 템플릿 만드는 데에 도움이 될 것이다. 저 중괄호로 싸인 부분은 종류에 따라 다음과 같이 이해하면 된다.
+`index.html`에서 기존의 html 코드와는 조금 다른 점이 보이는가? `{{ }}`와 `{% %}`가 여기저기 보인다. 이것은 [Jinja](http://jinja.pocoo.org/)의 문법이다. [이 글]이 Jinja를 이용한 템플릿 만드는 데에 도움이 될 것이다. 저 중괄호로 싸인 부분은 종류에 따라 다음과 같이 이해하면 된다.
 {% endraw %}
 
 {% raw %}
 구분자 | 설명
 ----------|------------
-`{% ... %}`  | Statements
+`{% ... %}` | Statements
 `{{ ... }}` | Expressions to print to the template output
-`{# ... #}` |  Comments not included in the template output
-`#  ... ##` | Line Statements
+`{# ... #}` | Comments not included in the template output
+`# ... ##` | Line Statements
 {% endraw %}
 
-----------------------------------
+---
 
 바로가기 사용하기 - `render`
 
@@ -393,16 +393,15 @@ from django.template import loader
 from .models import Question
 
 def index(request):
-    latest_question_list =Question.objects.order_by( '-pub_date' )[ :5 ]
-    template =loader.get_template( 'blog/index.html' )
-    context ={
-        'latest_question_list': latest_question_list,
-    }
-    return HttpResponse( template.render( context, request ) )
+latest_question_list =Question.objects.order_by( '-pub_date' )[ :5 ]
+template =loader.get_template( 'blog/index.html' )
+context ={
+'latest_question_list': latest_question_list,
+}
+return HttpResponse( template.render( context, request ) )
 {% endhighlight %}
 
-
-------------------------------------------
+---
 
 404에러 페이지 띄우기
 
@@ -419,9 +418,9 @@ from .models import Question
 
 def detail( request, question_id ):
 try:
-    question =Question.objects.get( pk =question_id )
+question =Question.objects.get( pk =question_id )
 except Question.DoesNotExist:
-    raise Http404( "Question does not exist" )
+raise Http404( "Question does not exist" )
 return render( request, 'blog/detail.html', { 'question': question } )
 {% endhighlight %}
 
@@ -432,11 +431,11 @@ from django.shortcuts import get_object_or_404, render
 from .models import Question
 
 def detail( request, question_id ):
-    question =get_object_or_404( Question, pk =question_id )
-    return render( request, 'blog/detail.html', { 'question': question } )
+question =get_object_or_404( Question, pk =question_id )
+return render( request, 'blog/detail.html', { 'question': question } )
 {% endhighlight %}
 
-------------------------------------------------
+---
 
 detail 뷰 템플릿 작성하기.
 
@@ -444,6 +443,7 @@ detail 뷰 템플릿 작성하기.
 
 {% highlight jinja %}
 {% raw %}
+
 <h1>{{ question.question_text }}</h1>
 <ul>
 {% for choice in question.choice_set.all %}
@@ -453,12 +453,13 @@ detail 뷰 템플릿 작성하기.
 {% endraw %}
 {% endhighlight %}
 
--------------------------------------------------------
+---
 
 템플릿의 `index.html`에는 아래와 같이 부분적으로 하드코딩된 a 태그가 있다. `/blog/`로 시작하는 하이퍼링크가 있을 것이다. 당장은 작동될지 모르나 하드코딩은 반드시 지양해야 할 개발 방식이다.
 
 {% highlight jinja %}
 {% raw %}
+
 <li><a href="/blog/{{ question.id }}/">{{ question.question_text }}</a></li>
 {% endraw %}
 {% endhighlight %}
@@ -467,11 +468,12 @@ detail 뷰 템플릿 작성하기.
 
 {% highlight jinja %}
 {% raw %}
+
 <li><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a></li>
 {% endraw %}
 {% endhighlight %}
 
---------------------------------------------------
+---
 
 앱에 고유한 네임스페이스 설정하기.
 
@@ -480,7 +482,7 @@ detail 뷰 템플릿 작성하기.
 {% highlight python %}
 app_name = 'blog'
 urlpatterns =[
-    (...)
+(...)
 ]
 {% endhighlight %}
 
@@ -490,11 +492,12 @@ urlpatterns =[
 
 {% highlight jinja %}
 {% raw %}
+
 <li><a href="{% url 'blog:detail' question.id %}">{{ question.question_text }}</a></li>
 {% endraw %}
 {% endhighlight %}
 
--------------------------------------------------
+---
 
 POST방식의 간단한 폼(from) 작성하기.
 
@@ -502,6 +505,7 @@ POST방식의 간단한 폼(from) 작성하기.
 
 {% highlight jinja %}
 {% raw %}
+
 <h1>{{ question.question_text }}</h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
@@ -517,7 +521,7 @@ POST방식의 간단한 폼(from) 작성하기.
 {% endraw %}
 {% endhighlight %}
 
-사실 몇 가지를 제외하면 Jinja를 잘 알지 못하더라도 아주 이해하지 못할 정도의 구문은 아니다. 모델의 question 인스턴스의 question_text 변수의 내용을 담은 문자열을 h1 태그가 포함하고 있을 것이고, 폼이 `POST`방식으로 웹 서버에 요청을 보냄을 알 수 있다. POST는 웹 서버에 http포로토콜을 이용하여 요청을 전달하는 방식인데, 이 둘의 차이를 한 문장으로 설명하자면 [*GET은 가져오는 것이고 POST는 수행하는 것이다*](https://blog.outsider.ne.kr/312) 로 표현할 수 있겠다.
+사실 몇 가지를 제외하면 Jinja를 잘 알지 못하더라도 아주 이해하지 못할 정도의 구문은 아니다. 모델의 question 인스턴스의 question_text 변수의 내용을 담은 문자열을 h1 태그가 포함하고 있을 것이고, 폼이 `POST`방식으로 웹 서버에 요청을 보냄을 알 수 있다. POST는 웹 서버에 http포로토콜을 이용하여 요청을 전달하는 방식인데, 이 둘의 차이를 한 문장으로 설명하자면 [_GET은 가져오는 것이고 POST는 수행하는 것이다_](https://blog.outsider.ne.kr/312) 로 표현할 수 있겠다.
 
 {% raw %}
 action에는 post 요청이 닿을 url이 되고, csrf_token은 사이트간 위조 요청을 방지하는 장고의 편리한 시스템이다. 이것은 그러니까 접속자가 이 사이트에 접속한 상태에서만 유효한 POST 요청을 할 수 있음을 의미한다. 자세한 내용은 [나무위키:CSRF](https://namu.wiki/w/CSRF)에서 참고하도록 하자. 당장은 모든 내부 URL들을 향하는 모든 POST 폼에 템플릿 태그 `{% csrf_token %}`를 사용하면 된다.
@@ -525,7 +529,7 @@ action에는 post 요청이 닿을 url이 되고, csrf_token은 사이트간 위
 
 `for.counter`는 루프가 매 회 반복된 횟수를 나타낸다.
 
----------------------------------
+---
 
 폼을 처리할 `vote()` 작성하기.
 
@@ -533,25 +537,21 @@ action에는 post 요청이 닿을 url이 되고, csrf_token은 사이트간 위
 
 {% highlight python %}
 def vote(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    try:
-        selected_choice =question.choice_set.get( pk =request.POST[ 'choice' ] )
-    except ( KeyError, Choice.DoesNotExist ):
-        # Redisplay the question voting form.
-        return render( request, 'blog/detail.html', {
-            'question': question,
-            'error_message': "You didn't select a choice.",
-        } )
-    else:
-        selected_choice.votes +=1
-        selected_choice.save()
-        # Always return an HttpResponseRedirect after successfully dealing
-        # with POST data. This prevents data from being posted twice if a
-        # user hits the Back button.
-        return HttpResponseRedirect( reverse( 'blog:results', args =( question.id, ) ) )
+question = get_object_or_404(Question, pk=question_id)
+try:
+selected_choice =question.choice_set.get( pk =request.POST[ 'choice' ] )
+except ( KeyError, Choice.DoesNotExist ): # Redisplay the question voting form.
+return render( request, 'blog/detail.html', {
+'question': question,
+'error_message': "You didn't select a choice.",
+} )
+else:
+selected_choice.votes +=1
+selected_choice.save() # Always return an HttpResponseRedirect after successfully dealing # with POST data. This prevents data from being posted twice if a # user hits the Back button.
+return HttpResponseRedirect( reverse( 'blog:results', args =( question.id, ) ) )
 {% endhighlight %}
 
-조금 길어졌지만 간략히 설명하면 이렇다. 제출submit된 값 중 choice라는 이름에 해당되는 값을 pk에 대입해 없으면 에러를 띄우고, 기존 질문 페이지로 돌아간다. 만약 해당 choice가 조회된다면, 그 인스턴스의  votes 값을 1 추가하여 DB에 저장save한다. 그리고 `HttpResponseRedirect`를 사용자에게 전송한다. post를 통해 서버의 데이터를 성공적으로 수정하였으면, `HttpResponse`가 아닌 `HttpResponseRedirect`를 보내주는 것이 일반적으로 권장된다. 여기서 `reverse()`는 뷰에서 url을 하드코딩하지 않도록 `blog/urls.py`를 참조해서 url을 만들어 보내준다. 이는 다시 results뷰를 보여주게 된다.
+조금 길어졌지만 간략히 설명하면 이렇다. 제출submit된 값 중 choice라는 이름에 해당되는 값을 pk에 대입해 없으면 에러를 띄우고, 기존 질문 페이지로 돌아간다. 만약 해당 choice가 조회된다면, 그 인스턴스의 votes 값을 1 추가하여 DB에 저장save한다. 그리고 `HttpResponseRedirect`를 사용자에게 전송한다. post를 통해 서버의 데이터를 성공적으로 수정하였으면, `HttpResponse`가 아닌 `HttpResponseRedirect`를 보내주는 것이 일반적으로 권장된다. 여기서 `reverse()`는 뷰에서 url을 하드코딩하지 않도록 `blog/urls.py`를 참조해서 url을 만들어 보내준다. 이는 다시 results뷰를 보여주게 된다.
 
 결과를 표시하는 `results`뷰를 작성하기
 
@@ -561,14 +561,15 @@ def vote(request, question_id):
 from django.shortcuts import get_object_or_404, render
 
 def results( request, question_id ):
-    question = get_object_or_404( Question, pk =question_id )
-    return render( request, 'blog/results.html', { 'question': question } )
+question = get_object_or_404( Question, pk =question_id )
+return render( request, 'blog/results.html', { 'question': question } )
 {% endhighlight %}
 
 이 뷰가 보여줄 템플릿인 `results.html`도 작성해야 한다. 다음과 같이 작성하자.
 
 {% highlight jinja %}
 {% raw %}
+
 <h1>{{ question.question_text }}</h1>
 
 <ul>
@@ -581,9 +582,9 @@ def results( request, question_id ):
 {% endraw %}
 {% endhighlight %}
 
------------------------------------------------
+---
 
-`F()`를 이용한 *경쟁 상태* 해결하기
+`F()`를 이용한 _경쟁 상태_ 해결하기
 
 이제 장고 개발서버를 실행하면, 선택된 항목에 해당하는 votes가 업데이트됨을 확인할 수 있다. 여기에는 약간의 문제가 있는데, 만약 복수의(N명의) 사용자가 정확히 같은 시간에 같은 항목에 투표했을 경우, N보다 적은 연산이 일어나 더 적은 votes 값으로 업데이트될 위험이 있다. 2명이 정확히 같은 시간에 같은 투표를 했는데, votes의 값이 2가 아니라 1이 올라갈 위험이 있는 것이다. 이를 *경쟁 상태*라 하는데, 이와 같은 문제를 방지하기 위해서 기존의 파이썬 코드를 활용하여 DB에서 값을 불러와 연산하여 저장하는 과정을 거치지 않고 SQL쿼리를 날려 DB를 직접 업데이트하는 방법을 사용할 수 있다. `from django.db.models import F`를 사용하는 것인데, 오타가 아니라 정말 F다.
 
@@ -620,18 +621,16 @@ reporter.update( stories_filed =F( 'stories_filed') +1 )
 from django.db.models import F
 
 try:
-    selected_choice =question.choice_set.filter( pk =request.POST[ 'choice' ] )
+selected_choice =question.choice_set.filter( pk =request.POST[ 'choice' ] )
 except (...) :
-  (...)
+(...)
 else :
-    selected_choice.update( votes =F('votes') +1 )
-    # selected_choice.votes +=1
-    # selected_choice.save()
+selected_choice.update( votes =F('votes') +1 ) # selected_choice.votes +=1 # selected_choice.save()
 {% endhighlight %}
 
 이제 *경쟁 상태*로 빠질 위험을 최소화할 수 있겠다. 파이썬이 DB의 값을 모르는 채로 DB에 쿼리를 날리는 방식으로 업데이트되기 때문이다. 폼이 제출될 때 마다 DB의 값을 메모리로 불러오지 않고 `F()`를 통해 작성된 SQL 쿼리가 update를 통해서 바로 DB를 업데이트하게 된다.
 
-----------------------------------
+---
 
 generic view 활용하여 기존 뷰 대체하기
 
@@ -643,26 +642,26 @@ from django.views import generic
 from .models import Choice, Question
 
 class IndexView( generic.ListView ):
-    template_name ='blog/index.html'
-    context_object_name ='latest_question_list'
+template_name ='blog/index.html'
+context_object_name ='latest_question_list'
 
     def get_queryset( self ):
         """Return the last five published questions."""
         return Question.objects.order_by( '-pub_date' )[ :5 ]
 
 class DetailView( generic.DetailView ):
-    model =Question
-    template_name ='blog/detail.html'
+model =Question
+template_name ='blog/detail.html'
 
 class ResultsView( generic.DetailView ):
-    model =Question
-    template_name ='blog/results.html'
+model =Question
+template_name ='blog/results.html'
 
 def vote( request, question_id ):
-    (...)
+(...)
 {% endhighlight %}
 
-위에서 사용한 세 가지 제너릭 뷰 이외에도 많다. 더 알고 싶다면 현재 프로젝트(_base)의 파이썬 쉘을 실행시키자. 별게 아니라, `python manage.py shell`이다. 그리고 다음과 같이 날려 보자
+위에서 사용한 세 가지 제너릭 뷰 이외에도 많다. 더 알고 싶다면 현재 프로젝트(\_base)의 파이썬 쉘을 실행시키자. 별게 아니라, `python manage.py shell`이다. 그리고 다음과 같이 날려 보자
 
     $ python manage.py shell
     >>> from django.views import generic
@@ -675,14 +674,14 @@ def vote( request, question_id ):
 
 {% highlight python %}
 urlpatterns =[
-    path( '', views.IndexView.as_view(), name ='index' ),
-    path( '<int:pk>/', views.DetailView.as_view(), name ='detail' ),
-    path( '<int:pk>/results/', views.ResultsView.as_view(), name ='results' ),
-    path( '<int:question_id>/vote/', views.vote, name ='vote' ),
+path( '', views.IndexView.as_view(), name ='index' ),
+path( '<int:pk>/', views.DetailView.as_view(), name ='detail' ),
+path( '<int:pk>/results/', views.ResultsView.as_view(), name ='results' ),
+path( '<int:question_id>/vote/', views.vote, name ='vote' ),
 ]
 {% endhighlight %}
 
-------------------------------------
+---
 
 마지막으로, 현재 blog앱은 *http://도메인/blog/*를 입력해야 접속할 수 있다. 뒤에 */blog/*를 붙이지 않고 도메인만 입력해도 blog앱으로 연결되게 하고 싶다면, 역시 제너릭 뷰의 리다이렉트를 이용하면 된다. `_base/urls.py`에 다음을 추가하자.
 
@@ -690,7 +689,7 @@ urlpatterns =[
 from django.views.generic import RedirectView
 
 urlpatterns += [
-    path( '', RedirectView.as_view( url ='/blog/' ) )
+path( '', RedirectView.as_view( url ='/blog/' ) )
 ]
 {% endhighlight %}
 

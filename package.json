@@ -1,7 +1,7 @@
 {
   "name": "log.dig.rockheung",
   "private": true,
-  "description": "Rockheung's blog built with Gatsby, written in javascript stuff",
+  "description": "Rockheung's blog built with Gatsby",
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {

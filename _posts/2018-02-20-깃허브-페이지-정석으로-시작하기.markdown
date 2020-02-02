@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "깃허브 페이지 (정석으로) 시작하기"
-date:   2018-02-20 07:31:45.802 +0900
+title: '깃허브 페이지 (정석으로) 시작하기'
+date: 2018-02-20 07:31:45.802 +0900
 categories: Guide
 tags: github-page jekyll
 ---
@@ -18,13 +18,13 @@ tags: github-page jekyll
 
 본인의 환경에서는 위의 패키지로 jekyll 까지 설치하는 데에 어려움이 없었지만 혹시 다른 에러가 난다면 구글링을 하여 보자.
 
-터미널에서 명령어만 날려서 새 repository를 만들 수도 있는 모양이지만, 아주 잠깐만 GUI의 혜택을 맛보자. github.com에서 [새 reposittry 만들기](https://github.com/new) 로 들어가서 $(yourname).github.io 의 이름으로 repository를 만들자.
+터미널에서 명령어만 날려서 새 repository를 만들 수도 있는 모양이지만, 아주 잠깐만 GUI의 혜택을 맛보자. github.com에서 [새 reposittry 만들기](https://github.com/new) 로 들어가서 \$(yourname).github.io 의 이름으로 repository를 만들자.
 
 다 끝났으면 해당 repo로 들어가서 웹 주소를 복사하거나 `Clone or download` 버튼을 눌러 주소를 복사한다. 해당 주소를 터미널에서 다음과 같이 입력한다.
 
     $ git clone https://github.com/$(Yourname)/$(yourname).github.io.git
 
-그럼 (위의 경우라면) $(yourname).github.io 이름으로 폴더가 생겼을 것이다. 해당 폴더로 이동해서 `jekyll new .`를 날리자.
+그럼 (위의 경우라면) \$(yourname).github.io 이름으로 폴더가 생겼을 것이다. 해당 폴더로 이동해서 `jekyll new .`를 날리자.
 
     $ cd $(yourname).github.io
     $ jekyll new .
@@ -48,7 +48,7 @@ tags: github-page jekyll
 
 Jekyll 에서는 [kramdown](https://kramdown.gettalong.org/syntax.html) 이라는, 마크다운의 상위호환? 격인 문법도 지원한다.
 
-----------------
+---
 
 깃허브 repo에 업로드될 정적 사이트를 실행해 보고자 `jekyll build`를 날렸더니 에러코드를 뿜뿜하는 것이 아닌가? 몇 가지 루비 패키지가 깔리지 않아 생기는 문제였다. 다음 명령어로 두 가지 패키지를 추가로 설치해 주자.
 

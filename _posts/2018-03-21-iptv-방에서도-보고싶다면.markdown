@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "IPTV를 방에서도 보고싶다면."
-date:   2018-03-21 10:24:34.369 +0900
+title: 'IPTV를 방에서도 보고싶다면.'
+date: 2018-03-21 10:24:34.369 +0900
 categories: Daily
 tags: tvheadend iptv
 ---

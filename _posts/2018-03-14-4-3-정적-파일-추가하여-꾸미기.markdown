@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "4-3. 정적 파일 핸들링 & 관리자 페이지 수정"
-date:   2018-03-14 10:46:11.897 +0900
+title: '4-3. 정적 파일 핸들링 & 관리자 페이지 수정'
+date: 2018-03-14 10:46:11.897 +0900
 categories: Study
 tags: django tutorial python
 ---
@@ -14,7 +14,7 @@ tags: django tutorial python
 
 {% highlight css %}
 li a {
-    color: green;
+color: green;
 }
 {% endhighlight %}
 
@@ -26,24 +26,22 @@ li a {
 <link rel="stylesheet" type="text/css" href="{% raw %}{% static blog/style.css %}{% endraw %}" />
 {% endhighlight %}
 
-
 `link`태그의 `{% raw %}{% static %}{% endraw %}` 는 정적 파일의 절대 경로를 생성해 준다.
-
 
 사진을 추가하고 싶은가? 간단하다. 이미지 파일을 `blog/static/blog/images`에 추가한 후 앞서 작성했던 `style.css`에 `body`태그의 배경을 정의하는 내용을 작성하자.
 
 {% highlight css %}
 body {
-    background: white url("images/background.gif") no-repeat;
+background: white url("images/background.gif") no-repeat;
 }
 {% endhighlight %}
 
-css에서 background 속성의 syntax는 `background: bg-color bg-image position/bg-size bg-repeat bg-origin bg-clip bg-attachment initial|inherit;`이다. 그러니까 순서대로 *흰색 바탕에 `background.gif`파일을
- 배경 이미지로 깔되 반복하진 말아* 라는 뜻이다. 혹시 다른 옵션이 궁금하면, html에 대한 모든 내용이 [w3schools.com](https://www.w3schools.com/)에 있다. 여기서부터는 장고의 범주를 넘어서는 내용이다. html과 css, 이미지 파일 등을 어떻게 작성하여 사이트에 집어넣는지에 대한 내용이기 때문이다. 여기서 더 얘기하는 것 보다 직접 인터넷에서 찾아보는 편이 빠를 것이다.
+css에서 background 속성의 syntax는 `background: bg-color bg-image position/bg-size bg-repeat bg-origin bg-clip bg-attachment initial|inherit;`이다. 그러니까 순서대로 _흰색 바탕에 `background.gif`파일을
+배경 이미지로 깔되 반복하진 말아_ 라는 뜻이다. 혹시 다른 옵션이 궁금하면, html에 대한 모든 내용이 [w3schools.com](https://www.w3schools.com/)에 있다. 여기서부터는 장고의 범주를 넘어서는 내용이다. html과 css, 이미지 파일 등을 어떻게 작성하여 사이트에 집어넣는지에 대한 내용이기 때문이다. 여기서 더 얘기하는 것 보다 직접 인터넷에서 찾아보는 편이 빠를 것이다.
 
 웹페이지에서 css와 html 부분은 사실 거의 오픈소스라고 해도 무방하다. 어느 사이트든 크롬의 관리자 도구`F12`를 이용하면 웹페이지 렌더링에 사용된 코드를 볼 수 있기 때문이다. 사실 본인의 블로그도 그런 식으로 몇 가지 예시를 뒤적뒤적하면서 장고의 템플릿에 css를 적용시킨 것이다. 맘에 드는 디자인의 사이트에서 코드를 들여다보기 시작하면, 전혀 어렵지 않을 것이다. 친절하게도 각 태그의 위치와 속성이 하이라이트 되니 지금 당장 이 페이지부터 `F12`를 눌러 보자. 물론 전혀 맘에 들지 않는 디자인이라면, 미안하다.
 
-----------------------------------------
+---
 
 ### 관리자 페이지를 튜닝해 보자.
 
@@ -55,7 +53,7 @@ css에서 background 속성의 syntax는 `background: bg-color bg-image position
 
 {% highlight python %}
 class QuestionAdmin(admin.ModelAdmin):
-    fields = ['pub_date', 'question_text']
+fields = ['pub_date', 'question_text']
 
 admin.site.register(Question, QuestionAdmin)
 {% endhighlight %}
@@ -66,10 +64,10 @@ admin.site.register(Question, QuestionAdmin)
 
 {% highlight python %}
 class QuestionAdmin(admin.ModelAdmin):
-    fieldsets = [
-        (None,               {'fields': ['question_text']}),
-        ('Date information', {'fields': ['pub_date']}),
-    ]
+fieldsets = [
+(None, {'fields': ['question_text']}),
+('Date information', {'fields': ['pub_date']}),
+]
 {% endhighlight %}
 
 fieldsets는 튜플의 리스트로 이루어져 있는데, 각 튜플의 첫 번째 인자는 각 set의 제목을 나타낸다. `None`는 그러니까 제목이 없는 set인 것이다.
@@ -78,54 +76,55 @@ fieldsets는 튜플의 리스트로 이루어져 있는데, 각 튜플의 첫 �
 
 {% highlight python %}
 class ChoiceInline(admin.StackedInline):
-    model = Choice
-    extra = 1
+model = Choice
+extra = 1
 
 class QuestionAdmin(admin.ModelAdmin):
-    fieldsets = [
-        (None,               {'fields': ['question_text']}),
-        ('Date information', {'fields': ['pub_date'], 'classes': ['collapse']}),
-    ]
-    inlines = [ChoiceInline]
+fieldsets = [
+(None, {'fields': ['question_text']}),
+('Date information', {'fields': ['pub_date'], 'classes': ['collapse']}),
+]
+inlines = [ChoiceInline]
 {% endhighlight python %}
 
 위의 내용을 `blog/admin.py`에 추가하면서, 이제 관리자 페이지의 Question에서 해당 Choice를 바로 편집할 수 있게 되었다. extra의 개수는 Choice가 없는 Question 에서도 추가할 수 있는 여분의 Choice 필드를 제공한다. 만약 이를 제거하면, 기본값인 3이 그대로 반영된다.
 
-잘 작동은 하는 것 같다. 하지만 하나의 Choice가 너무 많은 공간을 차지하는 느낌이 든다. 다른 것으로 바꿔보자. `ChoiceInline`클래스가 상속받고 있는 `admin.StackedInline`클래스를  `admin.TabularInline`로 바꾸면 된다. 좀 더 조밀하고 보기 좋아졌다.
+잘 작동은 하는 것 같다. 하지만 하나의 Choice가 너무 많은 공간을 차지하는 느낌이 든다. 다른 것으로 바꿔보자. `ChoiceInline`클래스가 상속받고 있는 `admin.StackedInline`클래스를 `admin.TabularInline`로 바꾸면 된다. 좀 더 조밀하고 보기 좋아졌다.
 
 필드의 모양을 정의하는 다른 옵션들이 궁금하다. 쉘에서 `from django.contrib import admin`를 날려보니 위에서 사용한 세 가지 옵션, `ModelAdmin`, `StackedInline`, `TabularInline`은 모두 `django.contrib.admin.options` 하위에 있었다. 같은 종류의 클래스를 찾아보니 다음이 있었다.
 
 {% highlight bash %}
-      BaseModelAdmin     | <class 'django.contrib.admin.options.BaseModelAdmin'>
+BaseModelAdmin | <class 'django.contrib.admin.options.BaseModelAdmin'>
 IncorrectLookupParameters| <class 'django.contrib.admin.options.IncorrectLookupParameters'>
-     InlineModelAdmin    | <class 'django.contrib.admin.options.InlineModelAdmin'>
-        ModelAdmin       | <class 'django.contrib.admin.options.ModelAdmin'>
-      StackedInline      | <class 'django.contrib.admin.options.StackedInline'>
-      TabularInline      | <class 'django.contrib.admin.options.TabularInline'>
+InlineModelAdmin | <class 'django.contrib.admin.options.InlineModelAdmin'>
+ModelAdmin | <class 'django.contrib.admin.options.ModelAdmin'>
+StackedInline | <class 'django.contrib.admin.options.StackedInline'>
+TabularInline | <class 'django.contrib.admin.options.TabularInline'>
 {% endhighlight %}
 
 바로 찾은 것은 아니고 본인이 파이썬의 모듈을 탐색할 때 사용하는 자작 툴을 이용하여 sublime 3로 가공한 결과다. 그러나 위에서 사용한 세 가지 옵션 이외에는 admin의 네임스페이스에 없어 앞에서 사용한 방식으로는 사용할 수 없는 듯 싶다. `__bases__` 속성을 이용하여 어떤 클래스의 차일드인지 알아봤다.
 
 {% highlight bash %}
->>> admin.ModelAdmin.__bases__
-(<class 'django.contrib.admin.options.BaseModelAdmin'>,)
->>> admin.StackedInline.__bases__
-(<class 'django.contrib.admin.options.InlineModelAdmin'>,)
->>> admin.TabularInline.__bases__
-(<class 'django.contrib.admin.options.InlineModelAdmin'>,)
-{% endhighlight %}
+
+> > > admin.ModelAdmin.**bases**
+> > > (<class 'django.contrib.admin.options.BaseModelAdmin'>,)
+> > > admin.StackedInline.**bases**
+> > > (<class 'django.contrib.admin.options.InlineModelAdmin'>,)
+> > > admin.TabularInline.**bases**
+> > > (<class 'django.contrib.admin.options.InlineModelAdmin'>,)
+> > > {% endhighlight %}
 
 `IncorrectLookupParamiters` 이외의 두 클래스는 부모 클래스였다. `help(options.IncorrectLookupParameters)`로 보니 이 클래스는 `builtins.Exceptin`클래스를 상속받고 있었다. 사용법에 대한 자세한 설명은 없었는데, 이름에서 추측컨대 찾으려는 필드가 DB에 없을 때 이를 예외처리하는 클래스인 모양이다.
 
 Question을 관리하는 페이지는 이제 괜찮아 보인다. 그렇다면 질문 목록을 수정할 수 있을까? 해당 질문에서 표시되는 문자열은 모델을 기억할지는 모르겠지만 `str()`로 표현되는 것이다. 때문에 `question_text`이 그대로 보인다. 만약 모델에서 `str()`메서드를 주석처리 한다면, 질문 목록은 `Question object (2)`와 같은 형식으로만 표현될 것이다.
 
-질문 목록을 테이블 형태로 표현해 보자.  다음처럼 수정하면 원하는 대로 보일 것이다.
+질문 목록을 테이블 형태로 표현해 보자. 다음처럼 수정하면 원하는 대로 보일 것이다.
 
 {% highlight python %}
-class QuestionAdmin(admin.ModelAdmin):
-    # ...
+class QuestionAdmin(admin.ModelAdmin): # ...
 
     list_display = ('question_text', 'pub_date', 'was_published_recently')
+
 {% endhighlight %}
 
 명료하다. 관리자 페이지에서 위 순서대로 정확히 표현된다.
@@ -133,8 +132,7 @@ class QuestionAdmin(admin.ModelAdmin):
 임의의 메서드인 `was_published_recently()`를 제외하고, 열의 머리글을 클릭하면 해당 필드의 종류에 맞춰 알맞게 정렬된다. 임의의 메서드는 아래와 같은 속성을 추가하여 좀 더 낫게 보이게 하자.
 
 {% highlight python %}
-class Question(models.Model):
-    # ...
+class Question(models.Model): # ...
 
     def was_published_recently(self):
         now = timezone.now()
@@ -142,6 +140,7 @@ class Question(models.Model):
     was_published_recently.admin_order_field = 'pub_date'
     was_published_recently.boolean = True
     was_published_recently.short_description = 'Published recently?'
+
 {% endhighlight %}
 
 이제 `was_published_recently()` 메서드는 pub_date에 맞춰 정렬되고, 열의 머리글 텍스트가 바뀌었다. 또한 단순히 True 또는 False만 표시되던 이전의 리스트에서 좀 더 쉽게 식별 가능한 형태로 바뀌었다.
@@ -149,17 +148,20 @@ class Question(models.Model):
 다음은 적용 가능한 다양한 다른 메서드이다.
 
 {% highlight python %}
+
 # 필터 목록이 표시되는데, QuestionAdmin 클래스에 추가하면 관리자 페이지에 해당 필드에 알맞는 필터 조건이 뜬다.
 
     list_filter = ['pub_date']
+
 # 관리자 페이지의 질문 목록에 검색창이 추가된다. 참조할 문자열 필드를 지정하면 된다.
 
     search_fields = ['question_text']
+
 {% endhighlight %}
 
 참고할 점은, 검색 기능은 내부적으로 `LIKE`쿼리를 사용한다.
 
----------------------------------------
+---
 
 ### 관리자 페이지의 탬플릿을 수정해 보자.
 
@@ -167,57 +169,57 @@ class Question(models.Model):
 
 {% highlight python %}
 TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            (...)
-        },
-    },
+{
+'BACKEND': 'django.template.backends.django.DjangoTemplates',
+'DIRS': [os.path.join(BASE_DIR, 'templates')],
+'APP_DIRS': True,
+'OPTIONS': {
+(...)
+},
+},
 ]
 {% endhighlight %}
 
-지금, 기존에 있던  `admin`앱의 탬플릿을 재정의하는 것이다. `templates/admin` 경로에 장고의 admin앱의 템플릿 코드를 복사하자. 어디있는지 모르겠다면 터미널에서 다음의 명령이 도움을 줄 것이다.
+지금, 기존에 있던 `admin`앱의 탬플릿을 재정의하는 것이다. `templates/admin` 경로에 장고의 admin앱의 템플릿 코드를 복사하자. 어디있는지 모르겠다면 터미널에서 다음의 명령이 도움을 줄 것이다.
 
 {% highlight bash %}
-$ python -c "import django; print(django.__path__)"
+\$ python -c "import django; print(django.**path**)"
 {% endhighlight %}
 
 물론, 가상환경을 사용하고 있다면 `workon`으로 먼저 파이썬 가상환경을 활성화시키자. 다음과 같은 형태면 잘 된 것이다.
 
 {% highlight bash %}
-$ ls -alhF
+\$ ls -alhF
 total 116K
 drwxrwxr-x 6 rockheung rockheung 4.0K Mar 14 22:13 ./
 drwxrwxr-x 3 rockheung rockheung 4.0K Mar 14 22:13 ../
--rw-rw-r-- 1 rockheung rockheung  268 Mar  2 17:53 404.html
--rw-rw-r-- 1 rockheung rockheung  527 Mar  2 17:53 500.html
--rw-rw-r-- 1 rockheung rockheung 1012 Mar  2 17:53 actions.html
--rw-rw-r-- 1 rockheung rockheung  385 Mar  2 17:53 app_index.html
-drwxrwxr-x 3 rockheung rockheung 4.0K Mar  2 17:53 auth/
--rw-rw-r-- 1 rockheung rockheung 3.6K Mar  2 17:53 base.html
--rw-rw-r-- 1 rockheung rockheung  316 Mar  2 17:53 base_site.html
--rw-rw-r-- 1 rockheung rockheung 3.3K Mar  2 17:53 change_form.html
--rw-rw-r-- 1 rockheung rockheung 3.2K Mar  2 17:53 change_list.html
--rw-rw-r-- 1 rockheung rockheung 1.6K Mar  2 17:53 change_list_results.html
--rw-rw-r-- 1 rockheung rockheung  372 Mar  2 17:53 date_hierarchy.html
--rw-rw-r-- 1 rockheung rockheung 2.4K Mar  2 17:53 delete_confirmation.html
--rw-rw-r-- 1 rockheung rockheung 2.3K Mar  2 17:53 delete_selected_confirmation.html
-drwxrwxr-x 2 rockheung rockheung 4.0K Mar  2 17:53 edit_inline/
--rw-rw-r-- 1 rockheung rockheung  330 Mar  2 17:53 filter.html
-drwxrwxr-x 2 rockheung rockheung 4.0K Mar  2 17:53 includes/
--rw-rw-r-- 1 rockheung rockheung 3.0K Mar  2 17:53 index.html
--rw-rw-r-- 1 rockheung rockheung  437 Mar  2 17:53 invalid_setup.html
--rw-rw-r-- 1 rockheung rockheung 1.9K Mar  2 17:53 login.html
--rw-rw-r-- 1 rockheung rockheung 1.5K Mar  2 17:53 object_history.html
--rw-rw-r-- 1 rockheung rockheung  554 Mar  2 17:53 pagination.html
--rw-rw-r-- 1 rockheung rockheung  358 Mar  2 17:53 popup_response.html
--rw-rw-r-- 1 rockheung rockheung  245 Mar  2 17:53 prepopulated_fields_js.html
--rw-rw-r-- 1 rockheung rockheung 1.4K Mar  2 17:53 related_widget_wrapper.html
--rw-rw-r-- 1 rockheung rockheung 1.1K Mar  2 17:53 search_form.html
--rw-rw-r-- 1 rockheung rockheung  790 Mar  2 17:53 submit_line.html
-drwxrwxr-x 2 rockheung rockheung 4.0K Mar  2 17:53 widgets/
+-rw-rw-r-- 1 rockheung rockheung 268 Mar 2 17:53 404.html
+-rw-rw-r-- 1 rockheung rockheung 527 Mar 2 17:53 500.html
+-rw-rw-r-- 1 rockheung rockheung 1012 Mar 2 17:53 actions.html
+-rw-rw-r-- 1 rockheung rockheung 385 Mar 2 17:53 app_index.html
+drwxrwxr-x 3 rockheung rockheung 4.0K Mar 2 17:53 auth/
+-rw-rw-r-- 1 rockheung rockheung 3.6K Mar 2 17:53 base.html
+-rw-rw-r-- 1 rockheung rockheung 316 Mar 2 17:53 base_site.html
+-rw-rw-r-- 1 rockheung rockheung 3.3K Mar 2 17:53 change_form.html
+-rw-rw-r-- 1 rockheung rockheung 3.2K Mar 2 17:53 change_list.html
+-rw-rw-r-- 1 rockheung rockheung 1.6K Mar 2 17:53 change_list_results.html
+-rw-rw-r-- 1 rockheung rockheung 372 Mar 2 17:53 date_hierarchy.html
+-rw-rw-r-- 1 rockheung rockheung 2.4K Mar 2 17:53 delete_confirmation.html
+-rw-rw-r-- 1 rockheung rockheung 2.3K Mar 2 17:53 delete_selected_confirmation.html
+drwxrwxr-x 2 rockheung rockheung 4.0K Mar 2 17:53 edit_inline/
+-rw-rw-r-- 1 rockheung rockheung 330 Mar 2 17:53 filter.html
+drwxrwxr-x 2 rockheung rockheung 4.0K Mar 2 17:53 includes/
+-rw-rw-r-- 1 rockheung rockheung 3.0K Mar 2 17:53 index.html
+-rw-rw-r-- 1 rockheung rockheung 437 Mar 2 17:53 invalid_setup.html
+-rw-rw-r-- 1 rockheung rockheung 1.9K Mar 2 17:53 login.html
+-rw-rw-r-- 1 rockheung rockheung 1.5K Mar 2 17:53 object_history.html
+-rw-rw-r-- 1 rockheung rockheung 554 Mar 2 17:53 pagination.html
+-rw-rw-r-- 1 rockheung rockheung 358 Mar 2 17:53 popup_response.html
+-rw-rw-r-- 1 rockheung rockheung 245 Mar 2 17:53 prepopulated_fields_js.html
+-rw-rw-r-- 1 rockheung rockheung 1.4K Mar 2 17:53 related_widget_wrapper.html
+-rw-rw-r-- 1 rockheung rockheung 1.1K Mar 2 17:53 search_form.html
+-rw-rw-r-- 1 rockheung rockheung 790 Mar 2 17:53 submit_line.html
+drwxrwxr-x 2 rockheung rockheung 4.0K Mar 2 17:53 widgets/
 {% endhighlight %}
 
 이제 `base_site.html`파일을 수정하여 관리자 페이지 제목을 수정해 보자. `{% raw %}{{site_header|default:_ ('Django administration' }}{% endraw %}`를 제목으로 사용하고 싶은 문자열로 수정한다. 깔끔하게 관리자 페이지의 제목이 바뀜을 확인할 수 있다. 이런 식으로 관리자 페이지의 어떤 부분이든 다시 정의할 수 있다. 장고는 `INSTALLED_APPS`의 앱을 정의된 순서대로 보여준다. 원한다면, admin앱의 첫 화면인 `index.html`을 수정해볼 수도 있을 것이다.

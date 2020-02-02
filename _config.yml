@@ -17,6 +17,8 @@ title: Dig.log
 # title_left    : "wanna.be."
 # title_right   : "coder" # default: ""
 
+profile_img: https://avatars0.githubusercontent.com/u/23536193?v=4
+
 # Customized filed
 # pronunciation: ˈwônə-bē-kōdər
 # tabs:
@@ -24,10 +26,14 @@ title: Dig.log
 
 # navbar pages
 navbar:
+  - slug : ''
+    title: Home
+  - slug : post
+    title: Post
   - slug : about
     title: About
-  - slug : blog
-    title: Blog
+  - slug : login
+    title: Login
 
 email: rockheung@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
