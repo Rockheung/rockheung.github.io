@@ -6,7 +6,9 @@ export default ({ children }) => {
 };
 
 const Layout = styled.div`
-  margin: 3rem auto;
+  background-color: white;
+  margin: 2rem auto;
   max-width: 800px;
-  padding: 0 1rem;
+  padding: 1rem;
+  box-shadow: -1rem 1rem cadetblue;
 `;

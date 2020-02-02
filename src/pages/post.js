@@ -7,7 +7,7 @@ export default () => {
     <Layout>
       <div>
         <h1></h1>
-        <div>Posts!</div>
+        <div></div>
       </div>
     </Layout>
   );
