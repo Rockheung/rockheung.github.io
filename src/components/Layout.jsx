@@ -21,4 +21,5 @@ const Main = styled.div`
   overflow-y: auto;
   padding: 1rem;
   transition: 0.2s;
+  -webkit-overflow-scrolling: touch;
 `;
