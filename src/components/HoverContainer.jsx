@@ -15,13 +15,13 @@ export default props => {
 
 const Container = styled.div`
   position: relative;
-  margin: 1rem auto;
-  left: 0rem;
-  top: 0rem;
-  max-width: 800px;
+  display: inline-block;
+  left: 50%;
+  top: 1rem;
+  transform: translateX(-50%);
   :hover {
-    left: ${SHADOW_DEPTH}rem;
-    top: -${SHADOW_DEPTH}rem;
+    left: calc(50% + ${SHADOW_DEPTH}rem);
+    top: calc(1rem - ${SHADOW_DEPTH}rem);
     > div:first-of-type {
       width: ${SHADOW_DEPTH}rem;
       left: -${SHADOW_DEPTH}rem;
@@ -47,7 +47,7 @@ const ShadowBottom = styled.div`
   background-color: #4c7e80;
   position: absolute;
   height: 0rem;
-  width: 800px;
+  width: 100%;
   bottom: 0rem;
   transform: skewX(-45deg);
   transform-origin: 50% 0%;

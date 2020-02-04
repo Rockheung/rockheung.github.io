@@ -5,14 +5,18 @@ import HoverContainer from './HoverContainer';
 
 export default ({ children }) => {
   return (
-    <>
+    <div>
       <MenuBar />
       <HoverContainer>
         <Main>{children}</Main>
       </HoverContainer>
-    </>
+    </div>
   );
 };
+
+const Layout = styled.div`
+  display: inline-block;
+`;
 
 const Main = styled.div`
   background-color: white;

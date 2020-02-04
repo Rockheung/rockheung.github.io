@@ -1,18 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styled from '@emotion/styled';
 import { StaticQuery, graphql, Link } from 'gatsby';
 
 export default () => {
-  return <Shovel />;
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(false);
+    // setTimeout(() => setLoading(false), 500);
+    return () => setLoading(true);
+  }, []);
+
+  return <Shovel digging={loading} />;
 };
 
 const Shovel = styled.div`
   float: left;
-  padding: 1rem;
-  height: 2rem;
-  width: 2rem;
-  margin: 0rem 1rem;
-  line-height: 2rem;
-  background: url(./icons/shovel.svg) no-repeat center;
-  transform: rotate(45deg);
+  position: relative;
+  overflow: hidden;
+  transform: rotate(0deg);
+  width: 4rem;
+  height: 4rem;
+  ::before {
+    content: '';
+    position: absolute;
+    height: 4rem;
+    width: 4rem;
+    background: url(./icons/shovel.svg) 0 0 no-repeat;
+    transform: rotate(${props => (props.digging ? 5 : -5) + 45}deg);
+    z-index: -1;
+    transition: 1s;
+  }
 `;

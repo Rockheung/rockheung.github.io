@@ -20,7 +20,9 @@ export default props => {
       `}
       render={data => (
         <MenuBar>
-          <Shovel />
+          <Link to={''}>
+            <Shovel />
+          </Link>
           {data.site.siteMetadata.navbar.map((item, idx, menuArray) => {
             return (
               <MenuItem key={idx} isRight={idx === menuArray.length - 1}>
@@ -37,6 +39,7 @@ export default props => {
 const MenuBar = styled.div`
   background-color: white;
   height: 4rem;
+  padding: 0.6rem;
   :after {
     clear: both;
     display: block;
