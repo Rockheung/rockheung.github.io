@@ -8,9 +8,12 @@ export default () => {
 
   useEffect(() => {
     setLoading(false);
-    // setTimeout(() => setLoading(false), 500);
     return () => setLoading(true);
   }, []);
+
+  if (loading) {
+    return <Shovel ref={shovelRef} digging={loading} />;
+  }
 
   return <Shovel ref={shovelRef} digging={loading} />;
 };
@@ -27,13 +30,15 @@ const Shovel = styled.div`
     position: absolute;
     height: 4rem;
     width: 4rem;
-    background: url(./icons/shovel.svg) 0 0 no-repeat;
+    background: url(/icons/shovel.svg) 0 0 no-repeat;
     transform: translate(0.2rem, 0rem) rotate(26.565deg);
     z-index: -1;
-    transition: 1s;
-    animation-duration: 1s;
+    ${props =>
+      props.digging
+        ? `
+    animation-duration: 0.4s;
     animation-name: digging-shovel;
-    animation-iteration-count: infinite;
-    animation-play-state: 'running'};
+    animation-iteration-count: infinite;`
+        : ''};
   }
 `;

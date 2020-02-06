@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-const SHADOW_DEPTH = 0.4; // 0.5rem
+const SHADOW_DEPTH = 0.5; // 0.5rem
 
 export default props => {
   return (
@@ -19,6 +19,7 @@ const Container = styled.div`
   left: 50%;
   top: 1rem;
   transform: translateX(-50%);
+  transition: 0.3s;
   :hover {
     left: calc(50% + ${SHADOW_DEPTH}rem);
     top: calc(1rem - ${SHADOW_DEPTH}rem);
@@ -31,12 +32,15 @@ const Container = styled.div`
       bottom: -${SHADOW_DEPTH}rem;
     }
   }
+  > * {
+    transition: 0.3s;
+  }
 `;
 
 const ShadowLeft = styled.div`
   background-color: cadetblue;
   position: absolute;
-  height: calc(100vh - 6rem);
+  height: calc(100vh - 7rem);
   width: 0rem;
   left: 0rem;
   transform: skewY(-45deg);

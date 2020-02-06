@@ -20,10 +20,10 @@ const Layout = styled.div`
 
 const Main = styled.div`
   background-color: white;
-  height: calc(100vh - 8rem);
+  height: calc(100vh - 9rem);
   width: calc(800px - 2rem);
+  max-width: calc(100vw - 2rem);
   overflow-y: auto;
   padding: 1rem;
-  transition: 0.2s;
   -webkit-overflow-scrolling: touch;
 `;

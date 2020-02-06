@@ -10,18 +10,21 @@ body > div#___gatsby, div#gatsby-focus-wrapper {
   overflow: hidden;
 }
 
-* {
-  transition: 0.3s;
-}
 
 @keyframes digging-shovel {
   25% {
-    transform: translate(0.1rem, -0.2rem) rotate(26.565deg);
+    transform: translate(0.3rem, -0.2rem) rotate(26.565deg);
   }
   50% {
-    transform: translate(-0.1rem, 0.2rem) rotate(26.565deg);
+    transform: translate(0.1rem, 0.2rem) rotate(26.565deg);
   }
   75% {
-    transform: translate(-0.7rem, -0.1rem) rotate(60deg);
+    transform: translate(-0.5rem, -0.1rem) rotate(75deg);
+  }
+}
+
+@media screen and (max-width: 880px) {
+  html {
+    font-size: 12px;
   }
 }
