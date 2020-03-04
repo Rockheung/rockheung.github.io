@@ -1,11 +1,11 @@
 body {
-  background-color: whitesmoke;
+  background-color: rgba(15,76,129, 0.10);
   margin: 0rem;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 body > div#___gatsby, div#gatsby-focus-wrapper {
-  height: 100vh;
+  /* height: 100vh; */
   margin: 0;
   overflow: hidden;
 }

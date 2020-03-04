@@ -40,7 +40,7 @@ const Container = styled.div`
 const ShadowLeft = styled.div`
   background-color: cadetblue;
   position: absolute;
-  height: calc(100vh - 7rem);
+  height: 100%;
   width: 0rem;
   left: 0rem;
   transform: skewY(-45deg);

@@ -37,9 +37,14 @@ export default props => {
 };
 
 const MenuBar = styled.div`
-  background-color: white;
   height: 4rem;
+  margin: 1rem;
   padding: 0.6rem;
+  border-radius: 0.7rem;
+  box-shadow: -0.1rem -0.1rem 0.4rem 0.01rem rgba(255, 255, 255, 0.8),
+    -0.5rem -0.5rem 1rem 0.1rem rgba(255, 255, 255, 0.5),
+    0.1rem 0.1rem 0.4rem 0.01rem rgba(15, 76, 129, 0.2),
+    0.5rem 0.5rem 1rem 0.1rem rgba(15, 76, 129, 0.1);
   :after {
     clear: both;
     display: block;
