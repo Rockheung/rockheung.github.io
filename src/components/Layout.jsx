@@ -29,10 +29,7 @@ const Main = styled.div`
     0.1rem 0.1rem 0.4rem 0.01rem rgba(15, 76, 129, 0.2),
     0.5rem 0.5rem 1rem 0.1rem rgba(15, 76, 129, 0.1);
   padding: 1rem;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 3rem auto;
 `;
 
 const InnerMain = styled.div`
