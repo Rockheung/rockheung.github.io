@@ -1,9 +1,0 @@
-I"�<hr />
-<p>layout: post
-title: ‘이전 커밋에 담긴 파일을 완전히 지우고 싶을때’
-date: 2019-05-29 00:00:00.123 +0900
-author: Rockheung
-tags: git tip remove file history
-categories: Study
-—물론 git 자체 툴에도 같은 일을 할 수 있는 방법이 있으나, 이 툴을 사용하는 것이 훨씬 빠르다고 한다. 나는 200개의 커밋동안 자리를 굳건히 지켜온 <code class="language-plaintext highlighter-rouge">node_modules</code>를 지우는 데에 사용했다. 지우기 전에는 <code class="language-plaintext highlighter-rouge">git clone</code>으로 받으면 100M에 육박했으나, 사용하지도 않는 pipenv 관련 파이썬 폴더와 <code class="language-plaintext highlighter-rouge">.DS_Store</code>, <code class="language-plaintext highlighter-rouge">node_modules</code>를 지워서 최종적으로 10M 정도로 줄일 수 있었다. 커밋의 이력을 타고 올라가다보니 첫 커밋부터 있었던 것들이었다.</p>
-:ET

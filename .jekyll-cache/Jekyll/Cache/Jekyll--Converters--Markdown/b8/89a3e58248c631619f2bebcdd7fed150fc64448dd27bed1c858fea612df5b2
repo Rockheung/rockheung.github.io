@@ -1,9 +1,0 @@
-I"J<hr />
-<p>layout: post
-title: ‘캔버스 위에서의 한달(2)’
-date: 2019-05-08 00:00:00.123 +0900
-author: Rockheung
-tags: codestates javascript bootcamp canvas
-categories: Daily
-—… 중간에 작은 위기가 있었는데, 바로 컴포넌트가 업데이트할 때마다 화면의 유닛이 깜박이는 현상이 발생한 거였다. 캔버스에 이미지를 그리는 함수가 어떤 식으로 작동할지 유심히 고민하지 않은 결과였다. 맨 처음에는, 리액트와 캔버스의 어떤 아직 내가 알지 못하는 불협화음이 아닌가 했다.</p>
-:ET
