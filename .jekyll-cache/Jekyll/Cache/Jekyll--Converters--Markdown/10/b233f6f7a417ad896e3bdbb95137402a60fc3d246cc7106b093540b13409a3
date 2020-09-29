@@ -1,0 +1,58 @@
+I"�<p><em>안녕하세요, 매일프로그래밍 이번주 문제입니다.</em></p>
+
+<p><em>주어진 string 에 모든 단어를 거꾸로 하시오.</em></p>
+
+<p><em>Reverse all the words in the given string.</em></p>
+
+<!--more-->
+
+<p><em>예제)</em></p>
+
+<p><em>Input: “abc 123 apple”</em></p>
+
+<p><em>Output: “cba 321 elppa”</em></p>
+
+<p><em>풀이를 보고 싶으시다면 <a href="http://url6080.mailprogramming.com/wf/click?upn=5YNwhcR4-2FFhQA54IFFE-2FIijGnZEwyyYieIxIap6l3O8VD7TP37Xl49W2TG8pxTYN9GZvVN9h3djM-2BqQ9dS0uR3spXmCgmyqqjr66mlKYtDc4I953MudVQ3kZ8d1cquEEA2Q99-2B-2FP9d5XlhO-2FSXl-2FmlhdRP-2BR0qEMX-2FpRPwGNzgOc7yrdqODV7Rnn-2BoirTsRc_Zgoc2ijnN3jtNTS7ITLZKrJdLqoKRo6qqLK1adFq7tcBbnn8kJrbQrVy56dQcnoolWNzBDP3hNZit1UFP6AdVb936LspnLwqPKrdp-2BCO7RC4HEpVz9ibRBylaZXRE4VWxB0za00p5ZjOcGaIAXmnB9f8PmC0cHBNMr5AKC-2BIen1RvYkXZB7qbOYBCKepX-2Byw34-2BZsQckA6kbOdwsxdxYRQZ0rXD7dV4CCweroSgpctTlt67LeQRkKpMN1XWQiuSG">풀이보기</a>를 눌러주세요.</em></p>
+
+<!--more-->
+
+<p>어렵지 않게 작성했다. 입력한 문자열을 잘라서, 각각의 단어를 역순으로 배치한 다음, 다시 출력했다.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">revrse</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+<span class="n">splited_string</span> <span class="o">=</span> <span class="n">string</span><span class="p">.</span><span class="n">split</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">splited_string</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">char</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">word</span><span class="p">)):</span>
+<span class="n">st</span> <span class="o">+=</span> <span class="nb">list</span><span class="p">(</span><span class="n">word</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="p">]</span>
+<span class="n">splited_string</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">word</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">):</span><span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)]</span>
+
+    <span class="n">reversed_string</span> <span class="o">=</span> <span class="s">''</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">splited_string</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">word</span> <span class="o">==</span> <span class="n">splited_string</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">reversed_string</span> <span class="o">+=</span> <span class="n">word</span>
+            <span class="k">break</span>
+        <span class="n">reversed_string</span> <span class="o">+=</span> <span class="n">word</span> <span class="o">+</span> <span class="s">' '</span>
+
+    <span class="k">return</span> <span class="n">reversed_string</span></code></pre></figure>
+
+<p>이번 풀이에는 어떤 혁신적인 알고리즘이 있을까?</p>
+
+<p>…별 게 없었다. 인터뷰 중에는 각 언어에 포함된 reverse()나 split()와 같은 종류의 내장 메서드는 사용할 수 없는 경우에 대비하여, 해당 기능을 하는 함수를 직접 만들어 작성한 풀이였다.</p>
+
+<p>그렇다면 나와 같은 경우는.. split() 메서드를 직접 만들면 되겠다. 앞으로는 enumerate()와 같은 메서드도 별도의 변수로 대체해서 구현해야겠다. 그러면 list()는…? 파이썬 기본 자료형 중 하나이니 사용금지당하지는 않지 않을까?…</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">splitSpace</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">split_space</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">a_word</span> <span class="o">=</span> <span class="s">''</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">string</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">j</span> <span class="o">!=</span> <span class="s">' '</span><span class="p">:</span>
+<span class="n">a_word</span> <span class="o">+=</span> <span class="n">j</span>
+<span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+<span class="n">split_space</span> <span class="o">+=</span> <span class="p">[</span><span class="n">a_word</span><span class="p">]</span>
+<span class="k">else</span> <span class="p">:</span>
+<span class="n">split_space</span> <span class="o">+=</span> <span class="p">[</span><span class="n">a_word</span><span class="p">]</span>
+<span class="n">a_word</span> <span class="o">=</span> <span class="s">''</span>
+<span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="k">return</span> <span class="n">split_space</span></code></pre></figure>
+
+:ET

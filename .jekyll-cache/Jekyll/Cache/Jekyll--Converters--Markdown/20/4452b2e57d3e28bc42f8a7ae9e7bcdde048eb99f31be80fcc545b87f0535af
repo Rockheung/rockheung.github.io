@@ -1,0 +1,45 @@
+I"<hr />
+<p>layout: post
+title: ‘자바스크립트: <strong>proto</strong>, constructor, prototype’
+date: 2019-02-18 00:00:00.123 +0900
+author: Rockheung
+tags: codestates javascript bootcamp
+categories: Study
+—자바스크립트에서 함수를 정의하는 <code class="language-plaintext highlighter-rouge">function</code>키워드는 조금 특별하다. 단순히 함수를 정의할 뿐만 아니라, 객체의 원형(prototype)을 정의하여 그러한 객체를 만들어낼 수 있다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Foo</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">bar</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">whoami</span><span class="dl">'</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Foo</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">foo</span><span class="p">.</span><span class="nx">bar</span><span class="p">);</span> <span class="c1">//-&gt; whoami</span>
+</code></pre></div></div>
+
+<p>이러한 방식을 <em>pseudoclassical</em>라 부르는데, 일반적으로 가장 많이 사용된다. 객체를 만들어내는 패턴을 <strong>Instantiation Styles</strong>라 지칭하고 크게 다음 네 가지로 구분한다고 한다. <em>Functional instantiation</em>, <em>Functional instantiation with shared methods</em>, <em>Prototypal instantiation</em></p>
+
+<p>위에서는 가장 일반적인 방식인 <em>Pseudoclassical instantiation</em>스타일로 new키워드를 통해 만들어냈다. 다음 속성을 크롬 콘솔을 통해 각 객체에서 찾아보았다.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">__proto__</code></li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">foo</span><span class="p">.</span><span class="kd">constructor</span>
+<span class="nx">ƒ</span> <span class="nx">Foo</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">bar</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">whoami</span><span class="dl">"</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>constructor</p>
+  </li>
+  <li>
+    <p>prototype</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
+</blockquote>
+:ET

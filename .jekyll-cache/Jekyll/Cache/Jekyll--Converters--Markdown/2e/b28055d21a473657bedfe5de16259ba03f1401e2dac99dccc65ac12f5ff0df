@@ -1,0 +1,91 @@
+I">#<hr />
+<p>layout: post
+title: ‘webpack 걸음마’
+date: 2019-02-28 00:00:00.123 +0900
+author: Rockheung
+tags: codestates javascript bootcamp webpack
+categories: Study
+—웹팩을 <em>그런게 있구나</em> 정도로만 여기다가 이번에 어떤 방식으로 돌아가는지 직접 공식사이트의 튜토리얼을 따라가 보았다.</p>
+
+<p>일단 다음과 같은 파일구조가 웹팩이 적용되지 않은 순수한 형태의 패턴이다. <code class="language-plaintext highlighter-rouge">index.html</code>의 헤드에 lodash 라이브러리를 cdn의 링크에서 받아와 <code class="language-plaintext highlighter-rouge">index.js</code>에서 사용하는 형태이다. 갑자기 <code class="language-plaintext highlighter-rouge">_.join()</code>가 등장하고 있다.</p>
+
+<!--more-->
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Getting Started<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://unpkg.com/lodash@4.16.6"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"./src/index.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">component</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">div</span><span class="dl">'</span><span class="p">);</span>
+  <span class="nx">element</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">join</span><span class="p">([</span><span class="dl">'</span><span class="s1">Hello</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">webpack</span><span class="dl">'</span><span class="p">],</span> <span class="dl">'</span><span class="s1"> </span><span class="dl">'</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">element</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">component</span><span class="p">());</span>
+</code></pre></div></div>
+
+<p>이제 다음과 같은 명령을 주어 node 패키지를 사용하도록 하고 webpack을 적용해 보자.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># package.json을 만들어준다</span>
+npm init
+<span class="c"># package.json의 devDependencies 부분에 webpack이 추가된다</span>
+npm <span class="nb">install</span> <span class="nt">--dev-save</span> webpack webpack-cli
+<span class="c"># package.json의 dependencies 부분에 lodash가 추가된다</span>
+npm <span class="nb">install</span> <span class="nt">--save</span> lodash
+</code></pre></div></div>
+
+<p>그리고 index.js 파일에서 방금 설치한 lodash를 임포트한다. 이제 <code class="language-plaintext highlighter-rouge">_</code>가 대체 어디서 튀어나왔는지 바로 알 수 있다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">_</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">lodash</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">component</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">div</span><span class="dl">'</span><span class="p">);</span>
+  <span class="nx">element</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">join</span><span class="p">([</span><span class="dl">'</span><span class="s1">Hello</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">webpack</span><span class="dl">'</span><span class="p">],</span> <span class="dl">'</span><span class="s1"> </span><span class="dl">'</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">element</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">component</span><span class="p">());</span>
+</code></pre></div></div>
+
+<p>이제 <code class="language-plaintext highlighter-rouge">npx webpack</code>을 실행하면 dist 폴더에 main.js 파일이 생길 것이다. <code class="language-plaintext highlighter-rouge">./dist/main.js</code>경로가 디폴트임을 알 수 있다. 이 설정을 이제 바꾸자 하면, webpack.config.js 파일을 다음과 같이 작성해 주면 된다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">path</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">entry</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./src/index.js</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">output</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">filename</span><span class="p">:</span> <span class="dl">'</span><span class="s1">bundle.js</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">path</span><span class="p">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="dl">'</span><span class="s1">dist</span><span class="dl">'</span><span class="p">),</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>이제 <code class="language-plaintext highlighter-rouge">npx webpack --config webpack.config.js</code>를 터미널에서 실행해 주면 예상한 대로 <code class="language-plaintext highlighter-rouge">./dist/bundle.js</code>에 만들어짐을 알 수 있다. 사실 파일명을 명시하지 않아도 기본 파일명이 <code class="language-plaintext highlighter-rouge">webpack.config.js</code>이다.</p>
+
+<p>이 파일을 이제 index.html에서 임포트해 주면 된다. 물론 기존의 라이브러리 로드하는 스크립트는 날려주고 다음과 같도록 한다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Getting Started<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"./dist/bundle.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p>브라우저로 열어보면 기존대로 hello webpack을 잘 띄워줌을 알 수 있다.</p>
+
+<p>위 과정을 ‘npm run build 등과’같은 좀더 간단한 명려어로 띄워주려면, package.json 의 scripts에 키값으로 사용할 키워드를, 그의 값으로 실행할 명령을 넣어주면 이제 단순히 <code class="language-plaintext highlighter-rouge">npm run build</code>만 쳐주면 간단히 bundle.js가 빌드된다.</p>
+
+<blockquote>
+  <p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
+</blockquote>
+:ET

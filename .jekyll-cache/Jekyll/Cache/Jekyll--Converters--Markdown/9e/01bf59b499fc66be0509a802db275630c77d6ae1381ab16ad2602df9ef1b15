@@ -1,0 +1,56 @@
+I"v<hr />
+<p>layout: post
+title: ‘웹 사용자 인증 방법’
+date: 2019-05-20 00:00:00.123 +0900
+author: Rockheung
+tags: authentication javascript web
+categories: Study
+—## 웹 사용자 인증 방법</p>
+
+<h3 id="사용자-인증을-위한-best-practice를-찾아보았다">사용자 인증을 위한 best practice를 찾아보았다</h3>
+
+<blockquote>
+  <p>MDN: HTTP authentication: 일반적인 HTTP 인증 프레임워크</p>
+</blockquote>
+
+<p><img src="https://mdn.mozillademos.org/files/14689/HTTPAuth.png" alt="" />
+@Node.js</p>
+
+<ol>
+  <li>클라이언트는 서버에 페이지를 요청한다.</li>
+</ol>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">window</span><span class="p">.</span><span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">GET</span><span class="dl">'</span> <span class="p">});</span>
+</code></pre></div></div>
+
+<ol>
+  <li>만약 그 페이지가 권한이 필요하다면, 서버는 401응답 코드와 함께 인증할 수 있는 방법을 제시한다. type은 <a href="https://developer.mozilla.org/ko/docs/Web/HTTP/Authentication#%EC%9D%B8%EC%A6%9D_%EC%8A%A4%ED%82%B4">MDN: HTTP authentication: 인증 스킴</a>을 참고</li>
+</ol>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">401</span><span class="p">,</span> <span class="p">{</span> <span class="nx">WWW</span><span class="o">-</span><span class="na">Authenticate</span><span class="p">:</span> <span class="cm">/* &lt;type&gt; realm=&lt;realm&gt; */</span><span class="p">}</span> <span class="p">)</span>
+<span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">()</span>
+</code></pre></div></div>
+
+<ol>
+  <li>클라이언트는 제시된 방법대로 본인을 인증하는 정보를 헤더에 담아 서버로 전송한다</li>
+</ol>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">headers</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Header</span><span class="p">();</span>
+<span class="nx">headers</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span> <span class="cm">/* &lt;type&gt; &lt;credentials&gt; */</span><span class="p">);</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">GET</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span><span class="p">,</span> <span class="c1">// or just{ Authorization: /* &lt;type&gt; &lt;credentials&gt; */ }</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<ol>
+  <li>서버는 클라이언트의 인증 정보의 유효성을 판단하여 200(OK) 혹은 403(Forbidden) 상태코드의 응답을 보낸다</li>
+</ol>
+
+<p>그렇지만 이는 표준이고, 실은 다양하게 인증 방법을 디자인할 수 있는데, JWT와 Outh2.0이 그것이다.
+추가내용 =&gt; <a href="https://tansfil.tistory.com/59">https://tansfil.tistory.com/59</a></p>
+
+<blockquote>
+  <p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
+</blockquote>
+:ET

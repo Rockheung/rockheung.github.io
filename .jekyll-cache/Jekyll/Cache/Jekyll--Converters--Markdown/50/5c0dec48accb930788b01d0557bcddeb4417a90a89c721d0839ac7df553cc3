@@ -1,0 +1,26 @@
+I"h	<p>사용된 칩들의 제원은 대략 다음과 같은 걸로 확인되었다.</p>
+
+<p>CPU: hi3520d - <a href="http://highsi.net/UploadFiles/Files/2017/9/20170910101014242.pdf">Datasheet for V300</a></p>
+
+<p>방열판이 찰싹 달라붙어 있어 v100 / v200 / v300 어느건지 모른다. 제품이 기가랜을 지원하는 것으로 보아 V300일 가능성이 있다.</p>
+
+<p>RAM: SKhynix ddr3 sdram 256MB = <a href="https://www.skhynix.com/products.view.do?vseq=1639&amp;cseq=74">Datasheet: H5TQ2G63GFR-RDC</a></p>
+
+<p>ROM: MXIC MX25L25635F - <a href="http://www.macronix.com/Lists/Datasheet/Attachments/6729/MX25L25635F,%203V,%20256Mb,%20v1.5.pdf">Datasheet</a></p>
+
+<p>MUX: Toshiba <a href="https://toshiba.semicon-storage.com/info/docget.jsp?did=37240&amp;prodName=74HC157D">Datasheet</a></p>
+
+<!--more-->
+
+<h3 id="etcinitdrcs"><code class="language-plaintext highlighter-rouge">/etc/init.d/rcS</code></h3>
+
+<p>부팅을 시작하면 <code class="language-plaintext highlighter-rouge">/etc/init.d/rcS</code>에서 <code class="language-plaintext highlighter-rouge">/etc/init.d/S$$*</code> 파일들이 실행된다. 이후 <code class="language-plaintext highlighter-rouge">/box/load</code> 스크립트가 실행된다.</p>
+
+<h3 id="boxload"><code class="language-plaintext highlighter-rouge">/box/load</code></h3>
+
+<p>여기서는 맥 주소 및 정적 IP를 eth0에 할당한 후, <code class="language-plaintext highlighter-rouge">/dev/ramfs</code>를 <code class="language-plaintext highlighter-rouge">/tmp</code>에 마운트한다. 그리고 <code class="language-plaintext highlighter-rouge">/box/up.rar</code> 파일이 있으면 이를 <code class="language-plaintext highlighter-rouge">obj.rar</code>로 이름을 바꾼다. 그리고 <code class="language-plaintext highlighter-rouge">obj.rar</code>을 <code class="language-plaintext highlighter-rouge">/tmp</code>에 압축 해제한다. 이 과정이 매 부팅할 때 마다 반복되는 듯하다. 펌웨어 업데이트가 이런 식으로 이루어지는 모양이다. 이후 <code class="language-plaintext highlighter-rouge">/tmp/run</code> 스크립트가 실행된다.</p>
+
+<h3 id="tmprun"><code class="language-plaintext highlighter-rouge">/tmp/run</code></h3>
+
+<p>hi3520D 칩에 대한 본격적인 세팅에 들어간다. 다양한 GPIO에 1 또는 0을 할당한다. 참고할 만한 문서를 아직 못 찾았다.</p>
+:ET

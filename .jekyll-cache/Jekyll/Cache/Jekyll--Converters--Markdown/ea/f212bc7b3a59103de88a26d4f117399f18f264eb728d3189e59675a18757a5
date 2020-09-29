@@ -1,0 +1,12 @@
+I"n<p>전반적인 개선 방향은 아래와 같이 잡았다:</p>
+
+<ol>
+  <li>API flow 파악: 어떤 api에 요청을 해서 무엇을 db에서 가져오는지 백로직 파악</li>
+  <li>jQuery 걷어내기: 전반적으로 전체 앱에 마치 X처럼 발라져 있다. 그간 보였던 이상한 현상(특정 돔이 보였다가 안보였다가 하는 일관적이지 않은 동작 등)의 원인인 듯 싶다.</li>
+  <li>이후 중단된 패키지 업그레이드, 필요없는 패키지 의존성 최소화</li>
+</ol>
+
+<blockquote>
+  <p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
+</blockquote>
+:ET

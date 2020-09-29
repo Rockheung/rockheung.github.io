@@ -1,0 +1,34 @@
+I"�<hr />
+<p>layout: post
+title: ‘Deploy: 배포할 때 고려해야 할 것들’
+date: 2019-03-13 00:00:00.123 +0900
+author: Rockheung
+tags: codestates javascript bootcamp deploy
+categories: Study
+—### 1. 배포란 무엇인가?</p>
+
+<p><em>ex) google.com, naver.com, facebook.com, blog.rockheung.xyz(?)</em></p>
+
+<p>공개적으로 접근하여 서비스를 제공할 수 있도록 클라우드서버 혹은 물리서버를 구현하는 것. 일반적으로 도메인 주소를 구매하여 DNS에 등록하게 된다. 혹은 2차 서브도메인을 제공받기도 한다(<em>sub.domain.com</em>).</p>
+
+<h4 id="cicd">CI/CD?</h4>
+
+<p>각각 지속적인 통합(Continuous Integration)과 지속적인 제공 혹은 배포(Continuous Delivery/Deployment)의 의미이다. 대개 자동화의 의미가 포함된다.</p>
+
+<h3 id="2-로컬환경과-배포환경의-차이">2. 로컬환경과 배포환경의 차이</h3>
+
+<p>node 버전, DB 버전, OS 버전 등이 달라 작성한 코드가 실행되지 않는 상황을 피해야 한다. 상대경로가 아닌 절대경로이거나, api서버의 주소가 하드코딩되어 있다면 이를 제거하는 과정이 필요할 것이다.</p>
+
+<h3 id="3-아마존-서비스-블락에-대한-설명-s3-ec2-rds">3. 아마존 서비스 블락에 대한 설명 (S3, EC2, RDS)</h3>
+
+<h4 id="rds">RDS</h4>
+
+<p>Amazon Relational Database Service의 약자. AWS의 상품 중 하나이다. 관계형 데이터베이스를 제공하며, Daas(Data-as-a-service)에 해당된다고 볼 수 있다. 데이터베이스 소프트웨어를 패치하거나 데이터베이스를 백업하거나 <em>시점 복구</em> 를 활성화하는 것과 같은 복잡한 관리 프로세스들은 자동으로 관리된다. 스토리지와 연산 자원들을 스케일링하는 것은 하나의 <a href="https://docs.aws.amazon.com/ko_kr/AmazonRDS/latest/UserGuide/ProgrammingGuide.html" title="아마존 RDS API">아마존 RDS API</a> 호출로 수행할 수 있다.
+제공하는 DB의 종류는 Amazon Aurora, PostgreSQL, MySQL, MariaDB, Oracle, Microsoft SQL Server등이 있다.</p>
+
+<h3 id="4-팀-deploy-아키텍처-설명">4. 팀 Deploy 아키텍처 설명</h3>
+
+<blockquote>
+  <p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
+</blockquote>
+:ET

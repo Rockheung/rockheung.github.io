@@ -1,0 +1,101 @@
+I"�<hr />
+<p>layout: post
+title: ‘자료구조: 스택, 큐, 링크드리스트’
+date: 2019-02-13 00:00:00.234 +0900
+author: Rockheung
+tags: codestates javascript bootcamp
+categories: Study
+—## Data Structure - Part I</p>
+
+<h3 id="stack">Stack</h3>
+
+<p><img src="https://www.geeksforgeeks.org/wp-content/uploads/gq/2013/03/stack.png" alt="" />
+<strong><em>Last In First Out</em></strong>
+후입선출. 데이터가 들락거리는 어떤 뭉치가 있을때, 가장 최근에 들어간 데이터가 가장 먼저 나오게 된다. 간단하게 바닥이 막힌 상자라고 생각하면 된다. 자바스크립트에서 push(), pull() 메서드 혹은 shift(), unshift()로 표현 가능할 듯 하다.</p>
+
+<p>생각할 수 있는 메서드:</p>
+
+<ul>
+  <li>createStack</li>
+  <li>isEmpty</li>
+  <li>push</li>
+  <li>pop</li>
+  <li>peek</li>
+</ul>
+
+<!--more-->
+
+<h3 id="queue">Queue</h3>
+
+<p><img src="https://www.geeksforgeeks.org/wp-content/uploads/gq/2014/02/Queue.png" alt="" /></p>
+
+<p><strong><em>선입선출: First in first out</em></strong></p>
+
+<p>편의점 가판대에 음식을 진열한다고 생각해 보자. 우유같은 제품은 유통기한이 짧아서, 얼른 팔려야 한다. 먼저 들어온 제품보다 나중에 들어온 제품은 아무래도 남은 유통기한이 넉넉하다. 이런 경우 당연히 들어온 순서대로 가판대의 뒤(rear)에서 새로운 우유를 진열(insert)하는 것이 합리적이다. 손님은 가판대의 앞(front)에서 우유를 꺼내가게(peek &amp; remove) 된다(물론 오래 먹을 계획인 손님은 굳이 뒤쪽의 우유를 꺼내가기도 한다).</p>
+
+<p>insert는 enQueue, remove는 deQueue로 표현되기도 한다.
+그리고 만약 큐가 가득 찼는데 데이터를 더 담아야 한다면 overFlow, 큐가 비어서 꺼낼 데이터가 없는 경우 underFlow라고 한다.</p>
+
+<p>생각해볼 수 있는 메서드는 다음과 같을 것이다.</p>
+
+<ul>
+  <li>createQueue: 빈 큐를 만든다</li>
+  <li>isEmpty: 큐가 비었는지 검사한다</li>
+  <li>enQueue: 큐에 데이터를 넣는다</li>
+  <li>peek: 큐에서 데이터를 반환한다</li>
+  <li>deQueue: 큐에서 데이터를 삭제한다</li>
+</ul>
+
+<p>각각의 메서드를 구현해본다면, 순차형 자료구조(배열: Array와 유사한 형태)를 이용하는 경우와 연결리스트(Linked List)를 이용하는 경우에 따라 구현이 달라질 것 같다. 당장은 Object를 사용한 순차형 자료구조를 염두에 두고 고민해 보았다.</p>
+
+<ul>
+  <li>createQueue: 빈 배열을 생성해 반환한다. front, rear라는 속성에 null을 할당하여 가장 앞과 뒤에 있을 데이터의 키값을 저장할 목적으로 둔다.</li>
+  <li>isEmpty: front 또는 rear가 null인지 확인하여 그렇다면 true를, 아니면 false를 반환한다. <em>개중 하나만 null일 수는 없도록 한다</em>.</li>
+  <li>enQueue: 빈 큐인지 확인하고, 빈 큐라면 0을 이름으로 가지는 속성으로 할당하고 front, rear에 0을 할당한다. 빈 큐가 아니면 rear에서 1을 뺀 값을 이름으로 가지는 속성으로 할당한다. 만약 rear의 값이 -31보다 작다면, front에서 rear를 뺀 값이 32보다 작을 경우 32를 더한 값을 이름으로 가지는 속성으로 데이터를 할당한다. 그렇지 않으면 overFlowError를 던진다.</li>
+  <li>peek: front 값을 확인하여 그 값을 이름으로 갖는 속성을 할당한다.</li>
+  <li>deQueue: front 값을 확인하여 그 값을 이름으로 갖는 속성을 삭제하고, front값을 1만큼 빼어 재할당한다. 만약 front값이 null이거나, 그 값이 undefined면 underFlowError를 던진다.</li>
+</ul>
+
+<p>이런 식으로 구현한 큐는 데이터를 최대 32개밖에 가지지 못하는 한계를 가지게 된다.</p>
+
+<h3 id="linked-list">Linked List</h3>
+
+<p><img src="https://www.geeksforgeeks.org/wp-content/uploads/gq/2013/03/Linkedlist.png" alt="" />
+값과 주소(포인터)를 저장할 수 있는 여러 개의 노드를 이용해 데이터를 저장하는 방식이다. 한 노드는 다음 노드의 주소를 저장하거나, 제일 마지막 노드는 null을 주소에 가지고 있다. 배열에 비해 삽입, 삭제에 소요되는 비용이 전체 리스트의 크기와는 상관없이 일정하다는 장점이 있다.</p>
+
+<p>Methods:</p>
+
+<h4 id="단순-연결-리스트">단순 연결 리스트</h4>
+
+<ul>
+  <li>createNode</li>
+  <li>insertFirstNode</li>
+  <li>insertMiddleNode</li>
+  <li>insertLastNode</li>
+  <li>deleteNode</li>
+  <li>searchNode</li>
+</ul>
+
+<h4 id="환형-연결-리스트">환형 연결 리스트</h4>
+
+<ul>
+  <li>createNode</li>
+  <li>insertFirstNode</li>
+  <li>insertMiddleNode</li>
+  <li>deleteNode</li>
+  <li>searchNode</li>
+</ul>
+
+<h4 id="이중-연결-리스트">이중 연결 리스트</h4>
+
+<ul>
+  <li>createNode</li>
+  <li>insertNode</li>
+  <li>deleteNode</li>
+  <li>searchNode</li>
+</ul>
+
+<blockquote>
+  <p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
+</blockquote>
+:ET

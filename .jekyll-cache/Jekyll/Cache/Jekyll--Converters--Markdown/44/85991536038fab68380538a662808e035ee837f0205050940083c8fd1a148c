@@ -1,0 +1,64 @@
+I"<p>그간 집의 데스크탑에서는 WSL을, 노트북에서는 우분투를 이용하여 개발용으로 썼다. WSL은 그러나 자잘한 문제가 있었는데, 파일 시스템을 입출력하는 속도가 너무 느렸다. windows defender를 끄면 조금 빨라지긴 했으나, 한계가 있었다. WSL에서는 실제 리눅스에서 사용하는 Docker나 mysql와 같은 유용하고 필수적인 몇 가지 툴을 사용하는 데에도 제약이 있었다. 사용하려면 윈도우에 깔아 WSL에서 사용할 수 있도록 추가적인 작업이 필요했다. 간간히 발생하는 npm install 관련 에러도 짜증에 한몫했다. 리눅스와 윈도우 간에 파일시스템 API를 사용하는 방식이 조금 달라 생기는 문제라는 검색 결과를 봤었다. wsl에서는 어떻게 해도 깔리지 않는 npm 패키지도 겪어봤다.</p>
+
+<p>그런데 최근 마이크로소프트에서 윈도우 업데이트를 공개하면서 WSL2를 선보였다. 놀랍게도 윈도우 커널과 실제 리눅스 커널을 같이 Hypervisor 위로 올린다는 내용이었다. 이말인즉슨, 이후 등장할 새로운 WSL2는 완전한 형태의 가상화된 리눅스가 된다는 뜻이다. 하드웨어 가상화는 얼핏 들으면 비효율적으로 보이지만, 실은 그간 상당히 안정적으로 Azure을 운영하던 마이크로소프트의 노하우가 적용이 되지 않을까 싶어서 오히려 약간의 비효율성은 감수할 만하지 싶다.</p>
+
+<p>맛보기로 Hyper-V에 우분투 이미지를 설치하여 vscode-insider 버전을 사용해 보고 있다. 결론은 <strong><em>무진장 편하다</em></strong>. vscode 터미널에서 원격으로 붙어 어떤 리눅스 서버에서든 이제 <code class="language-plaintext highlighter-rouge">code-insider .</code>를 치면 로컬의 vscode가 띄워지면서 바로 원격지의 서버 안의 워크스페이스에서 개발할 수 있다. 서버에서는 백엔드 서버만 돌면서(비유가 적절하진 않을 수 있다), 로컬의 vscode는 비주얼적인 부분만 담당하게 된다.</p>
+
+<p>Hyper-V를 사용할 때 가장 처음 맡닥뜨린 문제는 바로 vm의 IP를 고정시기는 문제다. vm을 잘 만들었다는 가정하에, 기본적으로 제공하는 가상 스위치를 통해 vm이 인터넷과 연결된다. 근데 이 스위치는 고정 ip를 정해줄 수가 없다. 주기적으로 ip가 바뀌어 ssh 등을 통해 자주 접속한다면 고정 ip가 필수적이다. 과정은 다음과 같다.</p>
+
+<p>윈도우쪽(Host)</p>
+
+<ol>
+  <li>Hyper-v의 스위치 관리자를 통해 새 내부 스위치(Static Switch라 부르겠다)를 생성한다.</li>
+  <li>Hyper-V관리자에서 vm에 새 네트워크 어댑터를 추가하고 Static Switch를 사용하도록 지정한다.</li>
+  <li>vm을 켜서 우분투쪽 설정을 시작한다.</li>
+</ol>
+
+<p>우분투쪽(Ubuntu Server 18.04.2)</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">/etc/netplan/50-****.yaml</code>파일을 열어보면, cloud-init에 의해서 관리된다는 주석이 있다. 주석에서 알려주는 방식으로 이를 비활성화한다. 혹은 다음 명령어를 날려준다.</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>bash <span class="nt">-c</span> <span class="s1">'echo "network: {config: disabled}" &gt; /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg'</span>
+</code></pre></div></div>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">/etc/netplan/50-****.yaml</code>에 새로 추가한 네트워크를 다음 내용으로 수정한다. metric은 vm이 인터넷 접속시에 어떤 연결을 우선시할 것인지를 명시적으로 지정한 것이다.</li>
+</ol>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">network</span><span class="pi">:</span>
+  <span class="na">version</span><span class="pi">:</span> <span class="m">2</span>
+  <span class="na">renderer</span><span class="pi">:</span> <span class="s">networkd</span>
+  <span class="na">ethernets</span><span class="pi">:</span>
+    <span class="na">eth0</span><span class="pi">:</span>
+      <span class="na">dhcp4</span><span class="pi">:</span> <span class="s">yes</span>
+      <span class="na">dhcp4-overrides</span><span class="pi">:</span>
+        <span class="na">route-metric</span><span class="pi">:</span> <span class="m">0</span>
+    <span class="na">eth1</span><span class="pi">:</span>
+      <span class="na">addresses</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">10.0.0.10/24</span>
+      <span class="na">routes</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">to</span><span class="pi">:</span> <span class="s">0.0.0.0/0</span>
+          <span class="na">via</span><span class="pi">:</span> <span class="s">10.0.0.1</span>
+          <span class="na">metric</span><span class="pi">:</span> <span class="m">100</span>
+      <span class="na">nameservers</span><span class="pi">:</span>
+        <span class="na">addresses</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="s">1.1.1.1</span>
+          <span class="pi">-</span> <span class="s">8.8.8.8</span>
+          <span class="pi">-</span> <span class="s">4.4.4.4</span>
+</code></pre></div></div>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">sudo netplan apply</code>를 입력한다. <code class="language-plaintext highlighter-rouge">ping google.com</code> 등을 입력하여 인터넷에 잘 접속되는지 확인해 본다. 잘 되지 않으면 vm을 재부팅한다.</li>
+  <li>이제 <code class="language-plaintext highlighter-rouge">10.0.0.10</code>로 vm에 접속할 수 있다.</li>
+</ol>
+
+<p>왜 기존의 스위치를 계속 사용하는지 의문이 들 것이다. 문제가 몇 가지 있었는데, 새로 만든 스위치만을 이용하여 여기에 윈도우의 인터넷 공유를 사용하면 이상하게도 바뀌는 설정이 전혀 없는데도 재부팅하면 vm에서 인터넷에 접속할 수 없었다. 고정 아이피를 이용하여 vm에 접속만 하면 해결되는 문제였고, 아마도 WSL2가 업데이트에 포함되면 안 쓸 것이기 때문에(…?) 여기서 만족하기로 했다.</p>
+
+<p>code-server를 사용해 보면서 서버의 사양이 꽤 높아야 제대로 사용 가능한 부분이 아쉬웠는데, 이를 차기 vscode 버전에서는 공식적으로 유사한 형태로 사용할 수 있게 되는 점이 매력적이다. WSL도 지원하니, 지금대로만 간다면 이제 리눅스를 쓰기 위해 윈도우를 버릴 필요가 없다. 매번 우분투 등을 노트북에 설치할 때마다 겪었던 한글 세팅의 수고로움부터 완전히 벗어날 수 있다. <em>최고의 리눅스 운영체제는 윈도우</em>라는 웃긴 멘트의 등장을 조만간 기대해 본다.</p>
+
+<blockquote>
+  <p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
+</blockquote>
+:ET

@@ -1,0 +1,68 @@
+I"&<hr />
+<p>layout: post
+title: ‘캔버스 위에서의 한달’
+date: 2019-05-03 00:00:00.123 +0900
+author: Rockheung
+tags: codestates javascript bootcamp canvas
+categories: Daily
+—지난 4주 동안, 나는 캔버스에 있었다. 생소하신 분들을 위해, 간단하게 소개해 볼까 한다. 물론 스포일러는 없으니 안심해도 좋다.</p>
+
+<div>
+<canvas id="root" height="160px" width="160px" style="border-style: dashed; border-width:5px;"></canvas>
+<script>const imgSize=80;const canvasRatio=2;const framerate=15;const moveXoffset=0;let canvas=document.querySelector("#root");let ctx=canvas.getContext('2d');var handIdle=new  Image();handIdle.src='https://rockheung.github.io/thanos-finger-snap-clone/thanos_idle.png';handIdle.onload=()=>{ctx.drawImage(handIdle,0,0,handIdle.width*canvasRatio, handIdle.height*canvasRatio);};handIdle.onerror=(e)=>console.log(e);let isRunning=true;const renderSnap=()=>{let handSnap=new  Image();handSnap.src='https://rockheung.github.io/thanos-finger-snap-clone/thanos_snap.png';handSnap.onload=()=>{if  (isRunning){renderFrame(0,handSnap);}}};const renderFrame=(i,img)=>{if  (i>img.width/imgSize-1){ctx.clearRect(0,0,imgSize*canvasRatio,imgSize*canvasRatio); ctx.drawImage(handIdle,0,0,handIdle.width*canvasRatio,handIdle.height*canvasRatio);isRunning=true;return;}isRunning=false;ctx.clearRect(0,0,imgSize*canvasRatio,imgSize*canvasRatio);ctx.drawImage(img,i*(imgSize+moveXoffset),0,imgSize,imgSize,0,0,imgSize*canvasRatio,80*canvasRatio);setTimeout(()=>renderFrame(i+1,img),1000/framerate);};canvas.onclick=renderSnap;</script>
+</div>
+
+<iframe src="https://stackblitz.com/edit/thanos-finger-snap-clone?embed=1&amp;file=index.js&amp;view=editor" width="752" height="548" scrolling="no" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+
+<p>캔버스를 소개해야겠다는 생각에 인피니티 건틀렛을 캔버스로 움직여 보았다. 마음같아서는 구글의 그것처럼 게시물을 날려버리는 효과까지 주고 싶었으나, 시간이 많지 않았다. 무슨 말인지 궁금하다면 <a href="https://www.google.com/search?q=thanos&amp;oq=thanos&amp;aqs=chrome.0.69i59j69i60l3j0l2.1193j0j9&amp;sourceid=chrome&amp;ie=UTF-8">Google: thanos</a>에서 우측의 건틀렛을 눌러보자. 코드의 내용을 간략하게 설명하자면, 사실은 49장의 이미지를 구글 검색 사이트에서 얻을 수 있었는데, 이를 마우스로 한번 클릭하면 80px씩 잘라 순차적으로 캔버스에 그려주는 코드이다.</p>
+
+<p>기업 <a href="https://www.goorm.io/">구름</a>과의 협업 프로젝트에서 받은 미션은, <a href="https://codingparty.goorm.io/">코딩 파티</a>의 크루세이더퀘스트 맵 편집기였다. 기존에 개발자들이 직접 JSON을 작성하여 맵의 폭이나 몬스터의 위치를 설정했다면, 이를 일반인이 만들 수 있도록 웹UI로 구현하는 프로젝트였다. 요구조건 중에 HTML5: canvas를 이용하는 리액트 컴포넌트를 만드는 것이 포함되었다.</p>
+
+<p>캔버스와 관련한 좋은 라이브러리들이 있다. <a href="https://github.com/konvajs/react-konva">react-konva</a>와 같이 기존의 <a href="https://konvajs.org/">konva</a> 라이브러리를 이용하는 방법도 있지만, 요구되는 기능을 구현하는 데는 바닐라 수준이어도 적당하다고 자체적으로 판단했다. 캔버스의 위에 클릭으로 유닛의 이미지를 그려주는 정도는 자신있었다.</p>
+
+<p>(추상화 그림, 그림으로 캡처)</p>
+
+<p>하지만 물론 순탄하지는 않았다. 두 가지 장벽이 있었다.</p>
+
+<p>첫 장벽은 바로 캔버스 돔 위에서의 마우스 상대 좌표를 얻는 것이었다. event.target에서 얻을 수 있는 좌표는 도큐먼트로부터의 좌표, 브라우저의 화면에 대한 좌표 등 뿐이었다. 만약 canvas에 border css 속성이 잡혀 있다면, 그 width까지 해당 돔의 크기에 잡혀서 이를 제외하는 방법도 생각해야 했다. 나는 두 가지, <code class="language-plaintext highlighter-rouge">getBoundingClientRect()</code>, <code class="language-plaintext highlighter-rouge">getComputedStyle()</code>를 이용하여 해결했다. html 돔의 문서 내에서 좌측 상단의 좌표와, 그리고 해당 돔에 어떤 css가 입혀져 있는지 알 수 있는 브라우저 내장 메서드였고, 각 브라우저간의 호환성도 좋은 편이어서 선택했다.</p>
+
+<p>최종적으로 다음의 코드면 왠만한 dom에서는 마우스 이벤트가 일어났을 때 상대좌표를 얻을 수 있었다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">getRelativeCoordinates</span> <span class="o">=</span> <span class="nx">event</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">pageX</span><span class="p">,</span> <span class="nx">pageY</span><span class="p">,</span> <span class="nx">target</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">event</span><span class="p">;</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">domX</span><span class="p">,</span> <span class="nx">domY</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getExactArea</span><span class="p">(</span><span class="nx">target</span><span class="p">);</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="na">cursorX</span><span class="p">:</span> <span class="nx">pageX</span> <span class="o">-</span> <span class="nx">domX</span><span class="p">,</span>
+    <span class="na">cursorY</span><span class="p">:</span> <span class="nx">pageY</span> <span class="o">-</span> <span class="nx">domY</span><span class="p">,</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+
+<span class="nx">getExactArea</span> <span class="o">=</span> <span class="nx">dom</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">left</span><span class="p">,</span> <span class="nx">top</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">dom</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="p">{</span>
+    <span class="nx">borderLeftWidth</span><span class="p">,</span>
+    <span class="nx">borderTopWidth</span><span class="p">,</span>
+    <span class="nx">borderRightWidth</span><span class="p">,</span>
+    <span class="nx">borderBottomWidth</span><span class="p">,</span>
+  <span class="p">}</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">getComputedStyle</span><span class="p">(</span><span class="nx">dom</span><span class="p">);</span>
+  <span class="kd">let</span> <span class="nx">styleOffset</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">borderLeft</span><span class="p">:</span> <span class="nb">Number</span><span class="p">.</span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">borderLeftWidth</span><span class="p">),</span>
+    <span class="na">borderTop</span><span class="p">:</span> <span class="nb">Number</span><span class="p">.</span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">borderTopWidth</span><span class="p">),</span>
+    <span class="na">borderRight</span><span class="p">:</span> <span class="nb">Number</span><span class="p">.</span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">borderRightWidth</span><span class="p">),</span>
+    <span class="na">borderBottom</span><span class="p">:</span> <span class="nb">Number</span><span class="p">.</span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">borderBottomWidth</span><span class="p">),</span>
+  <span class="p">};</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="na">domX</span><span class="p">:</span> <span class="nx">left</span> <span class="o">+</span> <span class="nx">styleOffset</span><span class="p">.</span><span class="nx">borderLeft</span><span class="p">,</span>
+    <span class="na">domY</span><span class="p">:</span> <span class="nx">top</span> <span class="o">+</span> <span class="nx">styleOffset</span><span class="p">.</span><span class="nx">borderTop</span><span class="p">,</span>
+    <span class="na">domWidth</span><span class="p">:</span> <span class="nx">width</span> <span class="o">-</span> <span class="nx">styleOffset</span><span class="p">.</span><span class="nx">borderLeft</span> <span class="o">-</span> <span class="nx">styleOffset</span><span class="p">.</span><span class="nx">borderRight</span><span class="p">,</span>
+    <span class="na">domHeight</span><span class="p">:</span> <span class="nx">height</span> <span class="o">-</span> <span class="nx">styleOffset</span><span class="p">.</span><span class="nx">borderTop</span> <span class="o">-</span> <span class="nx">styleOffset</span><span class="p">.</span><span class="nx">borderBottom</span><span class="p">,</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>그 다음으로 마주한 문제에 대해서는 다음 글에서 적어보겠다.</p>
+
+<blockquote>
+  <p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
+</blockquote>
+:ET
