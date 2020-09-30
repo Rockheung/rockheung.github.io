@@ -28,6 +28,6 @@
     "vinyl-source-stream": "^2.0.0"
   },
   "dependencies": {
-    "stackedit-js": "^1.0.7"
+    "kramed": "^0.5.6"
   }
 }

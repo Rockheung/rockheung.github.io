@@ -1,20 +1,16 @@
-import Stackedit from "stackedit-js";
+// import Stackedit from "stackedit-js";
+import kramed from "kramed";
 
 function main() {
+  const body = document.querySelector("body");
   const ta = document.querySelector("textarea");
-  const stackedit = new Stackedit();
-
-  stackedit.openFile({
-    name: "TestFileName", // with an optional filename
-    content: {
-      text: ta?.value, // and the Markdown content.
-    },
-  });
-
-  // Listen to StackEdit events and apply the changes to the textarea.
-  stackedit.on("fileChange", (file: any) => {
-    if (ta) {
-      ta.value = file.content.text;
+  ta?.addEventListener("input", function (e: Event) {
+    const _target = e.target as HTMLInputElement;
+    const _divEle = document.createElement("div");
+    ta.nextSibling?.remove();
+    _divEle.innerHTML = kramed(_target.value);
+    if (_divEle.firstChild) {
+      body?.insertBefore(_divEle, ta.nextSibling);
     }
   });
 }
