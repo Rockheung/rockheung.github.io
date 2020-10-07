@@ -1,0 +1,33 @@
+{% assign page_description = '' %}
+{% capture page_description %}
+  {% if
+page.description %}
+    {{
+  page.description
+    | strip_html
+    | strip
+    | rstrip
+    | strip_newlines
+    | truncate: 160
+}}
+  {% else %}
+    {{ site.description }}
+  {% endif %}
+  {%if paginator and paginator.page != 1 %}
+    -
+    {{ paginator.page }}
+  {% endif %}
+  {%if page.slug == 'category' %}
+    Category:
+    {{ page.title }}
+  {% endif %}
+  {%if page.slug == 'tag' %}
+    Tag:
+    {{ page.title }}
+  {% endif %}
+{% endcapture %}
+{% capture page_description %}
+  {{ page_description | strip | rstrip | lstrip | escape | strip_newlines }}
+{% endcapture %}
+
+<meta name="description" content="{{ page_description }}"/>
