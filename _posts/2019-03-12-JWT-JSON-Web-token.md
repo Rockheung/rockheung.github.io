@@ -2,10 +2,11 @@
 layout: post
 title: 'JWT: JSON Web Token'
 date: 2019-03-12 00:00:00.123 +0900
-author: Rockheung
-tags: codestates javascript bootcamp
 categories: Study
----### 생김새
+tags: codestates javascript bootcamp
+---
+
+### 생김새
 
 <pre>
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ2IiwidGl0bGUiOiJKV1<br>Q6IEpzb24gV2ViIFRva2VuIiwiYXV0aG9yIjoiUm9ja2hldW5nIn0.46Oqgx5iLypy2<br>r-cdMk6J8uElk6H97lOhG3Byu8PaZs</pre>

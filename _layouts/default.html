@@ -1,16 +1,49 @@
----
-layout: compress
-published: true
----
 <!DOCTYPE html>
 <html>
-  {% include head.html %}
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+    {% include _head/keywords.liquid %}
+
+
+    {% include _head/page_title.liquid %}
+    {% include _head/page_description.liquid %}
+    {% include _head/page_image.liquid %}
+
+    {% include _head/seo.liquid %}
+    {% include _head/seo_facebook.liquid %}
+    {% include _head/seo_twitter.liquid %}
+    {% include _head/seo_google.liquid %}
+    {% include _head/seo_canonical.liquid %}
+
+
+    <link href="/SpoqaHanSans-kr.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
   <body>
-    <main class="wrapper">
-      {% include header.html %}
-      {{ content }}
-      {% include footer.html %}
-    </main>
-    {% include foot.html %}
+    <!-- <header>
+      <nav>
+        <ul>
+          <li><a>title 1</a></li>
+          <li><a>title 2</a></li>
+          <li><a>title 3</a></li>
+        </ul>
+      </nav>
+    </header> -->
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+          {{ content }}
+      </div>
+  </main>
+
+    {% if site.goat_counter and jekyll.environment == "production" %}
+        {% include goat_counter.liquid %}
+    {% endif %}
+
+    <!-- <footer>
+      <a>about</a>
+    </footer> -->
   </body>
 </html>

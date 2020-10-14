@@ -2,15 +2,12 @@
 import kramed from "kramed";
 
 function main() {
-  const body = document.querySelector("body");
-  const ta = document.querySelector("textarea");
+  const ta = document.querySelector("#text-editor");
   ta?.addEventListener("input", function (e: Event) {
     const _target = e.target as HTMLInputElement;
-    const _divEle = document.createElement("div");
-    ta.nextSibling?.remove();
-    _divEle.innerHTML = kramed(_target.value);
-    if (_divEle.firstChild) {
-      body?.insertBefore(_divEle, ta.nextSibling);
+    const _divEle = document.querySelector("#converted-document");
+    if (_divEle) {
+      _divEle.innerHTML = kramed(_target.value);
     }
   });
 }

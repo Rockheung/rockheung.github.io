@@ -3,7 +3,7 @@ layout: post
 title: 'Django로 블로그 만들자'
 date: 2018-02-08 17:50:04.421 +0900
 categories: Daily
-tags:
+tags: jekyll blog static-site-generator
 ---
 
 도메인을 산 지는 몇년 되었는데, 기껏해야 XPEnology같은 파일 서버나 Plex 같은 영상 스트리밍 서버용으로 썼던 게 전부였다. 아니면 VPS에 ssh 편하게 때리려고 주소 할당용으로 쓰거나. 직접 전전긍긍하면서 사이트를 만들어보자 싶어서 이번에 파이썬 기반의 웹프레임워크라는 장고를 만지작 하기 시작했다.

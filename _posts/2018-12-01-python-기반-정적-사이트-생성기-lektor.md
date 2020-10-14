@@ -2,7 +2,7 @@
 layout: post
 title: 'Python 기반 정적 사이트 생성기: Lektor'
 date: 2018-12-01 00:00:00.123 +0900
-category: 삽질
+category: Digging
 tags: jekyll lektor
 ---
 

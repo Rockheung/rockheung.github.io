@@ -2,10 +2,11 @@
 layout: post
 title: 'Prettier & ESLint in VSCode'
 date: 2019-03-28 00:00:00.123 +0900
-author: Rockheung
-tags: codestates javascript bootcamp
 categories: Study
----### @ VSCode
+tags: codestates javascript bootcamp
+---
+
+### @ VSCode
 
 - VSCode Extension: Prettier - Code Formatter
 
