@@ -11,13 +11,22 @@
     <meta content="True" name="HandheldFriendly" />
     <meta content="320" name="MobileOptimized" />
 
-    {% include head.liquid %}
+    {% include _head/page_title.liquid %}
+    {% include _head/page_description.liquid %}
+    {% include _head/page_image.liquid %}
+
+    {% include _head/seo.liquid %}
+    {% include _head/seo_facebook.liquid %}
+    {% include _head/seo_twitter.liquid %}
+    {% include _head/seo_google.liquid %}
+    {% include _head/seo_canonical.liquid %}
+
 
     <link href="/SpoqaHanSans-kr.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
-    <header>
+    <!-- <header>
       <nav>
         <ul>
           <li><a>title 1</a></li>
@@ -25,10 +34,19 @@
           <li><a>title 3</a></li>
         </ul>
       </nav>
-    </header>
-    <main class="wrapper">{{ content }}</main>
-    <footer>
+    </header> -->
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+          {{ content }}
+      </div>
+  </main>
+
+    {% if site.goat_counter and jekyll.environment == "production" %}
+        {% include goat_counter.liquid %}
+    {% endif %}
+
+    <!-- <footer>
       <a>about</a>
-    </footer>
+    </footer> -->
   </body>
 </html>
