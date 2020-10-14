@@ -13,6 +13,30 @@ html {
   font-family: "Spoqa Han Sans", "sans-serif";
 }
 
-code, code > span {
+body {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+strong {
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 400;
+}
+
+code {
+  font-family: "Nanum Gothic Coding", monospace;
+  font-size: 1.4rem;
+  padding: 0.2rem;
+  margin: 0.3rem;
+  line-height: 1.829;
+  border-radius: 0.1rem;
+  vertical-align: 0.16rem;
+}
+
+code * {
   font-family: "Nanum Gothic Coding", monospace;
 }

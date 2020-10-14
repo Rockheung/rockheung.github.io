@@ -2,8 +2,8 @@
 title: 친구의 인턴동료의 아버님의 컴퓨터 견적
 layout: post
 date: '2016-08-26 13:33:23 +0900'
-categories: 컴퓨터조립
-tags: conputer-assembling computer-quote
+categories: Daily
+tags: computer-assembling computer-quote
 ---
 
 저번주인가, 친구한테 카톡이 왔다.

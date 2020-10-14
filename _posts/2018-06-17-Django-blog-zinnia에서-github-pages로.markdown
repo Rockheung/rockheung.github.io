@@ -2,7 +2,7 @@
 layout: post
 title: 'Django blog zinnia에서 github page로'
 date: 2018-06-17 20:57:01 +0900
-categories: 삽질
+categories: Digging
 tags: django zinnia python github-page jekyll
 ---
 

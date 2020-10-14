@@ -2,10 +2,11 @@
 layout: post
 title: '자바스크립트: __proto__, constructor, prototype'
 date: 2019-02-18 00:00:00.123 +0900
-author: Rockheung
-tags: codestates javascript bootcamp
 categories: Study
----자바스크립트에서 함수를 정의하는 `function`키워드는 조금 특별하다. 단순히 함수를 정의할 뿐만 아니라, 객체의 원형(prototype)을 정의하여 그러한 객체를 만들어낼 수 있다.
+tags: codestates javascript bootcamp
+---
+
+자바스크립트에서 함수를 정의하는 `function`키워드는 조금 특별하다. 단순히 함수를 정의할 뿐만 아니라, 객체의 원형(prototype)을 정의하여 그러한 객체를 만들어낼 수 있다.
 
 ```javascript
 function Foo() {

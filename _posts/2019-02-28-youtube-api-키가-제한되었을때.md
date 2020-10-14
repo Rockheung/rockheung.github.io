@@ -2,10 +2,11 @@
 layout: post
 title: 'youtube api 키가 제한되었을때'
 date: 2019-02-28 00:00:00.234 +0900
-author: Rockheung
-tags: javascript bootcamp youtube
 categories: Study
----#### 준비물
+tags: javascript bootcamp youtube
+---
+
+#### 준비물
 
 - 크롬
 - 크롬 확장 프로그램: [Moesif Orign & CORS Changer](https://chrome.google.com/webstore/detail/moesif-orign-cors-changer/digfbfaphojjndkpccljibejjbppifbc?utm_source=chrome-ntp-icon)

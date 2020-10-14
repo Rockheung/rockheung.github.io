@@ -2,7 +2,7 @@
 layout: post
 title: '비글본 블랙 BeagleBone Black 에서 KT IPTV를?'
 date: 2018-03-27 14:44:38.727 +0900
-categories: 삽질
+categories: Digging
 tags: iptv tvheadend beagle-bone-black arm
 ---
 
