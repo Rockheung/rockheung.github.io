@@ -47,7 +47,7 @@
     url('/SpoqaHanSans/Spoqa Han Sans Light.woff') format('woff'),
     url('/SpoqaHanSans/Spoqa Han Sans Light.ttf') format('truetype');
 }
-
+/* 
 @font-face {
     font-family: 'Spoqa Han Sans';
     font-weight: 100;
@@ -55,4 +55,4 @@
     url('/SpoqaHanSans/Spoqa Han Sans Thin.woff2') format('woff2'),
     url('/SpoqaHanSans/Spoqa Han Sans Thin.woff') format('woff'),
     url('/SpoqaHanSans/Spoqa Han Sans Thin.ttf') format('truetype');
-}
+} */

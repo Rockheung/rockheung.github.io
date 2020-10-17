@@ -1,0 +1,29 @@
+/**
+100: ExtraLight
+200: Light
+300: SemiLight
+400: Regular
+500: Medium
+600: Bold
+700: ExtraBold
+*/
+
+
+
+@font-face {
+  font-family: 'JetBrainsMono';
+  font-weight: 400;
+  src: local('JetBrainsMono-Regular'),
+  url('/JetBrainsMono/woff2/JetBrainsMono-Regular.woff2') format('woff2'),
+  url('/JetBrainsMono/woff/JetBrainsMono-Regular.woff') format('woff'),
+  url('/JetBrainsMono/ttf/JetBrainsMono-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'JetBrainsMono';
+  font-weight: 300;
+  src: local('JetBrainsMono-SemiLight'),
+  url('/JetBrainsMono/woff2/JetBrainsMono-SemiLight.woff2') format('woff2'),
+  url('/JetBrainsMono/woff/JetBrainsMono-SemiLight.woff') format('woff'),
+  url('/JetBrainsMono/ttf/JetBrainsMono-SemiLight.ttf') format('truetype');
+}
