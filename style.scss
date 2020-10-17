@@ -3,17 +3,17 @@
 
 @import "no-style-please-customized";
 
-@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap");
-
 html {
   font-size: 62.5%;
 }
 
-* {
-  font-family: "Spoqa Han Sans", "sans-serif";
-}
+// * {
+//   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, "Spoqa Han Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+// }
 
 body {
+  font-family: "Segoe UI", "Spoqa Han Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
   font-size: 1.6rem;
   line-height: 1.6;
   font-weight: 300;
@@ -24,19 +24,18 @@ strong {
 }
 
 h1, h2, h3, h4, h5 {
-  font-weight: 400;
+  font-weight: 700;
 }
 
 code {
-  font-family: "Nanum Gothic Coding", monospace;
-  font-size: 1.4rem;
-  padding: 0.2rem;
+  font-family: "JetBrainsMono", monospace;
+  font-size: 14px;
+  padding: 0 0.2rem;
   margin: 0.3rem;
-  line-height: 1.829;
-  border-radius: 0.1rem;
-  vertical-align: 0.16rem;
+  border-radius: 0.2rem;
+  vertical-align: 0.1rem;
 }
 
-code * {
-  font-family: "Nanum Gothic Coding", monospace;
-}
+// code * {
+//   font-family: "JetBrainsMono", monospace;
+// }
