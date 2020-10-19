@@ -36,6 +36,16 @@ code {
   vertical-align: 0.1rem;
 }
 
+ul, li {
+  list-style-type: none;
+}
+
+div.w > ul > li {
+  margin-top: 2rem;
+  font-weight: 400;
+  font-size: 2rem;
+}
+
 // code * {
 //   font-family: "JetBrainsMono", monospace;
 // }

@@ -2,36 +2,40 @@
 # https://github.com/riggraz/no-style-please#customize-the-menu
 
 entries:
-  - title: info
+  - title: Hi!
     url: false
     entries:
-      - title: a (nearly) no-CSS, fast, minimalist Jekyll theme.
+      - title: 완전히 압도된. 또는 그런 사람.
         url: false
-      - title: github
-        url: https://github.com/riggraz/no-style-please
-      - title: used by riggraz.dev
-        url: https://riggraz.dev/
+      - title: github://Rockheung
+        url: https://github.com/rockheung
 
-  - title: thoughts
+  - title: Modern JavaScript
+    categories: true
+    category_name: "JavaScript"
+    url: https://ko.javascript.info/
+
+  - title: 공부?
+    categories: true
+    category_name: "Study"
+    url: false
+
+
+  - title: 최근에 작성한 글들
     post_list: true
     url: false
     entries: false
 
-  - title: rss
-    url: feed.xml
+  # - title: rss
+  #   url: feed.xml
   
-  - title: another list
-    url: false
-    entries:
-      - title: with subitems
-        url: false
-        entries:
-          - title: with subsubitems
-            url: false
-          - title: example page
-            url: about
-  - title: PRO TIP
-    url: false
-    entries:
-      - title: to edit this menu, edit _data/menu.yml file
-        url: false
+  # - title: another list
+  #   url: false
+  #   entries:
+  #     - title: with subitems  
+  #       url: false
+  #       entries:
+  #         - title: with subsubitems
+  #           url: false
+  #         - title: example page
+  #           url: about

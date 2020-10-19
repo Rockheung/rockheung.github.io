@@ -2,7 +2,7 @@
 layout: post
 title: 'Atom baytrail 미니 PC에서 tvheadend 사용하기 - 1'
 date: 2018-04-11 09:01:07.025 +0900
-categories: 삽질
+categories: Digging
 tags: atom baytrail ubuntu server
 ---
 
