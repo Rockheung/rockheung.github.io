@@ -24,17 +24,33 @@ strong {
 }
 
 h1, h2, h3, h4, h5 {
-  font-weight: 700;
+  font-family: JetBrainsMono;
+  font-weight: 800;
 }
 
-code {
+a {
+  text-decoration: none;
+  text-decoration-color: #262626;
+  color: #262626;
+
+  &:hover {
+    color: #969696
+  }
+}
+
+pre {
+  tab-size: 2;
+  -moz-tab-size: 2;
+}
+
+code, code span {
   font-family: "JetBrainsMono", monospace;
   font-size: 14px;
   padding: 0 0.2rem;
-  margin: 0.3rem;
   border-radius: 0.2rem;
   vertical-align: 0.1rem;
 }
+
 
 ul, li {
   list-style-type: none;

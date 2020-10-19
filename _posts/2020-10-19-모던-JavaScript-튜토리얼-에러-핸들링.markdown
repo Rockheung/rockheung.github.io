@@ -6,7 +6,7 @@ categories: Study JavaScript
 tags: javascript modern
 ---
 
-- try catch?
+## try catch?
 
 에러를 일으키고, 잡아보았다.
 
@@ -64,3 +64,92 @@ finallyTest();      // (예기치 못하게) 배우가 대사를 까먹음.
 finallyTest(true);  // 시리즈 마지막이 아님. 그나저나 점심 뭐먹을래?
 finallyTest(false); // 주인공 제거됨. 그나저나 점심 뭐먹을래?
 ```
+
+위에서 ```new Error()```로 에러 객체를 만들어봤다. MDN에 따르면, 현 시점에서 호환 이슈 없는
+Error 객체의 속성은 다음과 같다 - ```name```, ```message```, ```toString()```.
+
+
+```javascript
+function errorMaster() {
+  const err = new Error("Error Message!");
+  console.log("ErrorMaster Error\n",err);
+  console.log("err.name", err.name)
+  console.log("err.message", err.message)
+  console.log("err.stack", err.stack)
+  console.log("err.toString()", err.toString())
+}
+
+errorMaster();
+
+// ErrorMaster Error
+//  Error: Error Message!
+//     at errorMaster (<anonymous>:2:15)
+//     at <anonymous>:10:1
+// err.name Error
+// err.message Error Message!
+// err.stack Error: Error Message!
+//     at errorMaster (<anonymous>:2:15)
+//     at <anonymous>:10:1
+// err.toString() Error: Error Message!
+
+```
+
+하나의 에러 타입으로 충분하지 않다고 생각이 되어, Error를 상속받는 새로운 에러를 만들었다
+
+```javascript
+function MissingScriptError(place,  message, fileName, lineNumber ) {
+  Error.call(this,  message, fileName, lineNumber);
+  
+  this.name = 'MissingScriptError';
+  this.missingPlace = place;
+
+  if (Error.captureStackTrace) {
+    Error.captureStackTrace(this, MissingScriptError);
+  }
+}
+MissingScriptError.prototype = Object.create(Error.prototype);
+MissingScriptError.prototype.constructor = MissingScriptError;
+
+```
+
+이는 사실은 ES6에 들어서 다음과 같은 좀 더 심플한 구문으로 같은 코드를 짤 수 있다.
+
+```javascript
+class MissingScriptError extends Error {
+  constructor(place, ...args) {
+    super(...args);
+
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, MissingScriptError);
+    }
+    this.name = 'MissingScriptError';
+    this.missingPlace = place;
+  }
+}
+```
+
+의도한 대로 새로운 이름을 가지는 에러 생성자가 잘 동작하는지 테스트 (스코프에 MissingScriptError가 정의되어 있다고 가정)
+
+```javascript
+function testMissingScriptError() {
+  const err = new MissingScriptError('bathroom');
+    console.log("ErrorMaster Error\n",err);
+  console.log("err.name", err.name)
+  console.log("err.message", err.message)
+  console.log("err.stack", err.stack)
+  console.log("err.toString()", err.toString())
+}
+
+testMissingScriptError();
+
+// ErrorMaster Error
+//  MissingScriptError {name: "MissingScriptError", missingPlace: "bathroom", stack: "MissingScriptError↵    at testMissingScriptError (<anonymous>:15:15)↵    at <anonymous>:23:1"}missingPlace: "bathroom"name: "MissingScriptError"stack: "MissingScriptError↵    at testMissingScriptError (<anonymous>:15:15)↵    at <anonymous>:23:1"__proto__: Error
+// err.name MissingScriptError
+// err.message 
+// err.stack MissingScriptError
+//     at testMissingScriptError (<anonymous>:15:15)
+//     at <anonymous>:23:1
+// err.toString() MissingScriptError
+```
+
+생각대로 잘 동작하였다. [MDN Error 참고](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Error)
