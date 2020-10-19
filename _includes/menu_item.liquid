@@ -12,6 +12,10 @@
       {% include post_list.liquid %}
     {% endif %}
 
+    {% if item.categories == true %}
+      {% include categories.liquid category_name=item.category_name %}
+    {% endif %}
+
     {% if item.entries != blank %}        
       {% include menu_item.liquid collection=item.entries %}
     {% endif %}

@@ -2,7 +2,7 @@
 layout: post
 title: 'Hello, StackEdit!'
 date: 2018-12-23 00:00:00.123 +0900
-categories: 일상
+categories: Daily
 tags: jekyll lektor stack-edit
 ---
 
