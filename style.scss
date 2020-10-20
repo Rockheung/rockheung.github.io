@@ -55,9 +55,16 @@ code.highlighter-rouge {
 }
 
 
+
 ul, li {
   list-style-type: none;
 }
+
+
+div.w ul {
+  padding-inline-start: 2rem;
+}
+
 
 div.w > ul > li {
   margin-top: 2rem;
@@ -70,11 +77,10 @@ div.w > ul > li {
 // }
 
 footer {
-  margin: 64px 0;
-  width: 100%;
+  margin: 6.4rem 2rem;
   div {
     margin: 0 auto;
-    max-width: 640px;
+    max-width: 64rem;
     a {
       font-size: 1.2rem;
     }
