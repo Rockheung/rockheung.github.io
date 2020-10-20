@@ -46,9 +46,12 @@ pre {
 code, code span {
   font-family: "JetBrainsMono", monospace;
   font-size: 14px;
-  padding: 0 0.2rem;
   border-radius: 0.2rem;
   vertical-align: 0.1rem;
+}
+
+code.highlighter-rouge {
+  padding: 0 0.2rem;
 }
 
 
@@ -65,3 +68,16 @@ div.w > ul > li {
 // code * {
 //   font-family: "JetBrainsMono", monospace;
 // }
+
+footer {
+  margin: 64px 0;
+  width: 100%;
+  div {
+    margin: 0 auto;
+    max-width: 640px;
+    a {
+      font-size: 1.2rem;
+    }
+  }
+}
+

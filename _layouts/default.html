@@ -24,15 +24,6 @@
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
-    <!-- <header>
-      <nav>
-        <ul>
-          <li><a>title 1</a></li>
-          <li><a>title 2</a></li>
-          <li><a>title 3</a></li>
-        </ul>
-      </nav>
-    </header> -->
     <main class="page-content" aria-label="Content">
       <div class="w">
           {{ content }}
@@ -43,8 +34,46 @@
         {% include goat_counter.liquid %}
     {% endif %}
 
-    <!-- <footer>
-      <a>about</a>
-    </footer> -->
+    <footer>
+      {%- assign footer_words = site.description | split: " "-%}
+      <div>
+        {% for footer_word in footer_words %}
+        <span>{{ footer_word }}</span>
+        {% endfor %}
+      </div>
+      <div>
+        <a href="https://github.com/Rockheung/rockheung.github.io/pulls">Coded by Rockheung in Korea, Compiled in... Merge?</a>
+      </div>
+    </footer>
+    <script>
+      var RANDOM_INTENSITY = 4;
+      function footer_rainbow() {
+        var footer_spans = document.querySelectorAll('footer span');
+        var footer_spans_color = Array.from(
+          new Array(footer_spans.length),
+          function() { return {r: 26, g: 26, b: 26}; }
+          );
+        function rainbow_step() {
+          var d_color = {
+            r: Math.floor(Math.random()*RANDOM_INTENSITY),
+            g: Math.floor(Math.random()*RANDOM_INTENSITY),
+            b: Math.floor(Math.random()*RANDOM_INTENSITY)
+          };
+
+          footer_spans_color.push({
+            r: (footer_spans_color[footer_spans_color.length - 1].r + d_color.r) % 255,
+            g: (footer_spans_color[footer_spans_color.length - 1].g + d_color.g) % 255,
+            b: (footer_spans_color[footer_spans_color.length - 1].b + d_color.b) % 255
+          })
+          footer_spans_color = footer_spans_color.slice(1);
+          footer_spans.forEach(function (spanEle, idx) {
+            spanEle.setAttribute('style', 'color: rgba('+ footer_spans_color[idx].r + ',' + footer_spans_color[idx].g + ',' + footer_spans_color[idx].b + ',0.8)')
+          })
+          window.requestAnimationFrame(rainbow_step)
+        }
+        window.requestAnimationFrame(rainbow_step);
+      }
+      footer_rainbow();
+    </script>
   </body>
 </html>
