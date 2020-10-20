@@ -30,11 +30,11 @@
 
     <footer>
       {%- assign footer_words = site.description | split: ""-%}
-      <div>
+      <!--<div>
         {% for footer_word in footer_words %}
         <span>{{ footer_word }}</span>
         {% endfor %}
-      </div>
+      </div>-->
       <div>
         <a href="https://github.com/Rockheung/rockheung.github.io/pulls"
           >Coded by Rockheung in Korea, Compiled in... Merge?</a
@@ -108,7 +108,7 @@
         }
         window.requestAnimationFrame(rainbow_step);
       }
-      footer_rainbow();
+      // footer_rainbow();
     </script>
   </body>
 </html>
