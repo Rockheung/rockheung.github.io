@@ -72,7 +72,6 @@ Error 객체의 속성은 다음과 같다 - ```name```, ```message```, ```toStr
 ```javascript
 function errorMaster() {
   const err = new Error("Error Message!");
-  console.log("ErrorMaster Error\n",err);
   console.log("err.name", err.name)
   console.log("err.message", err.message)
   console.log("err.stack", err.stack)
@@ -81,10 +80,6 @@ function errorMaster() {
 
 errorMaster();
 
-// ErrorMaster Error
-//  Error: Error Message!
-//     at errorMaster (<anonymous>:2:15)
-//     at <anonymous>:10:1
 // err.name Error
 // err.message Error Message!
 // err.stack Error: Error Message!
@@ -133,23 +128,46 @@ class MissingScriptError extends Error {
 ```javascript
 function testMissingScriptError() {
   const err = new MissingScriptError('bathroom');
-    console.log("ErrorMaster Error\n",err);
-  console.log("err.name", err.name)
-  console.log("err.message", err.message)
-  console.log("err.stack", err.stack)
-  console.log("err.toString()", err.toString())
+  console.log("err.missingPlace", err.massingPlace);
+  console.log("err.name", err.name);
+  console.log("err.message", err.message);
+  console.log("err.stack", err.stack);
+  console.log("err.toString()", err.toString());
+  console.log("MissingScriptError's error?",err instanceof MissingScriptError);
+  console.log("Error's error?",err instanceof Error);
 }
 
 testMissingScriptError();
 
-// ErrorMaster Error
-//  MissingScriptError {name: "MissingScriptError", missingPlace: "bathroom", stack: "MissingScriptError↵    at testMissingScriptError (<anonymous>:15:15)↵    at <anonymous>:23:1"}missingPlace: "bathroom"name: "MissingScriptError"stack: "MissingScriptError↵    at testMissingScriptError (<anonymous>:15:15)↵    at <anonymous>:23:1"__proto__: Error
+// err.missingPlace bathroom
 // err.name MissingScriptError
 // err.message 
 // err.stack MissingScriptError
-//     at testMissingScriptError (<anonymous>:15:15)
-//     at <anonymous>:23:1
+//     at testMissingScriptError (<anonymous>:2:15)
+//     at <anonymous>:12:1
 // err.toString() MissingScriptError
+// MissingScriptError's error? true
+// Error's error? true
+
 ```
 
 생각대로 잘 동작하였다. [MDN Error 참고](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Error)
+
+에러를 고의로 발생시키는 코드가 당최 왜 필요할까? 이미 우리가 작성한 세상은 에러로 가득 차 있는데? (에러를 발생시키지 않는 분들께는 죄송하다)
+
+그럼에도 우리가 작성한 애플리케이션이 돌아가길 바라기 때문이다.
+
+다음과 같은 --*안돼 돌아가*-- 페이지가 있다고 하자.
+
+```html
+<!DOCTYPE html>
+<head></head>
+<body>
+  <script>
+
+    
+  </script>
+</body>
+</html>
+
+```

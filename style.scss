@@ -13,7 +13,6 @@ html {
 
 body {
   font-family: "Segoe UI", "Spoqa Han Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-
   font-size: 1.6rem;
   line-height: 1.6;
   font-weight: 300;
@@ -23,8 +22,14 @@ strong {
   font-weight: 400;
 }
 
+header span {
+  font-family: JetBrainsMono, system-ui;
+  font-weight: 800;
+  font-size: 2em;
+}
+
 h1, h2, h3, h4, h5 {
-  font-family: JetBrainsMono;
+  font-family: JetBrainsMono, system-ui;
   font-weight: 800;
 }
 
@@ -54,17 +59,13 @@ code.highlighter-rouge {
   padding: 0 0.2rem;
 }
 
-
-
 ul, li {
   list-style-type: none;
 }
 
-
 div.w ul {
   padding-inline-start: 2rem;
 }
-
 
 div.w > ul > li {
   margin-top: 2rem;
@@ -86,4 +87,3 @@ footer {
     }
   }
 }
-
