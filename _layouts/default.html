@@ -8,34 +8,49 @@
       content="width=device-width, initial-scale=1, user-scalable=no"
     />
 
-    {% include _head/keywords.liquid %} {% include _head/page_title.liquid %} {%
-    include _head/page_description.liquid %} {% include _head/page_image.liquid
-    %} {% include _head/seo.liquid %} {% include _head/seo_facebook.liquid %} {%
-    include _head/seo_twitter.liquid %} {% include _head/seo_google.liquid %} {%
-    include _head/seo_canonical.liquid %}
+    {% include _head/keywords.liquid %}
+    {% include _head/page_title.liquid %}
+    {% include _head/page_description.liquid %}
+    {% include _head/page_image.liquid %}
+    {% include _head/seo.liquid %}
+    {% include _head/seo_facebook.liquid %}
+    {% include _head/seo_twitter.liquid %}
+    {% include _head/seo_google.liquid %}
+    {% include _head/seo_canonical.liquid %}
 
     <link href="/SpoqaHanSans-kr.css" rel="stylesheet" type="text/css" />
     <link href="/JetBrainsMono.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
+    <header >
+      <div class="w">
+      {%- assign footer_chars = site.title | split: ""-%}
+        {% for footer_char in footer_chars %}
+        <span>{{- footer_char -}}</span>
+        {% endfor %}
+      </div>
+      {% if site.theme_config.show_description == true %}
+        <p>{{ site.description }}</p>
+      {% endif %}
+    </header>
+
     <main class="page-content" aria-label="Content">
       <div class="w">
         {{ content }}
       </div>
     </main>
 
-    {% if site.goat_counter and jekyll.environment == "production" %} {% include
-    goat_counter.liquid %} {% endif %}
+    {% if site.goat_counter and jekyll.environment == "production" %}
+      {% include goat_counter.liquid %}
+    {% endif %}
 
     <footer>
       {%- assign footer_words = site.description | split: ""-%}
-      <div>
+      <div class="w">
         {% for footer_word in footer_words %}
-        <span>{{ footer_word }}</span>
+        <span>{{- footer_word -}}</span>
         {% endfor %}
-      </div>
-      <div>
         <a href="https://github.com/Rockheung/rockheung.github.io/pulls"
           >Coded by Rockheung in Korea, Compiled in... Merge?</a
         >
@@ -45,24 +60,26 @@
       var RANDOM_INTENSITY = 24;
       var DURATION = 41.667;
       function footer_rainbow() {
-        var footer_spans = document.querySelectorAll("footer span");
+        var footer_spans = document.querySelectorAll("header span");
         var seed_color = {
           r: Math.floor(Math.random() * 256),
           g: Math.floor(Math.random() * 256),
           b: Math.floor(Math.random() * 256)
-        }
+        };
         var footer_spans_color = Array.from(
           new Array(footer_spans.length),
           function() {
             return seed_color;
           }
         );
-        var lastTimestamp = null
+        var lastTimestamp = null; 
         function rainbow_step(timestamp) {
           if (!lastTimestamp) lastTimestamp = timestamp;
+
           if (timestamp - lastTimestamp < DURATION ) {
             return window.requestAnimationFrame(rainbow_step);
           }
+
           var d_color = {
             r: Math.floor((Math.random() - 0.7) * RANDOM_INTENSITY),
             g: Math.floor((Math.random() - 0.7) * RANDOM_INTENSITY),
@@ -82,7 +99,7 @@
               (footer_spans_color[footer_spans_color.length - 1].b +
                 d_color.b) %
               256,
-          }
+          };
 
           if (offset_color.r < 0) offset_color.r = offset_color.r + 256
           if (offset_color.g < 0) offset_color.g = offset_color.g + 256
@@ -104,7 +121,6 @@
           });
           window.requestAnimationFrame(rainbow_step);
           lastTimestamp = timestamp;
-          console.log('lastTimestamp,',lastTimestamp)
         }
         window.requestAnimationFrame(rainbow_step);
       }
