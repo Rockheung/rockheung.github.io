@@ -204,6 +204,7 @@ testMissingScriptError();
 
 ```html
 <!DOCTYPE html>
+<html>
 <head></head>
 <body>
   <h1>Error Counter, <span>0</span></h1>
