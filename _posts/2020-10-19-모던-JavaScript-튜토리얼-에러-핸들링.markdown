@@ -157,17 +157,45 @@ testMissingScriptError();
 
 그럼에도 우리가 작성한 애플리케이션이 돌아가길 바라기 때문이다.
 
-다음과 같은 --*안돼 돌아가*-- 페이지가 있다고 하자.
+다음과 같은  페이지가 있다고 하자.
 
 ```html
 <!DOCTYPE html>
 <head></head>
 <body>
+  <h1>Hello, ${{username}}</h1>
   <script>
-
-    
+    // 어쩌다 사용자의 권한이 만료되었다.
+    throw new Error("401: unauthorized");
+    alert("권한없음");
+    document.location.href = "https://google.com";
   </script>
 </body>
 </html>
-
 ```
+
+사용자는 과연 얼럿을 볼 수 있을까? 브라우저의 스크립트 태그는 에러가 발생하는 순간 정지한다. 미봉책으로 다음과 같은 코드를 넣을 수도 있을 것이다.
+
+```html
+<!DOCTYPE html>
+<head></head>
+<body>
+  <h1>Hello, ${{username}}</h1>
+  <script>
+    window.onerror = function (message, source, lineno, colno, error) {
+      alert(lineno+","+colno+": 에서 예기치 못한 에러 발생");
+      if (error.message.startsWith('401')) {
+        alert("권한없음");
+        document.location.href = "https://google.com";
+      }
+    }
+    // 어쩌다 사용자의 권한이 만료되었다.
+    // throw new Error("401: unauthorized");
+    var title = document.querySelector('body h1');
+    title.innerText = title.innerText.replace('${{username}}', 'yourname');
+  </script>
+</body>
+</html>
+```
+
+위의 예시는 그나마 괜찮다. 
