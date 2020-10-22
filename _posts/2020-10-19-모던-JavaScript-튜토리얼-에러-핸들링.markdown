@@ -199,3 +199,29 @@ testMissingScriptError();
 ```
 
 위의 예시는 그나마 괜찮다. 하지만 실제 개발을 진행하다 보면 바닥을 알 수 없는 함수들을 만나곤 한다. 콜스택이 몇 백개 쌓인 코드를 작성중인데 런타임 에러가 발생하는데, 발생한 함수의 위치가 스크롤을 두세번 해야 보이면서 실은 내가 짠 코드도 아닐 때가 많다. 당황할 게 아니라, 거기서 에러를 잡았으니 실은 안도해야 한다. 거기서 에러를 던지지 않았으면 그냥 애플리케이션이 죽게 되기 때문이다.
+
+
+
+```html
+<!DOCTYPE html>
+<head></head>
+<body>
+  <h1>Error Counter, <span>0</span></h1>
+  <script>
+    window.onerror = function (message, source, lineno, colno, error) {
+      setTimeout(main,500);
+    }
+    function main() {
+      var title = document.querySelector('body h1 span');
+      var _count = +title.innerText
+      title.innerText = title.innerText =  _count +1;
+      if (Math.random() > 0.7) {
+        throw new Error("어쩌다 에러가 났음");
+      }
+      setTimeout(main, 100);
+    }
+    main();
+  </script>
+</body>
+</html>
+```
