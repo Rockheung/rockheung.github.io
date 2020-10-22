@@ -201,27 +201,46 @@ testMissingScriptError();
 위의 예시는 그나마 괜찮다. 하지만 실제 개발을 진행하다 보면 바닥을 알 수 없는 함수들을 만나곤 한다. 콜스택이 몇 백개 쌓인 코드를 작성중인데 런타임 에러가 발생하는데, 발생한 함수의 위치가 스크롤을 두세번 해야 보이면서 실은 내가 짠 코드도 아닐 때가 많다. 당황할 게 아니라, 거기서 에러를 잡았으니 실은 안도해야 한다. 거기서 에러를 던지지 않았으면 그냥 애플리케이션이 죽게 되기 때문이다.
 
 
+... 정말 죽는게 맞나? 스크립트 태그를 나눠 다시 작성해봤다.
+mainOne 함수는 30%의 확률로 죽게 된다. 첫 번째 카운터는 에러가 발생하면 올라가지 않는다. 그러나 여전히 mainTwo 함수는 실행된다. 따라서 웹페이지가 죽기보다는, 스크립트 태그 하나를 실행하는 각자의 독립적인 익명 함수가 있는데, 이게 throw 를 통해 제대로 종료되지 않으면 window.onerror 함수가 실행되는 것으로 보인다.
 
 ```html
 <!DOCTYPE html>
 <html>
 <head></head>
 <body>
-  <h1>Error Counter, <span>0</span></h1>
+  <h1 id="counter-one">Counter One, <span>0</span></h1>
+  <h1 id="counter-two">Counter Two, <span>0</span></h1>
   <script>
     window.onerror = function (message, source, lineno, colno, error) {
-      setTimeout(main,500);
+      console.log('onerror:message',message)
+      console.log('onerror:source',source)
+      // setTimeout(mainOne,500);
     }
-    function main() {
-      var title = document.querySelector('body h1 span');
-      var _count = +title.innerText
-      title.innerText = title.innerText =  _count +1;
+  </script>
+  <script>
+    function mainOne() {
+      let title = document.querySelector('#counter-one span');
+      let _count = +title.innerText
+      title.innerText = title.innerText = _count +1;
       if (Math.random() > 0.7) {
-        throw new Error("어쩌다 에러가 났음");
+        throw new Error("어쩌다 첫 번째 카운터에서 에러가 났음");
       }
-      setTimeout(main, 100);
+      setTimeout(mainOne, 100);
     }
-    main();
+    mainOne();
+  </script>
+  <script>
+    function mainTwo() {
+      let title = document.querySelector('#counter-two span');
+      let _count = +title.innerText
+      title.innerText = title.innerText = _count +1;
+      // if (Math.random() > 0.7) {
+      //   throw new Error("어쩌다 두 번째 카운터에서 에러가 났음");
+      // }
+      setTimeout(mainTwo, 1000);
+    }
+    mainTwo();
   </script>
 </body>
 </html>
