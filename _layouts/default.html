@@ -58,15 +58,14 @@
       var DURATION = 41.667;
       function footer_rainbow() {
         var footer_spans = document.querySelectorAll("header span");
-        var seed_color = {
+        var footer_spans_color = Array.from(
+          new Array(footer_spans.length),
+          function() {
+            return {
           r: Math.floor(Math.random() * 256),
           g: Math.floor(Math.random() * 256),
           b: Math.floor(Math.random() * 256)
         };
-        var footer_spans_color = Array.from(
-          new Array(footer_spans.length),
-          function() {
-            return seed_color;
           }
         );
         var lastTimestamp = null; 
