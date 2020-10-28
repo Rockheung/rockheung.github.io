@@ -132,7 +132,7 @@ console.log("fetchMock invoked");
 
 ### Promise 체이닝
 
-위의 코드에서 json 메서드가 리턴하는 것도 드러나진 않지만 프라미스다(MDN). then의 argument에는 resolve되었을 때의 콜백과, reject되었을 때의 콜백이 인자로 들어가는데, 이때 reject되었을 때의 콜백은 생략할 수 있다. 또한 이러한 체이닝의 장점은, 한 번의 catch로 앞서 발생한 reject를 잡아낼 수 있다는 것이다. 
+위의 코드에서 json 메서드가 리턴하는 것도 드러나진 않지만 프라미스다([MDN: Response](https://developer.mozilla.org/en-US/docs/Web/API/Response#Body_Interface_Methods)). then의 argument에는 resolve되었을 때의 콜백과, reject되었을 때의 콜백이 인자로 들어가는데, 이때 reject되었을 때의 콜백은 생략할 수 있다. 또한 이러한 체이닝의 장점은, 한 번의 catch로 앞서 발생한 reject를 잡아낼 수 있다는 것이다. 
 
 ```javascript
 
@@ -141,7 +141,7 @@ let resolvedCount = 0;
 function throwError(willReject = false) {
   return new Promise((resolve, reject)=>{
     if (willReject) {
-      reject(new Error('Throned at:' + resolvedCount));
+      reject(new Error('Thrown at:' + resolvedCount));
       return;
     }
     resolvedCount += 1;
