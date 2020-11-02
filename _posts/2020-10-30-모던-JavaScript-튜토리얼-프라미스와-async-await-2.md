@@ -84,9 +84,34 @@ Promise.resolve(thenableHere({}))
 
 ```javascript
 
-
 Promise.resolve(thenableHere({url: 'http://blog.rockheung.xyz/CNAME'}))
   .then(url)
   .then(console.log)
   .catch(console.error)
+```
+
+### Promise의 Static method - all, race, resolve, reject, and allSettled
+
+`Promise.all`, `Promise.race`, `Promise.allSettled`는 모두 여러 개의 프라미스에 사용된다. 다만 그 기제는 각기 다른데, all은 배열의 모든 promise가 resolve되어야 resolve로 fulfilled된다. 만약 한 개의 프라미스라도 reject되면, 다른 모든 resolve된 promise는 무시되고, reject으로 fulfilled된다. allSettled는 이와 정확히 반대로 동작한다. race는 가장 먼저 resolved 된 프라미스를 반환한다.
+
+`Promise.resolve`, `Promise.reject`는 각각 resolve, reject된 상태의 Promise를 리턴한다.
+
+### 프라미스화
+
+콜백으로 구현되는 함수를, 프라미스로 감싸는 것이다. 간단하게, 만만한 `setTimeout`함수를 프라미스로 감싸면, 지연시키는 코드를 콜백이 아닌 프라미스의 형태로 사용할 수 있을 것이다.
+
+```javascript
+function setTimeoutPromise(func, time) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      try {
+        const res = func();
+        resolve(res);
+      } catch (err) {
+        reject(err)
+      }
+      
+    })
+  })
+}
 ```
