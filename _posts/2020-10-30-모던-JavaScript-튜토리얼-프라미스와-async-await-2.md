@@ -10,7 +10,7 @@ tags: javascript modern
 
 ```javascript
 
-new Promise((resolve) => {
+new Promise(function executor(resolve) {
   throw new Error()
 })
 .catch(errorHandler)
@@ -22,7 +22,7 @@ new Promise((resolve) => {
 
 ```javascript
 
-new Promise((resolve, reject) => {
+new Promise(function executor(resolve, reject)  {
   reject(new Error());
 })
 .catch(errorHandler)
@@ -33,17 +33,17 @@ then으로도 마찬가지로 동작한다.
 
 ```javascript
 
-new Promise((resolve, reject) => {
+new Promise(function executor(resolve, reject) {
   resolve('ok');
 })
-.then((ok)=> throw new Error())
+.then((ok)=> { throw new Error() } )
 .catch(errorHandler)
 
 ```
 
 ### thenable
 
-[Promise.resolve()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)에서 등장한 thenable을 사용해봤다.
+**[Promise.resolve()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve){:other target="_blank"}**에서 등장한 thenable을 사용해봤다.
 
 ```javascript
 
@@ -92,7 +92,34 @@ Promise.resolve(thenableHere({url: 'http://blog.rockheung.xyz/CNAME'}))
 
 ### Promise의 Static method - all, race, resolve, reject, and allSettled
 
-`Promise.all`, `Promise.race`, `Promise.allSettled`는 모두 여러 개의 프라미스에 사용된다. 다만 그 기제는 각기 다른데, all은 배열의 모든 promise가 resolve되어야 resolve로 fulfilled된다. 만약 한 개의 프라미스라도 reject되면, 다른 모든 resolve된 promise는 무시되고, reject으로 fulfilled된다. allSettled는 이와 정확히 반대로 동작한다. race는 가장 먼저 resolved 된 프라미스를 반환한다.
+`Promise.all`, `Promise.race`, `Promise.allSettled`는 프라미스로 이루어진 배열에 사용된다. 다만 그 기제는 각기 다른데, all은 배열의 모든 promise가 resolve되어야 resolve로 fulfilled된다. 만약 한 개의 프라미스라도 reject되면, 다른 모든 resolve된 promise는 무시되고, reject으로 fulfilled된다. allSettled는 이와 정확히 반대로 동작한다. race는 가장 먼저 resolved 된 프라미스를 반환한다.
+
+```javascript
+
+function invoked(ms) {
+  return new Promise((resolve, reject) => {
+    setTimeout(
+      function() {
+        console.log("Invoked after", ms, 'ms')
+        resolve(ms)
+      },
+      ms
+    )
+  })
+}
+
+Promise.race([invoked(1000), invoked(1090),invoked(4000)]).then((ms) => console.log('Invoked after', ms/1000, 's'))
+
+// Promise {<pending>}
+//   __proto__: Promise
+//   [[PromiseState]]: "fulfilled"
+//   [[PromiseResult]]: undefined
+// Invoked after 1000 ms
+// Invoked after 1 s
+// Invoked after 1090 ms
+// Invoked after 4000 ms
+
+```
 
 `Promise.resolve`, `Promise.reject`는 각각 resolve, reject된 상태의 Promise를 리턴한다.
 
