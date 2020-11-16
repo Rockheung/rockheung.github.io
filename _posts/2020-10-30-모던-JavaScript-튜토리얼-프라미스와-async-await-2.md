@@ -85,7 +85,7 @@ Promise.resolve(thenableHere({}))
 ```javascript
 
 Promise.resolve(thenableHere({url: 'http://blog.rockheung.xyz/CNAME'}))
-  .then(url)
+  .then(msg=> msg)
   .then(console.log)
   .catch(console.error)
 ```
