@@ -1,29 +1,29 @@
 # For documentation on this file, see:
 # https://github.com/riggraz/no-style-please#customize-the-menu
 
-entries:
-  - title: Hi!
-    url: false
-    entries:
-      - title: 완전히 압도된. 또는 그런 사람.
-        url: false
-      - title: github://Rockheung
-        url: https://github.com/rockheung
+posts:
+  # - title: Hi!
+  #   url: false
+  #   entries:
+  #     - title: 안녕하세요, 개발자 박흥준입니다.
+  #       url: false
+  #     - title: github://Rockheung
+  #       url: https://github.com/rockheung
 
-  - title: Modern JavaScript
-    categories: true
-    category_name: "JavaScript"
-    url: https://ko.javascript.info/
+  # - title: Modern JavaScript
+  #   categories: true
+  #   category_name: "JavaScript"
+  #   url: https://ko.javascript.info/
 
-  - title: 공부?
-    categories: true
-    category_name: "Study"
-    url: false
+  # - title: 공부?
+  #   categories: true
+  #   category_name: "Study"
+  #   url: false
 
 
-  - title: 최근에 작성한 글들
+  - title: 모든 글
     post_list: true
-    url: false
+    url: /posts
     entries: false
 
   # - title: rss
