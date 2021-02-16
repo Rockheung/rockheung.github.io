@@ -55,22 +55,22 @@ anotherMain();
 Promise를 리턴하는 대표적인 `fetch` browser method를 이용하여 서버에서 응답을 받은 후에 실행되는 콜백 코드를 짜봤다.
 
 ```javascript
-/**
- * {
- *   "data": [
- *     {
- *       "id": 9,
- *       "name": "John Doe",
- *       "hobby": "Lying down"
- *     }
- *   ]
- * }
- */
 fetch('/data.json')
   .then(res => res.json())
   .then((_json) => {
      console.log(_json)
   })
+
+// /data.json
+// {
+//   "data": [
+//     {
+//       "id": 9,
+//       "name": "John Doe",
+//       "hobby": "Lying down"
+//     }
+//   ]
+// }
 
 // Promise {<pending>}
 //   __proto__: Promise

@@ -60,3 +60,14 @@ function footer_rainbow() {
 }
 footer_rainbow();
 hljs.initHighlightingOnLoad();
+moment.locale("ko");
+
+document.querySelectorAll("main span.date").forEach(function (datetimeEl) {
+  moment.locale("ko");
+  moment.updateLocale("ko", {
+    weekdaysShort: ["일", "월", "화", "수", "목", "금", "토"],
+    weekdaysMin: ["일", "월", "화", "수", "목", "금", "토"],
+  });
+  const dateText = datetimeEl.innerText;
+  datetimeEl.innerText = moment(dateText).format("YYYY년 MM월 DD일 dd요일");
+});

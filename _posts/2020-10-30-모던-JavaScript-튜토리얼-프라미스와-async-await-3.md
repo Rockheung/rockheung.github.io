@@ -27,4 +27,33 @@ new Promise((function executor(resolve, reject) {
 ### for await ... of
 
 
-`for ...of`는 간간히 봤지만, `for await ... of`는 최근에 본 아리송한 문법이어서 테스트코드를 짜봤다.
+`for ...of`는 간간히 봤지만, `for await ... of`는 익숙하지 않은 문법이어서 테스트코드를 짜봤다.
+
+```javascript
+
+async function* timeIndicator() {
+  let delayedAllSecs = 0;
+  while(true) {
+    if (delayedAllSecs > 60) {
+      console.log("Time's up!")
+      return
+    }
+    await new Promise((resolve) => {
+      const delayedSecs = Math.floor(Math.random()* 10);
+      setTimeout(() => {
+        delayedAllSecs += delayedSecs;
+        resolve(delayedSecs)
+      },delayedSecs * 1000)
+    })
+    yield delayedAllSecs;
+  }
+}
+
+(async function() {
+  const startTime = new Date().getTime();
+  for await (const delayedSecs of timeIndicator()) {
+    const passedTime = (new Date().getTime() - startTime)/1000;
+    console.log(delayedSecs + 's passed. Truth is ' + passedTime + 's.');
+  }
+})()
+```
