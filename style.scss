@@ -35,13 +35,25 @@ h1, h2, h3, h4, h5 {
 
 a {
   text-decoration: none;
-  text-decoration-color: #262626;
-  color: #262626;
+  text-decoration-color: #0c59cc;
+  color: #0c59cc;
 
   &:hover {
-    color: #969696
+    color: #390be0
   }
 }
+
+
+main li a[target="_blank"]::before, 
+main p a[target="_blank"]::before, 
+main h3 a[target="_blank"]::before,
+main h4 a[target="_blank"]::before {
+  content: url(/assets/img/external-link-alt-solid.svg);
+  display: inline-block;
+  width: 1.6rem;
+  height: 1rem;
+  margin: 10px 5px 0 10px;
+} 
 
 pre {
   tab-size: 2;
@@ -50,7 +62,7 @@ pre {
 
 code, code span {
   font-family: "JetBrainsMono", monospace;
-  font-size: 14px;
+  font-size: 1.4rem;
   border-radius: 0.2rem;
   vertical-align: 0.1rem;
 }
@@ -69,8 +81,8 @@ div.w ul {
 
 div.w > ul > li {
   margin-top: 2rem;
-  font-weight: 400;
-  font-size: 2rem;
+  font-weight: 300;
+  font-size: 1.6rem;
 }
 
 // code * {

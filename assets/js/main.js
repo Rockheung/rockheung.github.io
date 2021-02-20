@@ -4,7 +4,7 @@ function footer_rainbow() {
   var footer_spans = document.querySelectorAll("header span");
   var footer_spans_color = Array.from(
     new Array(footer_spans.length),
-    function () {
+    function() {
       return {
         r: Math.floor(Math.random() * 256),
         g: Math.floor(Math.random() * 256),
@@ -41,7 +41,7 @@ function footer_rainbow() {
 
     footer_spans_color.unshift(offset_color);
     footer_spans_color = footer_spans_color.slice(0, footer_spans.length);
-    footer_spans.forEach(function (spanEle, idx) {
+    footer_spans.forEach(function(spanEle, idx) {
       spanEle.setAttribute(
         "style",
         "color: rgba(" +
@@ -62,12 +62,11 @@ footer_rainbow();
 hljs.initHighlightingOnLoad();
 moment.locale("ko");
 
-document.querySelectorAll("main span.date").forEach(function (datetimeEl) {
-  moment.locale("ko");
+document.querySelectorAll("main span.date").forEach(function(datetimeEl) {
   moment.updateLocale("ko", {
     weekdaysShort: ["일", "월", "화", "수", "목", "금", "토"],
     weekdaysMin: ["일", "월", "화", "수", "목", "금", "토"],
   });
-  const dateText = datetimeEl.innerText;
+  var dateText = datetimeEl.innerText;
   datetimeEl.innerText = moment(dateText).format("YYYY년 MM월 DD일 dd요일");
 });
