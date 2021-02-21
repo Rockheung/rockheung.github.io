@@ -1,5 +1,5 @@
-var RANDOM_INTENSITY = 24;
-var DURATION = 41.667;
+var RANDOM_INTENSITY = 36;
+var DURATION = 60;
 function footer_rainbow() {
   var header_spans = document.querySelectorAll("header span");
   var header_spans_color = Array.from(
