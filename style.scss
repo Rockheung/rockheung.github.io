@@ -36,7 +36,7 @@ h1, h2, h3, h4, h5 {
 a {
   text-decoration: none;
   text-decoration-color: #0c59cc;
-  color: #0c59cc;
+  color: #262626;
 
   &:hover {
     color: #390be0
@@ -98,4 +98,8 @@ footer {
       font-size: 1.2rem;
     }
   }
+}
+
+main .post {
+  margin: 120px 0px;
 }

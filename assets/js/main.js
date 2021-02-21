@@ -1,10 +1,10 @@
 var RANDOM_INTENSITY = 24;
 var DURATION = 41.667;
 function footer_rainbow() {
-  var footer_spans = document.querySelectorAll("header span");
-  var footer_spans_color = Array.from(
-    new Array(footer_spans.length),
-    function() {
+  var header_spans = document.querySelectorAll("header span");
+  var header_spans_color = Array.from(
+    new Array(header_spans.length),
+    function () {
       return {
         r: Math.floor(Math.random() * 256),
         g: Math.floor(Math.random() * 256),
@@ -28,28 +28,28 @@ function footer_rainbow() {
 
     var offset_color = {
       r:
-        (footer_spans_color[footer_spans_color.length - 1].r + d_color.r) % 256,
+        (header_spans_color[header_spans_color.length - 1].r + d_color.r) % 256,
       g:
-        (footer_spans_color[footer_spans_color.length - 1].g + d_color.g) % 256,
+        (header_spans_color[header_spans_color.length - 1].g + d_color.g) % 256,
       b:
-        (footer_spans_color[footer_spans_color.length - 1].b + d_color.b) % 256,
+        (header_spans_color[header_spans_color.length - 1].b + d_color.b) % 256,
     };
 
     if (offset_color.r < 0) offset_color.r = offset_color.r + 256;
     if (offset_color.g < 0) offset_color.g = offset_color.g + 256;
     if (offset_color.b < 0) offset_color.b = offset_color.b + 256;
 
-    footer_spans_color.unshift(offset_color);
-    footer_spans_color = footer_spans_color.slice(0, footer_spans.length);
-    footer_spans.forEach(function(spanEle, idx) {
+    header_spans_color.unshift(offset_color);
+    header_spans_color = header_spans_color.slice(0, header_spans.length);
+    header_spans.forEach(function (spanEle, idx) {
       spanEle.setAttribute(
         "style",
         "color: rgba(" +
-          footer_spans_color[idx].r +
+          header_spans_color[idx].r +
           "," +
-          footer_spans_color[idx].g +
+          header_spans_color[idx].g +
           "," +
-          footer_spans_color[idx].b +
+          header_spans_color[idx].b +
           ",0.8)"
       );
     });
@@ -60,9 +60,8 @@ function footer_rainbow() {
 }
 footer_rainbow();
 hljs.initHighlightingOnLoad();
-moment.locale("ko");
 
-document.querySelectorAll("main span.date").forEach(function(datetimeEl) {
+document.querySelectorAll("main span.date").forEach(function (datetimeEl) {
   moment.updateLocale("ko", {
     weekdaysShort: ["일", "월", "화", "수", "목", "금", "토"],
     weekdaysMin: ["일", "월", "화", "수", "목", "금", "토"],

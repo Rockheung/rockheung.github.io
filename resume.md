@@ -10,7 +10,7 @@ title: Resume
 현업 Frontend 개발자 2년차. Javascript에 익숙하며 ReactNative, Next.js, Nest.js를 실무에 활용 중입니다. 기획자 및 디자이너와 많은 커뮤니케이션을 하며 친목을 도모합니다. 졸다가 봐도 이해할 수 있는 코드를 짜려 노력합니다. 밥먹으며 가끔 개발 문서를 봅니다.
 
 
-## Recode
+## Experience
 
 ### 2019.06 ~ 현재: [차봇 모빌리티](https://www.chabot.kr/){:target="_blank"} 재직 중
 
@@ -22,9 +22,13 @@ title: Resume
 
 ## Education
 
-### 2019.02 ~ 2019.05: 코드스테이츠(Code States), Advanced Software Engineering Immersive Program - 11th
+### 2019.02 ~ 2019.05
 
-### 2010.03 ~ 2017.08: 서울시립대학교(University of Seoul), 전자전기컴퓨터공학부 학사
+- 코드스테이츠(Code States), Advanced Software Engineering Immersive Program - 11th
+
+### 2010.03 ~ 2017.08
+
+- 서울시립대학교(University of Seoul), 전자전기컴퓨터공학부 학사
 
 
 ## Project
