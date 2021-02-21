@@ -66,6 +66,6 @@ document.querySelectorAll("main span.date").forEach(function (datetimeEl) {
     weekdaysShort: ["일", "월", "화", "수", "목", "금", "토"],
     weekdaysMin: ["일", "월", "화", "수", "목", "금", "토"],
   });
-  var dateText = datetimeEl.innerText;
+  var dateText = +datetimeEl.innerText * 1000;
   datetimeEl.innerText = moment(dateText).format("YYYY년 MM월 DD일 dd요일");
 });
