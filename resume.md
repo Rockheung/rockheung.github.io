@@ -46,5 +46,6 @@ title: Resume
 
 - 다룬 주요 기술스택: React Native(0.60), Nest.js, [ZongJi](https://www.npmjs.com/package/zongji){:target="_blank"}
 - Refresh, Access Token을 서버에서 발급하여 유저 인증
-- 운영중인 Legacy Database에서 MySQL Binlog를 활용하여 신규 서비스의 Database에 선택적으로 마이그레이션 로직 개발
+- 운영중인 Legacy Database에서 MySQL Binlog를 활용하여 신규 서비스의 Database와 실시간 데이터베이스 연동
+- 회원가입 시에 기존 유저인지 판단하여 신규 서비스의 Database에 선택적으로 마이그레이션
 - Legacy Database의 php 내장함수로 암호화되어 있는 사용자 정보를 활용하기 위해 Node.js로 암복호화 함수를 구현
