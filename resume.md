@@ -54,6 +54,14 @@ h2, h3, h4, h5 {
   margin: 3rem 0 2rem;
 }
 
+h1 {
+  margin: -1rem 0 4rem;
+}
+
+h2 {
+  margin-top: 7.2rem;
+}
+
 .profile {
     border-radius: 50%;
     width: 18rem;
