@@ -37,7 +37,7 @@ new Promise(function executor(resolve, reject) {
 
 ### thenable
 
-**[Promise.resolve()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve){:other target="\_blank"}**에서 등장한 thenable을 사용해봤다.
+**[Promise.resolve()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve){:other target="_blank"}**에서 등장한 thenable을 사용해봤다.
 
 ```javascript
 function thenableHere(obj) {
