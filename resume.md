@@ -45,7 +45,6 @@ title: Resume
 - React Native의 Animated를 활용하여 다이나믹한 UI 개발
 - Refresh, Access Token을 서버에서 발급하여 유저 인증, GraphQL 인증 토큰으로 활용
 - 인앱에서 Js Injection을 통해 웹사이트의 데이터 스크래핑
-- 빠른 대응이 필요한 서비스 기획에 대응하여 WebView 및 Next.js로 앱 일부 화면 개발.
 
 ### 2019.08 ~ 2020.02: 차봇 프라임(v1) 개발
 
