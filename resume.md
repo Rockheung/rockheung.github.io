@@ -9,14 +9,14 @@ title: Resume
 
 ## TL;DR
 
-**_스스로 성장 중인 현업 Frontend 개발자 2년차._** JavaScript에 익숙하며 React Native, Next.js, Nest.js를 실무에 활용 중입니다. 기획자 및 디자이너와 많은 커뮤니케이션을 하며 친목을 도모합니다. 졸다가 봐도 이해할 수 있는 코드를 짜려 노력합니다. 밥먹으며 가끔 개발 문서를 봅니다.
+**_스스로 성장 중인 현업 Frontend 개발자 2년차._** JavaScript에 익숙하며 React Native, Next.js, Nest.js를 실무에 활용 중입니다. 기획자 및 디자이너와 충분한 소통으로 의도한 바를 탐색합니다. 졸다가 봐도 이해할 수 있는 코드를 짜려 노력합니다. 
 
 ## Experience
 
 ### 2019.06 ~ 현재: [차봇 모빌리티](https://www.chabot.kr/){:target="_blank"} 재직 중
 
 - 차봇프라임 Application 개발 및 유지보수: **[PlayStore](https://play.google.com/store/apps/details?id=com.chabotprime&hl=ko&gl=US){:target="_blank"}**, **[AppStore](https://apps.apple.com/kr/app/%EC%B0%A8%EB%B4%87%ED%94%84%EB%9D%BC%EC%9E%84/id1492427449){:target="_blank"}** - React Native, Apollo Client(v2.6), GraphQL(Prisma v1), Next.js, Nest.js
-- 포지션에 구애받지 않고 백엔드 개발자와 협업하여 다양한 상황에 대응하여 개발: _웹 스크래핑_, _차량DB 관리_, _외주 앱 내재화_ 등.
+- 포지션에 구애받지 않고 백엔드 개발자와 협업하여 다양한 상황에 대응하여 개발: _앱 서버 구현_, _웹 스크래핑_, _차량DB 관리_, _외주 앱 내재화_ 등.
 
 ### 2017.03 ~ 2017.07: Finfra
 
