@@ -9,7 +9,7 @@ title: Resume
 
 ## TL;DR
 
-**_스스로 성장 중인 현업 Frontend 개발자 2년차._** JavaScript에 익숙하며 React Native, Next.js, Nest.js를 실무에 활용 중입니다. 기획자 및 디자이너와 충분한 소통으로 의도한 바를 탐색합니다. <br>**DONE IS BETTER THEN PERFECT.** 구현이 불가능한 것이 아니라면, 스케줄을 우선합니다.
+**_스스로 성장 중인 현업 Frontend 개발자 2년차._** JavaScript에 익숙하며 React Native, Next.js, Nest.js를 실무에 활용 중입니다. 기획자 및 디자이너와 충분한 소통으로 의도한 바를 탐색합니다. <br>**DONE IS BETTER THAN PERFECT.** 구현이 불가능한 것이 아니라면, 스케줄을 우선합니다.
 
 ## Experience
 
