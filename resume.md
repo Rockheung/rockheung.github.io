@@ -11,6 +11,12 @@ title: Resume
 
 **_스스로 성장 중인 현업 Frontend 개발자 2년차._** JavaScript에 익숙하며 React Native, Next.js, Nest.js를 실무에 활용 중입니다. 기획자 및 디자이너와 충분한 소통으로 의도한 바를 탐색합니다. <br>**DONE IS BETTER THAN PERFECT.** 구현이 불가능한 것이 아니라면, 스케줄을 우선합니다.
 
+## Contact & Channel
+
+- Email: [rockheung@gmail.com](mailto:rockheung@gmail.com)
+- Github: [Rockheung](https://github.com/Rockheung){:target="_blank"}
+- Blog: [바로 여기!](/){:target="_blank"}
+
 ## Experience
 
 ### 2019.06 ~ 현재: [차봇 모빌리티](https://www.chabot.kr/){:target="_blank"} 재직 중
