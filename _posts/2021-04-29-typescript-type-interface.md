@@ -17,12 +17,14 @@
 
 
 - undefined를 리턴하는 함수
+
 ```ts
 const returnUndefined: () => void = () : void => {}
 ```
 
 
 - 결코 return 하지 않는 함수
+
 ```ts
 const infiniteLoop = (): never => {
   while(true) {
@@ -41,6 +43,7 @@ const errorDriven = (): never => {
 
 
 - type alias
+
 ```ts
 type Note = string;
 type Post = {
@@ -51,12 +54,14 @@ type Post = {
 
 
 - type union
+
 ```ts
 type Fruit = Apple | Banana | Strawberry
 ```
 
 
 - literal type
+
 ```ts
 const helloWorld = "Hello World";
 ```
@@ -69,6 +74,7 @@ const helloWorld : string = "Hello World";
 
 
 - discriminated type : 사리분별이 되는 타입; 이란 뜻이다.
+
 ```ts
 type MsgError = {
   type: 'error',
@@ -125,7 +131,8 @@ type Msg = MsgOkay | MsgError;
 
 ### Interface
 
-- 어떤 객체의 구조를 각각 type과 interface로 정의해보자
+- 어떤 객체의 구조를 각각 type과 interface로 
+
 ```ts
 type TGift = {
   eatable: boolean,
@@ -191,7 +198,8 @@ let giftTwo: IGift = {
 }
 ```
 
-- type은 데이터의 구조에, interface는 클래스의 구조에 좀 더 찰떡인 걸로 여기겠다. 다른 언어에서 대개 각각의 키워드가 뜻하는 관용적인 부분을 참고
+- type은 데이터의 구조에, interface는 클래스의 구조 정의에 좀 더 찰떡인 걸로 권장되는 듯 하다. 다른 언어에서 대개 각각의 키워드가 뜻하는 관용적인 부분을 참고
+
 ```ts
 // 위의 TGift, IGift가 이미 정의되어 있다는 가정하에
 
